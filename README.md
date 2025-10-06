@@ -61,22 +61,6 @@ Key parameters in the analysis pipeline:
 * `--network_size`: MOE network dimensions (default: 64x27)
 * `--analysis_depth`: Maximum decomposition depth (default: 2)
 
-## Methodology
-
-### Expert Focus Analysis Pipeline
-
-1. **Activation Pattern Extraction**: Extract expert activation sequences from MOE model outputs
-2. **Domain Classification**: Categorize experts based on their specialization domains
-3. **Collaboration Mining**: Discover interaction patterns between different experts
-4. **Statistical Analysis**: Compute focus scores and distribution characteristics
-
-### Visualization Framework
-
-1. **Data Preprocessing**: Clean and normalize activation data for visualization
-2. **Network Mapping**: Map experts to MOE network positions (64×27 grid)
-3. **Interactive Rendering**: Generate real-time visualizations using SVG
-4. **User Interaction**: Enable exploration and analysis through web interface
-
 ## License
 
 This project is licensed under the MIT License.
