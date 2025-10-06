@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1800" height="1020" xmlns="http://www.w3.org/2000/svg">
+<defs>
+    <!-- 渐变定义 -->
+    <linearGradient id="titleGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 阴影滤镜 -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#00000020"/>
+    </filter>
+</defs>
+
+<style>
+    .main-title { 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        font-size: 32px; 
+        font-weight: bold; 
+        text-anchor: middle; 
+        fill: url(#titleGradient);
+        filter: url(#shadow);
+    }
+    .subtitle { 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        font-size: 16px; 
+        text-anchor: middle; 
+        fill: #666;
+        font-style: italic;
+    }
+    .expert-title { 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        font-size: 16px; 
+        font-weight: bold; 
+        text-anchor: middle; 
+        fill: #333;
+    }
+    .expert-subtitle { 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        font-size: 12px; 
+        text-anchor: middle; 
+        fill: #666;
+    }
+    .domain-label { 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        font-size: 11px; 
+        text-anchor: middle; 
+        fill: #444;
+        font-weight: 500;
+    }
+    .grid-line { 
+        stroke: #e0e0e0; 
+        stroke-width: 1.5; 
+        fill: none; 
+        opacity: 0.7;
+    }
+    .grid-circle { 
+        stroke: #d0d0d0; 
+        stroke-width: 1; 
+        fill: none; 
+        opacity: 0.5;
+    }
+    .radar-area { 
+        stroke-width: 2.5; 
+        fill-opacity: 0.25; 
+        filter: url(#shadow);
+    }
+    .radar-border { 
+        stroke-width: 2.5; 
+        fill: none; 
+        opacity: 0.8;
+    }
+    .data-point { 
+        filter: url(#shadow);
+    }
+</style>
+
+<!-- 背景渐变 -->
+<rect width="1800" height="1020" fill="#f8f9fa" opacity="0.05"/>
+
+<!-- 主标题 -->
+<text x="900" y="50" class="main-title">MoE Expert Domain Specialization Analysis</text>
+<text x="900" y="75" class="subtitle">Radar Chart Visualization (2×5 Layout)</text>
+
+<!-- 分隔线 -->
+<line x1="100" y1="90" x2="1700" y2="90" stroke="#ddd" stroke-width="2" opacity="0.5"/>
+
+<!-- 专家 78 信息区域 -->
+<rect x="120" y="105" width="160" height="45" 
+      fill="#f8f9fa" stroke="#e9ecef" stroke-width="1" rx="8" opacity="0.8"/>
+
+<text x="200" y="130" class="expert-title">Expert #78</text>
+<text x="200" y="145" class="expert-subtitle">
+    Primary: Law (38.0%)
+</text>
+<circle cx="200" cy="250" r="25" 
+                              class="grid-circle" style="opacity: 0.3;" />
+<circle cx="200" cy="250" r="50" 
+                              class="grid-circle" style="opacity: 0.4;" />
+<circle cx="200" cy="250" r="75" 
+                              class="grid-circle" style="opacity: 0.5;" />
+<text x="230" y="248" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.3
+                          </text>
+<text x="255" y="248" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.7
+                          </text>
+<text x="280" y="248" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              1.0
+                          </text>
+<line x1="200" y1="250" x2="200.0" y2="175.0" class="grid-line" />
+<text x="200.0" y="169.0" class="domain-label">Law</text>
+<line x1="200" y1="250" x2="271.3292387221365" y2="226.82372542187895" class="grid-line" />
+<text x="280.83980388508803" y="227.73355547812946" class="domain-label">Physics</text>
+<line x1="200" y1="250" x2="244.0838939219355" y2="310.6762745781211" class="grid-line" />
+<text x="249.9617464448602" y="322.76644452187054" class="domain-label">Psychology</text>
+<line x1="200" y1="250" x2="155.91610607806453" y2="310.6762745781211" class="grid-line" />
+<text x="150.0382535551398" y="322.76644452187054" class="domain-label">computer science</text>
+<line x1="200" y1="250" x2="128.67076127786348" y2="226.82372542187895" class="grid-line" />
+<text x="119.16019611491194" y="227.7335554781295" class="domain-label">math</text>
+<polygon points="200.0,221.4876771044172 209.33335317961996,246.96740972004346 205.92054201023257,258.14892698227413 190.26364766934273,263.400939319254 190.45433214386458,246.89842449984425" fill="#FF6B6B" class="radar-area" />
+<polygon points="200.0,221.4876771044172 209.33335317961996,246.96740972004346 205.92054201023257,258.14892698227413 190.26364766934273,263.400939319254 190.45433214386458,246.89842449984425" stroke="#FF6B6B" class="radar-border" />
+<circle cx="200.0" cy="221.4876771044172" r="4.140492915823312" 
+                              fill="#FF6B6B" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="200.0" cy="221.4876771044172" r="7.140492915823312" 
+                                  fill="none" stroke="#FF6B6B" stroke-width="3" opacity="0.6" />
+<circle cx="209.33335317961996" cy="246.96740972004346" r="3.39254673175378" 
+                              fill="#FF6B6B" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="205.92054201023257" cy="258.14892698227413" r="3.4029051077509225" 
+                              fill="#FF6B6B" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="190.26364766934273" cy="263.400939319254" r="3.6625788784379094" 
+                              fill="#FF6B6B" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="190.45433214386458" cy="246.89842449984425" r="3.4014763662340757" 
+                              fill="#FF6B6B" stroke="white" stroke-width="2" class="data-point" />
+
+<!-- 专家 106 信息区域 -->
+<rect x="440" y="105" width="160" height="45" 
+      fill="#f8f9fa" stroke="#e9ecef" stroke-width="1" rx="8" opacity="0.8"/>
+
+<text x="520" y="130" class="expert-title">Expert #106</text>
+<text x="520" y="145" class="expert-subtitle">
+    Primary: Law (44.3%)
+</text>
+<circle cx="520" cy="250" r="25" 
+                              class="grid-circle" style="opacity: 0.3;" />
+<circle cx="520" cy="250" r="50" 
+                              class="grid-circle" style="opacity: 0.4;" />
+<circle cx="520" cy="250" r="75" 
+                              class="grid-circle" style="opacity: 0.5;" />
+<text x="550" y="248" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.3
+                          </text>
+<text x="575" y="248" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.7
+                          </text>
+<text x="600" y="248" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              1.0
+                          </text>
+<line x1="520" y1="250" x2="520.0" y2="175.0" class="grid-line" />
+<text x="520.0" y="169.0" class="domain-label">Law</text>
+<line x1="520" y1="250" x2="591.3292387221366" y2="226.82372542187895" class="grid-line" />
+<text x="600.839803885088" y="227.73355547812946" class="domain-label">Physics</text>
+<line x1="520" y1="250" x2="564.0838939219354" y2="310.6762745781211" class="grid-line" />
+<text x="569.9617464448602" y="322.76644452187054" class="domain-label">Psychology</text>
+<line x1="520" y1="250" x2="475.9161060780645" y2="310.6762745781211" class="grid-line" />
+<text x="470.0382535551398" y="322.76644452187054" class="domain-label">computer science</text>
+<line x1="520" y1="250" x2="448.67076127786345" y2="226.82372542187895" class="grid-line" />
+<text x="439.16019611491197" y="227.7335554781295" class="domain-label">math</text>
+<polygon points="520.0,216.80802647910633 527.2991718565474,247.62835529761884 525.757474492356,257.92448379885263 511.2087559493699,262.100109369737 511.0776969354602,247.1009679985718" fill="#4ECDC4" class="radar-area" />
+<polygon points="520.0,216.80802647910633 527.2991718565474,247.62835529761884 525.757474492356,257.92448379885263 511.2087559493699,262.100109369737 511.0776969354602,247.1009679985718" stroke="#4ECDC4" class="radar-border" />
+<circle cx="520.0" cy="216.80802647910633" r="4.327678940835747" 
+                              fill="#4ECDC4" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="520.0" cy="216.80802647910633" r="7.327678940835747" 
+                                  fill="none" stroke="#4ECDC4" stroke-width="3" opacity="0.6" />
+<circle cx="527.2991718565474" cy="247.62835529761884" r="3.3069921390153083" 
+                              fill="#4ECDC4" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="525.757474492356" cy="257.92448379885263" r="3.391808026479106" 
+                              fill="#4ECDC4" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="511.2087559493699" cy="262.100109369737" r="3.598262308647083" 
+                              fill="#4ECDC4" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="511.0776969354602" cy="247.1009679985718" r="3.3752585850227557" 
+                              fill="#4ECDC4" stroke="white" stroke-width="2" class="data-point" />
+
+<!-- 专家 159 信息区域 -->
+<rect x="760" y="105" width="160" height="45" 
+      fill="#f8f9fa" stroke="#e9ecef" stroke-width="1" rx="8" opacity="0.8"/>
+
+<text x="840" y="130" class="expert-title">Expert #159</text>
+<text x="840" y="145" class="expert-subtitle">
+    Primary: Law (27.1%)
+</text>
+<circle cx="840" cy="250" r="25" 
+                              class="grid-circle" style="opacity: 0.3;" />
+<circle cx="840" cy="250" r="50" 
+                              class="grid-circle" style="opacity: 0.4;" />
+<circle cx="840" cy="250" r="75" 
+                              class="grid-circle" style="opacity: 0.5;" />
+<text x="870" y="248" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.3
+                          </text>
+<text x="895" y="248" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.7
+                          </text>
+<text x="920" y="248" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              1.0
+                          </text>
+<line x1="840" y1="250" x2="840.0" y2="175.0" class="grid-line" />
+<text x="840.0" y="169.0" class="domain-label">Law</text>
+<line x1="840" y1="250" x2="911.3292387221366" y2="226.82372542187895" class="grid-line" />
+<text x="920.839803885088" y="227.73355547812946" class="domain-label">Physics</text>
+<line x1="840" y1="250" x2="884.0838939219354" y2="310.6762745781211" class="grid-line" />
+<text x="889.9617464448602" y="322.76644452187054" class="domain-label">Psychology</text>
+<line x1="840" y1="250" x2="795.9161060780646" y2="310.6762745781211" class="grid-line" />
+<text x="790.0382535551398" y="322.76644452187054" class="domain-label">computer science</text>
+<line x1="840" y1="250" x2="768.6707612778634" y2="226.82372542187895" class="grid-line" />
+<text x="759.160196114912" y="227.7335554781295" class="domain-label">math</text>
+<polygon points="840.0,229.65702317057207 853.3292954936313,245.66904935721067 848.0850288499321,261.12808753553446 831.972680135435,261.0486579314264 827.4177053046106,245.9117646296612" fill="#45B7D1" class="radar-area" />
+<polygon points="840.0,229.65702317057207 853.3292954936313,245.66904935721067 848.0850288499321,261.12808753553446 831.972680135435,261.0486579314264 827.4177053046106,245.9117646296612" stroke="#45B7D1" class="radar-border" />
+<circle cx="840.0" cy="229.65702317057207" r="3.8137190731771176" 
+                              fill="#45B7D1" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="840.0" cy="229.65702317057207" r="6.813719073177118" 
+                                  fill="none" stroke="#45B7D1" stroke-width="3" opacity="0.6" />
+<circle cx="853.3292954936313" cy="245.66904935721067" r="3.560610027490509" 
+                              fill="#45B7D1" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="848.0850288499321" cy="261.12808753553446" r="3.550202906139547" 
+                              fill="#45B7D1" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="831.972680135435" cy="261.0486579314264" r="3.5462756905354103" 
+                              fill="#45B7D1" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="827.4177053046106" cy="245.9117646296612" r="3.5291923026574157" 
+                              fill="#45B7D1" stroke="white" stroke-width="2" class="data-point" />
+
+<!-- 专家 439 信息区域 -->
+<rect x="1080" y="105" width="160" height="45" 
+      fill="#f8f9fa" stroke="#e9ecef" stroke-width="1" rx="8" opacity="0.8"/>
+
+<text x="1160" y="130" class="expert-title">Expert #439</text>
+<text x="1160" y="145" class="expert-subtitle">
+    Primary: math (21.6%)
+</text>
+<circle cx="1160" cy="250" r="25" 
+                              class="grid-circle" style="opacity: 0.3;" />
+<circle cx="1160" cy="250" r="50" 
+                              class="grid-circle" style="opacity: 0.4;" />
+<circle cx="1160" cy="250" r="75" 
+                              class="grid-circle" style="opacity: 0.5;" />
+<text x="1190" y="248" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.3
+                          </text>
+<text x="1215" y="248" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.7
+                          </text>
+<text x="1240" y="248" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              1.0
+                          </text>
+<line x1="1160" y1="250" x2="1160.0" y2="175.0" class="grid-line" />
+<text x="1160.0" y="169.0" class="domain-label">Law</text>
+<line x1="1160" y1="250" x2="1231.3292387221366" y2="226.82372542187895" class="grid-line" />
+<text x="1240.839803885088" y="227.73355547812946" class="domain-label">Physics</text>
+<line x1="1160" y1="250" x2="1204.0838939219354" y2="310.6762745781211" class="grid-line" />
+<text x="1209.9617464448602" y="322.76644452187054" class="domain-label">Psychology</text>
+<line x1="1160" y1="250" x2="1115.9161060780646" y2="310.6762745781211" class="grid-line" />
+<text x="1110.0382535551398" y="322.76644452187054" class="domain-label">computer science</text>
+<line x1="1160" y1="250" x2="1088.6707612778634" y2="226.82372542187895" class="grid-line" />
+<text x="1079.160196114912" y="227.7335554781295" class="domain-label">math</text>
+<polygon points="1160.0,235.1479170859328 1175.4171065380508,244.99067842686617 1167.017581020779,259.6588716424419 1150.7349004053515,262.75231557343886 1144.5589687156146,244.98290480555465" fill="#96CEB4" class="radar-area" />
+<polygon points="1160.0,235.1479170859328 1175.4171065380508,244.99067842686617 1167.017581020779,259.6588716424419 1150.7349004053515,262.75231557343886 1144.5589687156146,244.98290480555465" stroke="#96CEB4" class="radar-border" />
+<circle cx="1160.0" cy="235.1479170859328" r="3.5940833165626884" 
+                              fill="#96CEB4" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="1175.4171065380508" cy="244.99067842686617" r="3.6484202052726906" 
+                              fill="#96CEB4" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="1167.017581020779" cy="259.6588716424419" r="3.477560877440129" 
+                              fill="#96CEB4" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="1150.7349004053515" cy="262.75231557343886" r="3.6305091567719865" 
+                              fill="#96CEB4" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="1144.5589687156146" cy="244.98290480555465" r="3.6494264439525055" 
+                              fill="#96CEB4" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="1144.5589687156146" cy="244.98290480555465" r="6.649426443952505" 
+                                  fill="none" stroke="#96CEB4" stroke-width="3" opacity="0.6" />
+
+<!-- 专家 491 信息区域 -->
+<rect x="1400" y="105" width="160" height="45" 
+      fill="#f8f9fa" stroke="#e9ecef" stroke-width="1" rx="8" opacity="0.8"/>
+
+<text x="1480" y="130" class="expert-title">Expert #491</text>
+<text x="1480" y="145" class="expert-subtitle">
+    Primary: Law (30.0%)
+</text>
+<circle cx="1480" cy="250" r="25" 
+                              class="grid-circle" style="opacity: 0.3;" />
+<circle cx="1480" cy="250" r="50" 
+                              class="grid-circle" style="opacity: 0.4;" />
+<circle cx="1480" cy="250" r="75" 
+                              class="grid-circle" style="opacity: 0.5;" />
+<text x="1510" y="248" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.3
+                          </text>
+<text x="1535" y="248" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.7
+                          </text>
+<text x="1560" y="248" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              1.0
+                          </text>
+<line x1="1480" y1="250" x2="1480.0" y2="175.0" class="grid-line" />
+<text x="1480.0" y="169.0" class="domain-label">Law</text>
+<line x1="1480" y1="250" x2="1551.3292387221366" y2="226.82372542187895" class="grid-line" />
+<text x="1560.839803885088" y="227.73355547812946" class="domain-label">Physics</text>
+<line x1="1480" y1="250" x2="1524.0838939219354" y2="310.6762745781211" class="grid-line" />
+<text x="1529.9617464448602" y="322.76644452187054" class="domain-label">Psychology</text>
+<line x1="1480" y1="250" x2="1435.9161060780646" y2="310.6762745781211" class="grid-line" />
+<text x="1430.0382535551398" y="322.76644452187054" class="domain-label">computer science</text>
+<line x1="1480" y1="250" x2="1408.6707612778634" y2="226.82372542187895" class="grid-line" />
+<text x="1399.160196114912" y="227.7335554781295" class="domain-label">math</text>
+<polygon points="1480.0,227.48808522567984 1496.870788076416,244.51834866300118 1484.3667813809225,256.0103589433519 1472.7453754605617,259.98513405588926 1465.7554823708806,245.3716756589623" fill="#FFEAA7" class="radar-area" />
+<polygon points="1480.0,227.48808522567984 1496.870788076416,244.51834866300118 1484.3667813809225,256.0103589433519 1472.7453754605617,259.98513405588926 1465.7554823708806,245.3716756589623" stroke="#FFEAA7" class="radar-border" />
+<circle cx="1480.0" cy="227.48808522567984" r="3.900476590972806" 
+                              fill="#FFEAA7" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="1480.0" cy="227.48808522567984" r="6.900476590972806" 
+                                  fill="none" stroke="#FFEAA7" stroke-width="3" opacity="0.6" />
+<circle cx="1496.870788076416" cy="244.51834866300118" r="3.709559854219232" 
+                              fill="#FFEAA7" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="1484.3667813809225" cy="256.0103589433519" r="3.2971684889262685" 
+                              fill="#FFEAA7" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="1472.7453754605617" cy="259.98513405588926" r="3.4936921783010932" 
+                              fill="#FFEAA7" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="1465.7554823708806" cy="245.3716756589623" r="3.5991028875806" 
+                              fill="#FFEAA7" stroke="white" stroke-width="2" class="data-point" />
+
+<!-- 专家 561 信息区域 -->
+<rect x="120" y="365" width="160" height="45" 
+      fill="#f8f9fa" stroke="#e9ecef" stroke-width="1" rx="8" opacity="0.8"/>
+
+<text x="200" y="390" class="expert-title">Expert #561</text>
+<text x="200" y="405" class="expert-subtitle">
+    Primary: computer science (38.0%)
+</text>
+<circle cx="200" cy="510" r="25" 
+                              class="grid-circle" style="opacity: 0.3;" />
+<circle cx="200" cy="510" r="50" 
+                              class="grid-circle" style="opacity: 0.4;" />
+<circle cx="200" cy="510" r="75" 
+                              class="grid-circle" style="opacity: 0.5;" />
+<text x="230" y="508" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.3
+                          </text>
+<text x="255" y="508" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.7
+                          </text>
+<text x="280" y="508" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              1.0
+                          </text>
+<line x1="200" y1="510" x2="200.0" y2="435.0" class="grid-line" />
+<text x="200.0" y="429.0" class="domain-label">Law</text>
+<line x1="200" y1="510" x2="271.3292387221365" y2="486.8237254218789" class="grid-line" />
+<text x="280.83980388508803" y="487.73355547812946" class="domain-label">Physics</text>
+<line x1="200" y1="510" x2="244.0838939219355" y2="570.676274578121" class="grid-line" />
+<text x="249.9617464448602" y="582.7664445218705" class="domain-label">Psychology</text>
+<line x1="200" y1="510" x2="155.91610607806453" y2="570.676274578121" class="grid-line" />
+<text x="150.0382535551398" y="582.7664445218705" class="domain-label">computer science</text>
+<line x1="200" y1="510" x2="128.67076127786348" y2="486.823725421879" class="grid-line" />
+<text x="119.16019611491194" y="487.73355547812946" class="domain-label">math</text>
+<polygon points="200.0,496.58134820070956 209.86968178973302,506.7931459909645 205.75347323106863,517.9189765351578 183.23113918478836,533.0803568529548 187.74424129406776,506.0178626041647" fill="#DDA0DD" class="radar-area" />
+<polygon points="200.0,496.58134820070956 209.86968178973302,506.7931459909645 205.75347323106863,517.9189765351578 183.23113918478836,533.0803568529548 187.74424129406776,506.0178626041647" stroke="#DDA0DD" class="radar-border" />
+<circle cx="200.0" cy="496.58134820070956" r="3.536746071971617" 
+                              fill="#DDA0DD" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="209.86968178973302" cy="506.7931459909645" r="3.4151039026862646" 
+                              fill="#DDA0DD" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="205.75347323106863" cy="517.9189765351578" r="3.3915357323872275" 
+                              fill="#DDA0DD" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="183.23113918478836" cy="533.0803568529548" r="4.141155600608211" 
+                              fill="#DDA0DD" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="183.23113918478836" cy="533.0803568529548" r="7.141155600608211" 
+                                  fill="none" stroke="#DDA0DD" stroke-width="3" opacity="0.6" />
+<circle cx="187.74424129406776" cy="506.0178626041647" r="3.51545869234668" 
+                              fill="#DDA0DD" stroke="white" stroke-width="2" class="data-point" />
+
+<!-- 专家 698 信息区域 -->
+<rect x="440" y="365" width="160" height="45" 
+      fill="#f8f9fa" stroke="#e9ecef" stroke-width="1" rx="8" opacity="0.8"/>
+
+<text x="520" y="390" class="expert-title">Expert #698</text>
+<text x="520" y="405" class="expert-subtitle">
+    Primary: Law (30.8%)
+</text>
+<circle cx="520" cy="510" r="25" 
+                              class="grid-circle" style="opacity: 0.3;" />
+<circle cx="520" cy="510" r="50" 
+                              class="grid-circle" style="opacity: 0.4;" />
+<circle cx="520" cy="510" r="75" 
+                              class="grid-circle" style="opacity: 0.5;" />
+<text x="550" y="508" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.3
+                          </text>
+<text x="575" y="508" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.7
+                          </text>
+<text x="600" y="508" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              1.0
+                          </text>
+<line x1="520" y1="510" x2="520.0" y2="435.0" class="grid-line" />
+<text x="520.0" y="429.0" class="domain-label">Law</text>
+<line x1="520" y1="510" x2="591.3292387221366" y2="486.8237254218789" class="grid-line" />
+<text x="600.839803885088" y="487.73355547812946" class="domain-label">Physics</text>
+<line x1="520" y1="510" x2="564.0838939219354" y2="570.676274578121" class="grid-line" />
+<text x="569.9617464448602" y="582.7664445218705" class="domain-label">Psychology</text>
+<line x1="520" y1="510" x2="475.9161060780645" y2="570.676274578121" class="grid-line" />
+<text x="470.0382535551398" y="582.7664445218705" class="domain-label">computer science</text>
+<line x1="520" y1="510" x2="448.67076127786345" y2="486.823725421879" class="grid-line" />
+<text x="439.16019611491197" y="487.73355547812946" class="domain-label">math</text>
+<polygon points="520.0,486.8998185849627 533.2493234191592,505.69503385935525 528.1707600204031,521.2460863685915 512.8111529564915,519.8945990997178 508.74202904264604,506.3420634963377" fill="#98D8C8" class="radar-area" />
+<polygon points="520.0,486.8998185849627 533.2493234191592,505.69503385935525 528.1707600204031,521.2460863685915 512.8111529564915,519.8945990997178 508.74202904264604,506.3420634963377" stroke="#98D8C8" class="radar-border" />
+<circle cx="520.0" cy="486.8998185849627" r="3.9240072566014916" 
+                              fill="#98D8C8" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="520.0" cy="486.8998185849627" r="6.924007256601492" 
+                                  fill="none" stroke="#98D8C8" stroke-width="3" opacity="0.6" />
+<circle cx="533.2493234191592" cy="505.69503385935525" r="3.5572465228784518" 
+                              fill="#98D8C8" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="528.1707600204031" cy="521.2460863685915" r="3.5560370892965127" 
+                              fill="#98D8C8" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="512.8111529564915" cy="519.8945990997178" r="3.489215883894376" 
+                              fill="#98D8C8" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="508.74202904264604" cy="506.3420634963377" r="3.4734932473291673" 
+                              fill="#98D8C8" stroke="white" stroke-width="2" class="data-point" />
+
+<!-- 专家 752 信息区域 -->
+<rect x="760" y="365" width="160" height="45" 
+      fill="#f8f9fa" stroke="#e9ecef" stroke-width="1" rx="8" opacity="0.8"/>
+
+<text x="840" y="390" class="expert-title">Expert #752</text>
+<text x="840" y="405" class="expert-subtitle">
+    Primary: Physics (31.2%)
+</text>
+<circle cx="840" cy="510" r="25" 
+                              class="grid-circle" style="opacity: 0.3;" />
+<circle cx="840" cy="510" r="50" 
+                              class="grid-circle" style="opacity: 0.4;" />
+<circle cx="840" cy="510" r="75" 
+                              class="grid-circle" style="opacity: 0.5;" />
+<text x="870" y="508" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.3
+                          </text>
+<text x="895" y="508" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.7
+                          </text>
+<text x="920" y="508" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              1.0
+                          </text>
+<line x1="840" y1="510" x2="840.0" y2="435.0" class="grid-line" />
+<text x="840.0" y="429.0" class="domain-label">Law</text>
+<line x1="840" y1="510" x2="911.3292387221366" y2="486.8237254218789" class="grid-line" />
+<text x="920.839803885088" y="487.73355547812946" class="domain-label">Physics</text>
+<line x1="840" y1="510" x2="884.0838939219354" y2="570.676274578121" class="grid-line" />
+<text x="889.9617464448602" y="582.7664445218705" class="domain-label">Psychology</text>
+<line x1="840" y1="510" x2="795.9161060780646" y2="570.676274578121" class="grid-line" />
+<text x="790.0382535551398" y="582.7664445218705" class="domain-label">computer science</text>
+<line x1="840" y1="510" x2="768.6707612778634" y2="486.823725421879" class="grid-line" />
+<text x="759.160196114912" y="487.73355547812946" class="domain-label">math</text>
+<polygon points="840.0,501.2794811320755 862.2735641670067,502.762880296832 843.6771235417589,515.0611263622159 831.2386726545084,522.0589325576643 819.3638680426524,503.29491427299644" fill="#F7DC6F" class="radar-area" />
+<polygon points="840.0,501.2794811320755 862.2735641670067,502.762880296832 843.6771235417589,515.0611263622159 831.2386726545084,522.0589325576643 819.3638680426524,503.29491427299644" stroke="#F7DC6F" class="radar-border" />
+<circle cx="840.0" cy="501.2794811320755" r="3.3488207547169813" 
+                              fill="#F7DC6F" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="862.2735641670067" cy="502.762880296832" r="3.9367924528301885" 
+                              fill="#F7DC6F" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="862.2735641670067" cy="502.762880296832" r="6.936792452830188" 
+                                  fill="none" stroke="#F7DC6F" stroke-width="3" opacity="0.6" />
+<circle cx="843.6771235417589" cy="515.0611263622159" r="3.2502358490566037" 
+                              fill="#F7DC6F" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="831.2386726545084" cy="522.0589325576643" r="3.59622641509434" 
+                              fill="#F7DC6F" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="819.3638680426524" cy="503.29491427299644" r="3.867924528301887" 
+                              fill="#F7DC6F" stroke="white" stroke-width="2" class="data-point" />
+
+<!-- 专家 920 信息区域 -->
+<rect x="1080" y="365" width="160" height="45" 
+      fill="#f8f9fa" stroke="#e9ecef" stroke-width="1" rx="8" opacity="0.8"/>
+
+<text x="1160" y="390" class="expert-title">Expert #920</text>
+<text x="1160" y="405" class="expert-subtitle">
+    Primary: Physics (27.1%)
+</text>
+<circle cx="1160" cy="510" r="25" 
+                              class="grid-circle" style="opacity: 0.3;" />
+<circle cx="1160" cy="510" r="50" 
+                              class="grid-circle" style="opacity: 0.4;" />
+<circle cx="1160" cy="510" r="75" 
+                              class="grid-circle" style="opacity: 0.5;" />
+<text x="1190" y="508" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.3
+                          </text>
+<text x="1215" y="508" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.7
+                          </text>
+<text x="1240" y="508" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              1.0
+                          </text>
+<line x1="1160" y1="510" x2="1160.0" y2="435.0" class="grid-line" />
+<text x="1160.0" y="429.0" class="domain-label">Law</text>
+<line x1="1160" y1="510" x2="1231.3292387221366" y2="486.8237254218789" class="grid-line" />
+<text x="1240.839803885088" y="487.73355547812946" class="domain-label">Physics</text>
+<line x1="1160" y1="510" x2="1204.0838939219354" y2="570.676274578121" class="grid-line" />
+<text x="1209.9617464448602" y="582.7664445218705" class="domain-label">Psychology</text>
+<line x1="1160" y1="510" x2="1115.9161060780646" y2="570.676274578121" class="grid-line" />
+<text x="1110.0382535551398" y="582.7664445218705" class="domain-label">computer science</text>
+<line x1="1160" y1="510" x2="1088.6707612778634" y2="486.823725421879" class="grid-line" />
+<text x="1079.160196114912" y="487.73355547812946" class="domain-label">math</text>
+<polygon points="1160.0,498.66175817670563 1179.3075592160408,503.7265937245252 1165.447691493979,517.4981040806173 1151.1205890738856,522.2214606631379 1141.9433679392905,504.1330445958449" fill="#BB8FCE" class="radar-area" />
+<polygon points="1160.0,498.66175817670563 1179.3075592160408,503.7265937245252 1165.447691493979,517.4981040806173 1151.1205890738856,522.2214606631379 1141.9433679392905,504.1330445958449" stroke="#BB8FCE" class="radar-border" />
+<circle cx="1160.0" cy="498.66175817670563" r="3.4535296729317744" 
+                              fill="#BB8FCE" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="1179.3075592160408" cy="503.7265937245252" r="3.8120467663164126" 
+                              fill="#BB8FCE" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="1179.3075592160408" cy="503.7265937245252" r="6.812046766316413" 
+                                  fill="none" stroke="#BB8FCE" stroke-width="3" opacity="0.6" />
+<circle cx="1165.447691493979" cy="517.4981040806173" r="3.3707266538404617" 
+                              fill="#BB8FCE" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="1151.1205890738856" cy="522.2214606631379" r="3.6042622465591236" 
+                              fill="#BB8FCE" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="1141.9433679392905" cy="504.1330445958449" r="3.7594346603522273" 
+                              fill="#BB8FCE" stroke="white" stroke-width="2" class="data-point" />
+
+<!-- 专家 1035 信息区域 -->
+<rect x="1400" y="365" width="160" height="45" 
+      fill="#f8f9fa" stroke="#e9ecef" stroke-width="1" rx="8" opacity="0.8"/>
+
+<text x="1480" y="390" class="expert-title">Expert #1035</text>
+<text x="1480" y="405" class="expert-subtitle">
+    Primary: Physics (25.2%)
+</text>
+<circle cx="1480" cy="510" r="25" 
+                              class="grid-circle" style="opacity: 0.3;" />
+<circle cx="1480" cy="510" r="50" 
+                              class="grid-circle" style="opacity: 0.4;" />
+<circle cx="1480" cy="510" r="75" 
+                              class="grid-circle" style="opacity: 0.5;" />
+<text x="1510" y="508" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.3
+                          </text>
+<text x="1535" y="508" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.7
+                          </text>
+<text x="1560" y="508" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              1.0
+                          </text>
+<line x1="1480" y1="510" x2="1480.0" y2="435.0" class="grid-line" />
+<text x="1480.0" y="429.0" class="domain-label">Law</text>
+<line x1="1480" y1="510" x2="1551.3292387221366" y2="486.8237254218789" class="grid-line" />
+<text x="1560.839803885088" y="487.73355547812946" class="domain-label">Physics</text>
+<line x1="1480" y1="510" x2="1524.0838939219354" y2="570.676274578121" class="grid-line" />
+<text x="1529.9617464448602" y="582.7664445218705" class="domain-label">Psychology</text>
+<line x1="1480" y1="510" x2="1435.9161060780646" y2="570.676274578121" class="grid-line" />
+<text x="1430.0382535551398" y="582.7664445218705" class="domain-label">computer science</text>
+<line x1="1480" y1="510" x2="1408.6707612778634" y2="486.823725421879" class="grid-line" />
+<text x="1399.160196114912" y="487.73355547812946" class="domain-label">math</text>
+<polygon points="1480.0,493.180422675996 1497.9621751372965,504.16373551070734 1485.6969761529847,517.8412149783235 1471.9361033679852,521.0990015328535 1464.8948649114768,505.09204409548" fill="#85C1E9" class="radar-area" />
+<polygon points="1480.0,493.180422675996 1497.9621751372965,504.16373551070734 1485.6969761529847,517.8412149783235 1471.9361033679852,521.0990015328535 1464.8948649114768,505.09204409548" stroke="#85C1E9" class="radar-border" />
+<circle cx="1480.0" cy="493.180422675996" r="3.67278309296016" 
+                              fill="#85C1E9" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="1497.9621751372965" cy="504.16373551070734" r="3.755461944880765" 
+                              fill="#85C1E9" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="1497.9621751372965" cy="504.16373551070734" r="6.755461944880765" 
+                                  fill="none" stroke="#85C1E9" stroke-width="3" opacity="0.6" />
+<circle cx="1485.6969761529847" cy="517.8412149783235" r="3.387690989575896" 
+                              fill="#85C1E9" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="1471.9361033679852" cy="521.0990015328535" r="3.5487648150792515" 
+                              fill="#85C1E9" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="1464.8948649114768" cy="505.09204409548" r="3.635299157503927" 
+                              fill="#85C1E9" stroke="white" stroke-width="2" class="data-point" />
+
+<!-- 图例 -->
+<rect x="50" y="920" width="1700" height="60" 
+      fill="#f8f9fa" stroke="#dee2e6" stroke-width="1" rx="8" opacity="0.9"/>
+
+<text x="70" y="940" style="font-family: 'Segoe UI'; font-size: 14px; font-weight: bold; fill: #333;">
+    Legend:
+</text>
+<text x="130" y="940" style="font-family: 'Segoe UI'; font-size: 12px; fill: #666;">
+    Circle size indicates specialization strength • Highlighted border shows primary domain
+</text>
+</svg>

@@ -1,0 +1,799 @@
+\pdfoutput=1
+\documentclass[11pt]{article}
+
+\usepackage{algorithm}  
+\usepackage{algpseudocode} 
+\usepackage{amsfonts}
+\usepackage[review]{acl}
+\usepackage{acl} 
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{inconsolata}
+\usepackage[normalem]{ulem}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{hyperref}  
+\usepackage[utf8]{inputenc} 
+\usepackage{enumitem}
+% \definecolor{langblue}{rgb}{0, 0.4, 0.8}
+% \definecolor{langred}{rgb}{0.81, 0.09, 0.13}
+% \definecolor{langgreen}{rgb}{0.0, 0.6, 0.3}
+% \hypersetup{
+%     colorlinks=true,
+%     linkcolor=langred,
+%     % linkcolor=langblue,
+%     % citecolor=langblue,
+%     % urlcolor=langblue,
+% }
+
+%\usepackage{useunder}  % 如果不需要 useunder 功能，可以删除此行
+
+\title{Unveiling Hidden Collaboration  within Mixture-of-Experts in Large Language Models} % for Enhanced Interpretation and Optimization}
+
+% The Hidden Orchestra of Experts: Discovering Latent Collaboration Patterns for Efficient MoE Pruning
+% Expert Coalitions in MoE Models:Discovering Latent Collaboration Patterns for Efficient MoE Pruning
+% Beyond Individual Experts: Unveiling Cross-Layer Collaboration Patterns for MoE Optimization
+% MoE Compression Through Collaborative Consciousness: Contribution-Aware Pruning via Expert Interaction Analysis
+
+\author{  
+  Yuanbo Tang\textsuperscript{1},   
+  Yan Tang\textsuperscript{2},  
+  Naifan Zhang\textsuperscript{1},  
+  Meixuan Chen\textsuperscript{1},   
+  Yang Li\textsuperscript{1,*} \\[5pt]  
+  \small  
+  \textsuperscript{1} Tsinghua University International Campus Phase I, Nanshan District, Shenzhen \\
+  \small
+  \textsuperscript{2} College of Software, Northeastern University, Shenyang, Liaoning Province \\
+  \small
+  \textsuperscript{*} Corresponding author: \href{mailto:tori2011@gmail.com}{tori2011@gmail.com}  
+} 
+
+\begin{document}
+\maketitle
+
+% \vspace{-20px}
+
+\begin{abstract}
+
+Mixture-of-Experts based large language models (MoE LLMs) have shown significant promise in multitask adaptability by dynamically routing inputs to specialized experts. Despite their success, the collaborative mechanisms among experts are still not well understood, limiting both the interpretability and optimization of these models. In this paper, we focus on two critical issues: (1) identifying expert collaboration patterns, and (2) optimizing MoE LLMs through expert pruning. To address the first issue, we propose a hierarchical sparse dictionary learning (HSDL) method that uncovers the collaboration patterns among experts. For the second issue, we introduce the Contribution-Aware Expert Pruning (CAEP) algorithm, which effectively prunes low-contribution experts. Our extensive experiments demonstrate that expert collaboration patterns are closely linked to specific input types and exhibit semantic significance across various tasks. Moreover, pruning experiments show  that our
+%reveal that 
+%pruning 50\% of the experts results in only a 5.7\% performance drop. At the same time, our CAEP 
+approach improves overall performance by 2.5\% on average, outperforming existing methods. These findings offer valuable insights into enhancing the efficiency and interpretability of MoE LLMs, offering a clearer understanding of expert interactions and improving model optimization. The code repository is available at this \href{https://anonymous.4open.science/r/Unveiling-Hidden-Collaboration-within-Mixture-of-Experts-in-Large-Language-Models-0A16/}{URL}.
+
+
+\end{abstract}
+
+\section{Introduction}
+In recent years, the MoE LLMs have gained significant attention as a computationally efficient framework, demonstrating exceptional representational power for large-scale machine learning tasks \cite{jiang_mixtral_2024,fedus_switch_2022}. By leveraging a dynamic routing mechanism, MoE enables the collaborative operation of specialized "Experts", each designed to process complex input data. Compared to traditional architectures, MoE LLMs offer more flexible and adaptive knowledge representations while reducing computational costs, making them well-suited for resource-intensive situations \cite{cai_survey_2024}. 
+
+\setlength{\belowcaptionskip}{-0.3cm} % Reduces space below the caption
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\columnwidth]{latex/pic/fig1_1.png}
+    \caption{In MoE LLMs, a group of experts often collaborate to analyze a certain type of tokens, and they are not necessarily in the same layer.}
+    \label{fig:expert_collaboration}
+\end{figure}
+
+Existing research on understanding the working mechanism of MoE LLMs has largely focused on analyzing the behavior of the router, which governs expert selection \cite{lo_closer_2024}. For instance, some studies highlight the influence of output norms on expert selection \cite{lo_closer_2024}, while others reveal that token IDs play a significant role in routing decisions \cite{jiang_mixtral_2024, xue_openmoe_2024, dai_deepseekmoe_2024}. These efforts have provided valuable insights into how MoE LLMs allocate tasks to specialized experts, enhancing multitask adaptability.
+
+Despite  the widespread success of MoE LLMs, several key challenges remain underexplored. One of the main challenges is understanding the collaborative mechanisms among the experts within the network. While MoE LLMs generate final outputs by combining the predictions of multiple experts,  how these experts cooperate to produce the outputs is still not well understood. 
+Figure \ref{fig:expert_collaboration} conceptualizes the notion of cross-layer expert collaboration - coordinated groups of experts across distinct layers that exhibit synchronized activation to implement specific functional modules. This phenomenon is empirically validated in operational MoE networks. Figure \ref{fig:introduction_2}  illustrates a representative case of strong co-activation patterns between Expert 21 in Layer 5 and Expert 3 in Layer 6.
+Comprehending these collaboration patterns is essential, as it directly influences knowledge sharing, model interpretability, performance, and optimization. Another key challenge lies in the high model complexity of MoE LLMs, which presents significant challenges in terms of deployment, limiting their scalability for large-scale applications \cite{lu_not_2024,he_demystifying_2024}. 
+
+% as shown in Figure \ref{fig:expert_collaboration},
+%Despite the widespread success of the MoE architecture, several critical issues remain underexplored. One of the key challenges is comprehending the collaborative mechanisms among the experts within the network. While MoE models generate final outputs by combining the predictions of multiple experts, how these experts cooperate to produce the outputs is still not well understood. Existing research has largely focused on analyzing the behavior of the router, which governs expert selection \cite{lo_closer_2024}. For instance, some studies highlight the influence of output norms on expert selection \cite{lo_closer_2024}, while others reveal that token IDs play a significant role in routing decisions \cite{jiang_mixtral_2024,xue_openmoe_2024,dai_deepseekmoe_2024}. However, little attention has been paid to the collaboration between experts themselves. Comprehending  these collaboration patterns is essential, as it directly influences knowledge sharing, model interpretability, performance, and optimization. Another key challenge lies in the high model complexity of MoE models, which presents significant challenges in terms of deployment, limiting their scalability for large-scale applicationsapplications \cite{lu_not_2024,he_demystifying_2024}. 
+
+
+Therefore, this study aims to investigate and reveal the collaboration patterns between experts in MoE LLMs, and utilize these patterns to enhance model efficiency and performance. The core questions we address include: (1)  Are there consistent collaboration patterns among experts, and what do they reveal about the tasks implicitly learned in MOE LLMs? (2)  Can these collaboration patterns be leveraged to compress MoE LLMs? 
+
+
+To address the two key questions, we begin by extracting the expert activation matrix, which serves as the foundation for further analysis. For the first question, we apply a novel hierarchical sparse dictionary learning (HSDL) approach to uncover collaboration structures within the expert activation data. Building on these insights, we then investigate expert pruning through the Contribution-Aware Expert Pruning (CAEP) algorithm, which identifies and removes low-contribution experts. This process reduces model redundancy, alleviating storage pressure while preserving or even enhancing performance. The entire pipeline, as outlined in Figure \ref{pipeline}, comprises three key components: (1) Expert Activation Data Collection, (2) MoE Collaboration Pattern Mining, and (3) Expert Pruning Based on Expert Collaboration Pattern.
+
+%In our experimental evaluation, we tested several representative MoE architectures. Analysis of the learned dictionaries revealed multiple expert collaboration patterns with clear semantic significance. We also conducted a comparative study on dictionary usage across domains.
+
+In our experimental evaluation, we tested several representative MoE architectures, including the DeepSeek model, on the MMLU-pro dataset, which contains 2,812 samples across five chosen domains: mathematics, computer science, physics, law, and psychology. Our analysis of the learned dictionaries revealed domain-specific expert collaboration patterns with distinct semantic significance. Building on these insights, we conducted pruning experiments using the CAEP method, which demonstrated that pruning experts based on these patterns effectively reduces the number of experts while maintaining or even improving performance. Our method outperforms baselines with an average improvement of 2.5\%, and in the best case, pruning 50\% of experts results in only a 5.7\% performance drop for specific tasks.
+
+% A key observation in our analysis of expert similarity across layers is that, for the DeepSeek MoE model, the similarity between experts in the final layer is very low. In contrast, the similarity between experts in layers 7-12 and 19-24 is generally higher. This suggests that experts in the final layer have distinct functions with minimal redundancy, while experts in layers 7-12 and 19-24 exhibit higher functional similarity.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.8\columnwidth]{latex/pic/fig1_2.png}
+    \caption{Here ($x,y$) refers to the $y$-th expert in $x$-th layer.  By selecting any two experts from the MoE, we can calculate the probability of their co-activation.  It can be observed that Expert 21 from the layer 5 and Expert 3 from the layer6 frequently activate simultaneously, forming an expert collaboration pattern.}
+    \label{fig:introduction_2}
+\end{figure}
+\setlength{\belowcaptionskip}{-0.3cm} % Reduces space below the caption
+
+Our contribution can be summarized as follows:
+\begin{itemize}[itemsep=-0.03em, parsep=-0.0pt]
+    \item We explore and uncover the latent collaboration patterns among experts in MoE LLMs. We propose hierarchical sparse dictionary learning (HSDL) and reveal how experts interact and cooperate, which provides new insights into the collaborative mechanisms that drive the performance of MoE LLMs.
+
+    \item We propose the Contribution-Aware Expert Pruning (CAEP) algorithm, which optimizes model efficiency by pruning low-contribution experts without sacrificing performance. Our experiments show that CAEP maintains competitive performance while significantly reducing the number of experts, effectively balancing pruning and performance retention.
+
+
+\end{itemize}
+
+\begin{figure*}[ht]
+    \centering
+    \includegraphics[width=0.93\textwidth]{latex/pic/pipeline_new.pdf}
+    \caption{Overview of Our Study's Pipeline.}
+    \label{pipeline}
+\end{figure*}
+
+
+
+
+\section{Literature Review}
+
+
+\subsection{Analysis of Routing in MoE Networks}
+
+The analysis of router behavior in MoE networks focuses on understanding how the model selects experts based on input features, which is key for optimizing performance. For instance, Lo et al. found that routers typically select experts with larger output norms \cite{lo_closer_2024}, while other studies suggest that router choices are more related to token IDs than to expert fields \cite{jiang_mixtral_2024, xue_openmoe_2024, dai_deepseekmoe_2024}. While these approaches offer valuable insights, they often treat experts as independent entities, overlooking the collaboration patterns between them.
+
+ % For example, in a mixture of Gaussian models, the router learns to map clusters to experts. This analysis can also reveal whether the router is sensitive to the part of speech of tokens and whether this sensitivity occurs at specific layers. Additionally, by studying routing paths, one can understand whether the model encodes syntactic information at the token level.
+
+
+\subsection{Expert Pruning in MoE}
+
+Expert pruning reduces storage consumption in MoE networks by removing less impactful experts. Current strategies include: (1) discarding experts with low activation frequencies based on router decisions \cite{muzio_seer-moe_2024}, (2) identifying experts with minimal output influence using $|x - f(x)|$ differences \cite{lu_not_2024, he_demystifying_2024}, and (3) merging experts by calculating weight similarities \cite{li_merge_2024, zhang_diversifying_2024}. However, these methods often treat experts independently or focus on merging similar groups, without exploring diverse expert combinations with distinct roles.
+
+
+% Model pruning is a critical technique for optimizing neural networks by removing redundant parameters or neurons without significantly compromising performance. Various pruning strategies have been developed, including weight pruning, neuron pruning, and structured pruning methods. Zhang et al. \cite{zhang_diversifying_2024} presented a method for improving the parameter efficiency of MoE architectures by grouping and pruning similar experts, addressing memory consumption issues while enhancing performance on natural language tasks.
+
+% The potential for pruning MoE networks based on discovered collaboration patterns is particularly promising. 
+% By leveraging insights from sparse dictionary learning regarding expert interactions, pruning strategies can be tailored to maintain only the most effective experts while discarding those that contribute less to overall performance. This targeted pruning can lead to more efficient models that retain high accuracy while reducing computational overhead.
+
+
+
+\subsection{Sparse Dictionary Learning}
+Sparse dictionary learning is a well-established method in representation learning and dimensionality reduction \cite{yang_image_2010, wright_robust_2009}. It constructs a dictionary of features that enables sparse representation of data, facilitating efficient encoding of high-dimensional information \cite{tang_explainable_2023, chen_pathlet_2013}. This approach has proven effective in various applications, such as image processing and signal recovery, where it helps capture essential features while reducing noise \cite{hou_detecting_2021, hou_visual_2020}. Recently, companies like OpenAI, Google, and Anthropic have applied sparse dictionary learning to understand large language models' mechanisms \cite{rajamanoharan_improving_2024, gao_scaling_nodate}. Despite its success in other areas, sparse dictionary learning has been underutilized in explanatory research on MoE networks.
+
+
+% ↑ 应该是学长写的第二版本
+\section{Extraction of Expert Activation Matrix} 
+In MoE LLMs, the activation weights of the experts reflect the intensity of their responses to the input data, thereby elucidating the collaborative patterns among them. Furthermore, these activation data provide a foundational basis for optimizing pruning strategies, which in turn contribute to enhanced computational and storage efficiency. Consequently, the extraction and analysis of activation weights are critical steps in the effective exploration of collaboration patterns and the implementation of pruning techniques.
+
+
+Given an MoE LLM with \( m \) layers and \( n \) experts, and an input dataset \( S \) containing \( N_s \) samples, we extract the expert activation data to construct a two-dimensional activation tensor \( V \in \mathbb{R}^{N_s \times (m \times n)} \), where each element \( v_{i,j,k} \) represents the activation weight of the \( k \)-th expert in the \( j \)-th layer for the \( i \)-th sample. This activation weight quantifies the intensity of the expert's response to the input sample, with values constrained within the range \([0, 1]\).
+
+To aggregate the activation data of each sample into a sentence-level representation, we sum the activation values of all tokens within a sample, thereby obtaining the sentence-level activation value for each layer. Let \( \alpha(i)_{t,j,k} \) denote the routing allocation of the \( t \)-th token in sample \( S_i \) to the \( k \)-th expert in the \( j \)-th layer. The sentence-level activation value is then computed as:
+\begin{equation}
+v_{i,j,k} = \sum_{t=1}^{T} \alpha(i)_{t,j,k},
+\end{equation}
+where \( T \) represents the sequence length. Finally, by transposing and accumulating these activation data, we construct the expert activation matrix \( X \), which serves as the input to the subsequent analysis of collaboration patterns among experts.
+
+
+\section{MoE Collaboration Pattern Mining}
+
+In this section, we propose a novel \textbf{Hierarchical Sparse Dictionary Learning (HSDL)} approach to uncover collaboration patterns among experts in MoE LLMs through hierarchical decomposition. Furthermore, We evaluate its effectiveness on the MMLU-pro dataset, validating the method by comparing it to exhaustive search techniques and exploring domain-specific expert interactions, demonstrating its versatility and efficiency in capturing complex MoE dynamics.
+
+
+\subsection{Problem Definition}
+
+The objective of this task is to extract the collaboration patterns among experts in MoE LLMs. Given a dataset $S = \{s_1, s_2, \dots, s_{N_s}\}$ comprising $N_s$ samples, we construct an expert activation matrix $X \in \mathbb{R}^{N_e \times N_s}$, where $N_e$ denotes the total number of experts. By employing sparse dictionary learning techniques to decompose $X$, we obtain a dictionary matrix $D \in \mathbb{R}^{N_e \times N_p}$ and a sparse coding matrix $R \in \mathbb{R}^{N_p \times N_s}$, with $N_p$ representing the predefined dictionary capacity. Our goal is to decompose the expert activation matrix \( \mathbf{X} \) into a dictionary matrix \( \mathbf{D} \) and a sparse coding matrix \( \mathbf{R} \), which can be expressed as $\mathbf{X} \approx \mathbf{D} \cdot \mathbf{R}$.
+% \begin{equation}
+
+% \end{equation}
+
+Here, the dictionary matrix \( D \) encodes the collaboration patterns among experts, while the sparse coding matrix \( R \) determines how these patterns combine to reconstruct \( X \). 
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\columnwidth]{latex/pic/ACL3.3.png}
+    \caption{Hierarchical Sparse Dictionary Learning.}
+    \label{hierarchical_sparse_dictionary}
+\end{figure}
+
+\subsection{Hierarchical Sparse Dictionary Learning for Expert Collaboration Patterns Mining}
+
+
+Sparse dictionary learning is an effective unsupervised method for uncovering latent structures in data through sparse representations. By modeling data as a linear combination of dictionary atoms, it reveals expert collaboration patterns in MoE LLMs. However, a single-layer approach fails to capture complex patterns across varying granularities. To address this, we propose the HSDL approach, which recursively decomposes the dictionary matrix, capturing collaboration patterns from coarse to fine granularity, thus revealing multi-layered expert interactions.
+
+
+We extend the original single-layer structure decomposition into a hierarchical structure by recursively decomposing the dictionary matrix at each layer \( k \) into finer subpatterns represented by \( D_{k+1} \), formulated as $D_k \approx D_{k+1} \cdot R_{k+1}$.
+% \begin{equation}
+% .
+% \end{equation}
+
+Figure \ref{hierarchical_sparse_dictionary} illustrates the hierarchical structure of Sparse Dictionary Learning, showing how the multi-layered expert collaboration is modeled across different layers. 
+
+Furthermore, we introduce three key constraints to optimize the multi-layer dictionary learning process:
+
+(1) \textbf{Dictionary Size Constraint}: This loss term is designed to limit the dictionary size in order to obtain a more compact dictionary,  
+preventing certain dictionary elements from dominating. Specifically, \( R_{k,i,:} \) denotes the sparse coding of the \( i \)-th data point at layer \( k \). This constraint is defined as:
+\begin{equation}
+L_{\text{sparse}} = \sum_{k=0}^K\sum_{i=0}^M\| R_{k,i,:} \|_\infty.
+\end{equation}
+
+(2) \textbf{Sparsity Constraint}: This ensures that the sparse coding matrix \( R_k \) at each layer remains sparse.
+% This controls the influence of dictionary learning across layers. 
+The matrix \( R_{k,:,j} \) represents the contribution of the \( j \)-th dictionary atom at layer \( k \). The formula is:
+\begin{equation}
+L_{\text{hier}} = \sum_{k=0}^K\sum_{j=0}^M\| R_{k+1,:,j} \|_1 \cdot \| R_{k,:,j} \|_1 / N.
+\end{equation}
+
+(3) \textbf{Reconstruction Error Term}: This ensures that the relationships between dictionaries at successive layers are consistently learned. The reconstruction error is defined as:
+\begin{equation}
+L_{\text{rec}} = \sum_{k=0}^K\sum_{j=0}^M \| D_{k,:,j} - (D_{k+1} R_{k+1})_{:,j} \|_1 \cdot \frac{\| R_{k,:,j} \|_1} {N}.
+\end{equation}
+
+
+
+These three constraints collectively guide the optimization of both the hierarchical dictionary and sparse coding matrices. The overall loss function is formulated as:
+\begin{equation}
+L_{\text{total}} = L_{\text{sparse}} + \lambda_1 L_{\text{hier}} + \lambda_2 L_{\text{rec}},
+\end{equation}
+where \(\lambda_1\) and \(\lambda_2\) are hyperparameters that control the respective losses. By minimizing this loss function, we optimize both the dictionary matrix \( D_k \) and the sparse coding matrix \( R_k \) at each layer, effectively capturing the multi-level structure of expert collaboration.
+
+
+
+
+\subsection{Experimental Analysis of Expert Collaboration Patterns}
+
+In this subsection, we aim to explore how the collaboration patterns among experts in MoE-based LLMs reflect the tasks implicitly learned by the model, thereby contributing to a deeper understanding of its functioning. We present a detailed analysis of the expert collaboration patterns identified through our hierarchical sparse dictionary learning method.
+
+
+\subsubsection{Experimental Setup}  
+We use the Phi-MoE model and apply our HSDL method to 2,812 samples from the MMLU-pro dataset, covering five domains: mathematics, computer science, physics, law, and psychology. 
+
+
+\subsubsection{Prompt Interpretation using Expert Collaboration Pattern }
+To explore how expert collaboration patterns in MoE LLMs reflect the model’s understanding of tasks, we conduct a detailed analysis using the hierarchical dictionary learning method. Specifically, we aim to understand how different experts collaborate to handle specific aspects of a problem.
+
+To achieve this, we designed a semantic annotation scheme for input sentences to interpret the semantics of expert collaboration patterns derived from HSDL. We color words processed by the same dictionary atoms (i.e., expert collaboration patterns) with the same color. This color-coding scheme facilitates the observation of interrelationships of the expert collaboration patterns. We analyze the input samples using the dictionary atoms obtained through HSDL, with one such analysis shown in Figure \ref{Semantic_Annotation}. 
+
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\columnwidth]{latex/pic/ACL4.1.1.png}
+    \caption{Hierarchical Semantic Annotation of Dictionary Elements on MMLU.}
+    \label{Semantic_Annotation}
+\end{figure}
+
+\textbf{Results and Discussion.} We find that the hierarchical semantic annotation of expert collaboration patterns reveals how MoE LLMs understand and process different tasks within a problem. As shown in Figure \ref{Semantic_Annotation}, in the upper left corner, we can observe that:  \textbf{Expert collaboration patterns in higher-layer and lower-layer dictionaries demonstrate a hierarchical  semantic relationship, which becomes increasingly fine-grained as layer increases.%as the hierarchy increases, the expert collaboration patterns in the higher-layer dictionary items are decomposed into combinations of more fine-grained semantic patterns.
+} The lower left corner of the figure displays this from a semantic perspective, where the top layer captures broad categories such as "Date, symbol, and mathematical calculation," while deeper layers break these down into more detailed components like "Mathematical calculation" or "Key verbs" (See Appendix E for more examples).
+
+
+These findings provide a direct answer to our central question on expert collaboration patterns in MoE LLMs. The hierarchical decomposition offers a more detailed understanding of the model's internal processes, shedding light on how tasks are learned and executed.  This approach could evolve into a tool for visualizing MoE LLMs behavior, enhancing interpretability and supporting optimization for domain-specific applications.
+\subsubsection{Comparison with Exhaustive Search Results}
+
+To investigate whether the top dictionary elements correspond to the most frequent expert combinations, we compared the dictionary's expert collaboration patterns with those from an exhaustive search method. Due to the high computational cost of considering larger combinations, we limited this analysis to expert collaboration patterns formed by only two or three experts.
+
+To quantify how well our dictionary captures the most frequent expert combinations, we define \( N_{\text{top}} \) as the number of dictionary items in the top \( k\% \) of the traversal pattern, and \( N_{\text{total}} \) as the total number of dictionary items. The coverage is then calculated using the following formula:
+\begin{equation}
+\text{Top } k\% \text{ Coverage} = \frac{N_{\text{top}}}{N_{\text{total}}}.
+\end{equation}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\columnwidth]{latex/pic/ACL4.1.2.png}
+    \caption{Comparison of overlap with the results of the exhaustive method.}
+    \label{comparision}
+\end{figure}
+
+\textbf{Results and Discussion.} As shown in Figure \ref{comparision}, \textbf{the collaboration patterns identified by our method predominantly align with the most frequent expert combinations found during the exhaustive search.} Specifically, 60\% of the patterns identified by our method correspond to the top 10\% of the most frequent expert combinations, indicating that our method efficiently identifies the most prevalent collaboration patterns.
+
+While our method focuses on the most frequent expert combinations, it also captures some low-frequency patterns. These less frequent combinations, though less common, are critical for capturing the diversity of expert interactions, which enhances the model’s ability to tackle a wider range of tasks. \textbf{This highlights the importance of considering both high and low-frequency expert combinations in shaping the performance and versatility of MoE LLMs.}
+ 
+
+\subsubsection{Domain-Specific Expert Collaboration Patterns}
+In this experiment, our goal is to explore how expert collaboration patterns vary across different domains and to understand the domain-specific nature of expert interactions within MoE LLMs. Specifically, we aim to examine the activation frequencies of experts for inputs from various fields, including mathematics, computer science, physics, law, and psychology, to uncover potential domain-related patterns.
+
+we analyzed the frequency distribution of activated experts during the model processing for inputs from different domains and calculated the cosine similarity between the distributions of each domain, resulting in a confusion matrix.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\columnwidth]{latex/pic/ACL_domains.png}
+    \caption{The distribution of expert selection frequencies during inputs from different fields.}
+    \label{distribution}
+\end{figure}
+
+\textbf{Results and Discussion.} Figure \ref{distribution} shows the expert selection frequency distribution across domains. We can observe that for inputs from different fields, the distribution of expert activation frequencies in the MoE LLM varies. For semantically similar domains, such as mathematics, physics, and computer science indicated by the orange dashed box, their distributions are closer to each other. In contrast, the distributions of expert activation frequencies are more different for domains with greater semantic differences, such as mathematics and law. \textbf{This suggests that expert collaboration is more specialized within specific domains, reflecting domain-specific interactions in MoE LLMs.}
+
+These findings indicate that \textbf{experts in MoE LLMs exhibit domain preferences, adjusting expert selection based on the input domain's characteristics to optimize performance for domain-specific tasks.} Understanding these patterns can enhance the model's efficiency and its ability to handle specialized tasks.
+
+
+
+% \begin{figure*}[ht]
+% \centering
+% \includegraphics[width=0.99\textwidth]{pic/distribution_different_domains.png}
+% \caption{Preference bias for path selection in the MoE network on different domains.}
+% \label{fig:1}
+% \end{figure*}
+
+% \begin{figure*}[ht]
+% \centering
+% \includegraphics[width=0.99\textwidth]{pic/patterns_indentify.png}
+% \caption{We have discovered some interesting patterns of expert collaboration and the tokens that activate these patterns.}
+% \label{fig:2}
+% \end{figure*}
+
+
+\section{Expert Pruning Based on Expert Collaboration Patterns}
+In this section, we present the CAEP method, which utilizes expert collaboration patterns to reduce the number of experts in an MoE LLM while preserving performance. We first introduce the pruning algorithm and then demonstrate its effectiveness through two types of experiments: (1) General Tasks Evaluation, where we compare CAEP with baseline methods on diverse tasks, and (2) Domain-Specific Evaluation, where we assess its ability to retain domain-relevant capabilities after pruning.
+
+% \subsection{Problem Definition}
+% Although the MoE LLM reduces computational overhead by selectively activating experts, its substantial parameter size still poses significant challenges for storage and deployment.
+% The purpose of this task is to retain the model's capabilities as much as possible while reducing the number of experts. 
+% Assuming the number of retained experts is N, the problem can be defined as:
+
+% \begin{equation}  
+% \begin{aligned}  
+% & \min_{C} \| F'(x, C) - F(x) \|_F \\
+% & \text{s.t. } C \subseteq \{ e_0, \ldots, e_{n-1} \}, \ |C| = N.  
+% \end{aligned}  
+% \end{equation}
+% Here $e_i$ refers to the $i-$th expert in MoE network. This problem is very challenging because it is a combinatorial optimization problem.
+
+\subsection{Pruning algorithm}
+We propose the \textbf{Contribution-Aware Expert Pruning (CAEP)} algorithm. The algorithm aims to produce a mask vector that incorporates our retention strategy, given a specific pruning ratio \( k \). 
+This pruning process is achieved by progressively discarding less significant dictionary atoms, guided by the contribution scores derived from \( R \). The CAEP algorithm proceeds as follows (Algorithm~\ref{alg:caep}):
+\begin{itemize}[itemsep=-0.03em, parsep=-0.0pt]
+    \item \textbf{Calculation and Ranking}: Calculate the contribution scores for each expert by the sparse representation matrix \( R \) and the dictionary matrix \( D \), obtaining the total contribution and sorting it in descending order.
+    \item \textbf{Initial Threshold Mask}: Determine the score based on the predefined threshold ratio and generate the initial binary mask, marking the experts whose contribution scores are above.
+    \item \textbf{Iterative Pruning}: Before reaching the target pruning ratio, repeatedly identify the least used patterns and remove them from the dictionary and the sparse representation while updating the contribution scores and the mask, until only the desired ratio of experts remains.
+\end{itemize}
+
+% The algorithm is detailed step-by-step in Algorithm~\ref{alg:caep}.
+
+\begin{algorithm}[htbp]  
+\small  
+\caption{Expert Pruning Strategy}  
+\label{alg:caep}  
+\begin{algorithmic}[1]  
+\Require   
+    Dictionary matrix $\mathbf{D} \in \mathbb{R}^{N_e \times N_p}$ \\  
+    Sparse representation matrix $\mathbf{R} \in \mathbb{R}^{N_p \times N_s}$ \\  
+    Threshold ratio $k_1 \in (0,1)$ \\  
+    Target pruning ratio $k_2 \in (0,1)$  
+\Ensure Pruned expert mask $\mathbf{m} \in \{0,1\}^{N_e}$  
+
+
+\State $\mathbf{R}_{\text{sum}} \gets \sum_{j=1}^{N_s} \mathbf{R}_{:,j}$ \Comment{Sum over samples}  
+\State $\mathbf{D}_{\text{sum}} \gets \mathbf{D} \cdot \mathbf{R}_{\text{sum}}^{\top}$ \Comment{Weighted by pattern frequency}  
+\State $\mathbf{e} \gets \sum_{i=1}^{N_p} \mathbf{D}_{\text{sum},i}$ \Comment{Aggregate expert contributions}  
+
+
+\State Sort $\mathbf{e}$ in descending order: $\mathbf{e}_{\text{sorted}}$  
+\State $f \gets \mathbf{e}_{\text{sorted}}[\lceil k_1 \cdot N_e \rceil]$ \Comment{Threshold at $k_1$-quantile}  
+\State $\mathbf{m} \gets \mathbf{1}_{\mathbf{e} \geq f}$ \Comment{Initial binary mask}  
+ 
+\While{$\|\mathbf{m}\|_0 > (1 - k_2) \cdot N_e$}  
+    \State $i^* \gets \arg\min_{i} \mathbf{R}_{\text{sum}}(i)$ \Comment{Find least used pattern}  
+    \State Remove column $i^*$ from $\mathbf{D}$ and row $i^*$ from $\mathbf{R}$  
+    \State Recompute $\mathbf{R}_{\text{sum}}$, $\mathbf{D}_{\text{sum}}$, $\mathbf{e}$  
+    \State Update $\mathbf{m} \gets \mathbf{1}_{\mathbf{e} \geq f}$ \Comment{Adapt mask}  
+\EndWhile  
+
+\Return $\mathbf{m}$  
+\end{algorithmic}  
+\end{algorithm} 
+
+\subsection{Experiments on General and Domain-Specific Tasks}
+We conduct a series of experiments to evaluate the effectiveness of our proposed pruning method, CAEP. We perform experiments on both general tasks and domain-specific tasks. The goal is to assess how well the pruned model retains its capabilities across a variety of tasks, while optimizing performance retention in specific domains. 
+%\subsubsection{Experiment Setup} 
+The dataset and specific configurations used in this part of the experiment can be found in Appendix C.
+
+
+
+ 
+%\subsection{Construct Expert Activation Dataset}
+% Extraction ？这个标题名字怪怪的？？？
+%In this section, we outline the process of extracting routing information from MoE networks, the routing information reflects the contribution of each expert in response to various inputs through their respective activations. 
+
+
+%Let an MoE model with $m$ layers and $n$ experts per layer process an input dataset $S$ containing $|S|$ samples.
+% 不需要x ，下标代表第i个     _*m*n?
+%We construct a two-dimensional activation tensor $\mathcal{V} \in \mathbb{R}^{|S| \times (m \times n)}$, where each element $v_{i,j,k}$ quantifies the activation weight of the $k$-th expert in layer $j$ for sample $S_i.$ We preserve continuous activation magnitudes $(v_{i,j,k}\in[0,1])$ to model expert collaboration patterns. 
+% coalitions这个词有点怪 我们得统一全文称呼 就叫做 专家合作模式吧 
+% 不应该使用小r 会有歧义 就是X
+%To aggregate token-level routing data into sample-level meanings, 
+% 上边的用词有点怪怪的
+%we compute sentence-grained activations via cumulative summation:
+%\begin{equation}
+%v_{i,j,k} = \sum_{t=1}^T \alpha_{t,j,k}^{(i)}, \quad \alpha_{t,j,k}^{(i)} \in [0,1],
+%\end{equation}
+%where $\alpha_{t,j,k}^{(i)}$ denotes the router logit for $t$-th token  in sample $S_i$ assigned to expert $k$ at layer $j$, and $T$ is the sequence length. This yields  $\mathcal{V}$ with $\sum_{k=1}^{n}v_{i,j,k}=kT$, reflecting inter-expert collaboration intensity.
+
+%By transposing the accumulated matrix, we can obtain the routing activation matrix $\mathbf{X} \in \mathbb{R}^{N_e\times N_s}$, where $N_e$ is the number of experts and $N_s$ is the number of input samples. Each entry $\mathbf{X}_{i,j}$ represents the activation weight of expert $i$ for sample $j$. 
+
+%\subsection{Problem Definition and Loss Function Design}
+%Following the router logits for dataset $S$ in model $M$ as discussed in Section 3.1, our current focus shifts to extracting  patterns of expert collaboration from the the routing activation matrix $\mathbf{X}$.
+
+%Dictionary learning is an unsupervised learning paradigm aimed at capturing the underlying characteristics of data through the sparse representations. In the context of this study, we interpret the routing weights as input data and employ dictionary learning techniques to uncover and characterize expert collaboration patterns.
+
+%Our objective is to decompose $\mathbf{X}$  into a dictionary matrix $\mathbf{D} \in \mathbb{R}^{N_e\times N_p}$ and a sparse code matrix $\mathbf{R} \in \mathbb{R}^{N_p\times N_s}$, Where \(N_p\) is the number of predefined capacity of dictionary \(\mathbf{D}\). The decomposition satisfies:
+%\begin{equation}
+%\mathbf{X} \approx \mathbf{D} \cdot \mathbf{R},
+%\end{equation}
+%where each column \(\mathbf{D}_j\) of \(\mathbf{D}\) represents an expert collaboration pattern, reflecting the contributions of different expert groups in specific tasks or domains. Meanwhile, \(\mathbf{R}\) specifies how to combine these patterns to reconstruct \(\mathbf{X}\), where each element \(\mathbf{R}_{ij}\) represents the usage frequency of the \(i\)-th dictionary element (i.e., expert collaboration pattern) in the \(j\)-th sample. And the %loss function is designed as follows:
+% \begin{equation}
+%L = \sum \| R_{i,:} \|_\infty + \lambda_1 \| R \|_1 + \lambda_2 \| X - DR \|_1,
+%\end{equation}
+%Where \(\sum||R_{i,:}||_\infty \) is the dictionary size, which is the sum of the maximum values of each row of the sparse coefficient \( R \) in Figure 2. This term constrains the size of the dictionary and prevents certain patterns from excessively dominating, thus ensuring the diversity of the dictionary. \( ||R||_1 \) refers to the representation cost, which encourages the sparsity of the sparse coefficient \( R \) by reducing the number of non-zero elements. \( ||X - DR||_1 \) is the reconstruction error, ensuring that the dictionary \( D \) and the sparse coefficients \( R \) can accurately represent the original routing weights. The parameters \( \lambda_1 \) and \( \lambda_2 \) are used to balance the overall loss function between sparsity and reconstruction accuracy.
+
+ 
+%\begin{figure}[ht]
+ %   \centering
+  %  \includegraphics[width=\columnwidth]{latex/pic/ACL3.3.png}
+  %  \caption{Hierarchical Sparse Dictionary Learning Framework}
+%\end{figure}
+
+%\subsection{Hierarchical  Dictionary Learning Framework}
+%In the previous section, we formulated a loss function specific to the single-layer dictionary to guide the process of sparse dictionary learning. In this section, we propose a hierarchical sparse dictionary learning framework. This framework captures both coarse-grained expert coalitions and fine-grained semantic specializations, enabling multi-scale interpretability and optimization. In the following, we will detail the specific implementation steps of the new hierarchical framework and describe how to utilize the loss function for single-layer and multi-layer computations.
+
+
+
+
+%\subsubsection{Single-Layer Dictionary Computation}  
+
+%For single layer dictionary, we model expert collaboration through a neural sparse coding module. Given the routing activation matrix $\mathbf{X} \in \mathbb{R}^{N_e\times N_s}$, the sparse representation $\mathbf{R}$ and dictionary $\mathbf{D}$ are computed as:
+%\begin{align}
+%R &= \text{relu}(W_R * X + b_R), \\
+%D &= \text{sigmoid}(W_D * X + b_D),
+%\end{align}
+
+%where $W_R$, $b_R$ and $W_D$, $b_D$ are learnable parameters. The ReLU enforces non-negative sparse activations, while sigmoid constrains dictionary entries to [0, 1], preserving probabilistic semantics of expert contributions.
+
+%Based on the computations above, we apply the loss function designed in Section 3.2 for backpropagation optimization to obtain \(\mathbf{D}\) and \(\mathbf{R}\).
+
+
+
+
+%\subsubsection{Hierarchical Pattern Disentanglement}  
+
+%The hierarchy is constructed by iteratively decomposing higher-level dictionaries into finer-grained patterns:
+%\begin{equation}
+%D^{k} \approx D^{k+1} R^{k+1}, \quad \forall k \in \{1, \ldots, k-1\},
+%\end{equation}
+
+
+%where $D^{k+1}$ represents sub-patterns at level $k+1$, and $R^{k+1}$ specifies their sparse composition.
+%This recursive decomposition enables:
+
+%\textbf{Coarse-to-Fine Analysis}  : Top layer ($k=1$) capture domain-level expert collaboration (e.g., "math field" vs."law field"), while deeper layers ($k>1$) resolve domain-specific specializations (e.g., "date computation" vs."statutory provisions").
+
+%\textbf{Adaptive Granularity}: The hierarchy depth $k$ controls semantic resolution, with deeper hierarchies isolating rare expert collaboration critical for niche tasks.
+
+
+
+
+%Correspondingly, we redesigned the loss function to enable the joint optimization of multi-layer parameters. For the loss function of the $k$-th layer dictionary, it is as follows:
+
+%$Loss^k=\sum||R_{i,:}^k||_\infty+\frac{\lambda_1\sum_{j=0}||R_j^{k+1}||_1*||R_j^k||_1}%{N}+\frac{\lambda_2\sum_{j=0}||D_j^k-(D^{k+1}R^{k+1})_j||_1*||R_j^k||_1}{N}$
+%这个公式太长了，分行展示会不好看
+
+%The newly introduced weighting factor \( ||R_j^k||_1 \) is essential because the frequencies associated with different dictionary elements vary (as determined by the corresponding \( R \) from the previous layer). Specifically, the sparse representation \( R \) from the preceding layer reflects the contribution levels of various dictionary elements in the current layer. Thus, it is necessary to adjust the loss based on these contribution levels to ensure that the optimization process accurately captures features across different layers.
+
+%When \( k = 0 \), \( D^0 \) represents the original input \( X \), while \( R \) is the identity matrix \( I \). This  allows for the unified handling of both the decomposition of the original input \( x \) and the further decomposition of the dictionary \( D \) within the same network architecture. This design enables the network to concurrently address feature extraction and optimization across different levels, facilitating a multi-tiered analysis and learning process that transitions from coarse to fine granularity.
+
+%\subsection{Downstream Tasks}  
+
+%Pruning is crucial as it enhances model efficiency by removing redundant experts or patterns, reduces computational and storage overhead. After learning expert collaboration patterns, pruning can be optimized based on the contribution levels of experts. By analyzing the sparse representation matrix \( \mathbf{R} \), it identifies and removes experts with minimal task contributions, retaining the most critical ones.  For our hierarchical dictionary learning approach, we integrate the learned expert collaboration pattern dictionary \( \mathbf{D} \) and the sparse coding matrix \( \mathbf{R} \) to design a novel pruning method, described in Algorithm1.
+
+
+
+
+% \begin{figure}[h]  
+%     \centering  
+%     \includegraphics[width=0.5\textwidth]{pic/procedure-current.png}  
+%     \caption{Pruning procedure. }  
+%     \label{fig:example}  
+% \end{figure}    
+
+% \section{Experiments}
+
+% In this section, a series of experiments are designed to evaluate the effectiveness of the proposed methods. We first present the discovered expert collaboration patterns in section Sec. 4.1. Then we introduce experiments of expert pruning for general tasks in Sec. 4.2, and domain-specific tasks in Sec. 4.3.
+
+
+\subsubsection{Experiments on General Tasks}
+The goal of this experiment is to evaluate how well the pruned model retains its performance across a broad set of general tasks. We compare CAEP with baseline pruning methods to analyze the trade-off between reducing the number of experts and maintaining task performance.
+
+\textbf{Comparison with Other Expert Pruning Baselines.}
+We compare CAEP to two baseline pruning strategies: (1) Routing Score-Based Pruning \cite{muzio_seer-moe_2024}: Retains experts with higher averaged routing scores. (2) Behavior-based Pruning \cite{zhang_diversifying_2024}: Remove experts with minimal impact on the output. 
+
+%\textbf{Experimental Setup.} We implemented the CAEP method on the MMLU dataset, using a DeepSeek-MoE-16B model. The pruning experiments were conducted with a sequence length of 2,048 tokens, pruning only normal experts while preserving shared experts. The model’s performance was evaluated across several tasks, including ARC-C, BoolQ, HellaSwag, MMLU, OBQA, PIQA, RTE, and WinoGrande, using the EleutherAI LM Harness framework.
+
+% \begin{table*}[ht] 
+% \centering
+% \caption{Performance evaluation of different expert pruning methods with 25\% experts dropped.}
+% \label{tab:Evaluate}
+% \scriptsize 
+% \resizebox{\linewidth}{!}{%
+% \begin{tabular}{llccccccc}
+% \toprule
+% \textbf{Model} & \textbf{Method} & \textbf{AVG↑} & \textbf{OBQA↑} & \textbf{ARC-C↑} & \textbf{HellaSwag↑} & \textbf{WinoGrande↑} & \textbf{RTE↑} & \textbf{PIQA↑} \\
+% \midrule
+% \multirow{4}{*}{DeepSeek} & Random & 0.500 & 0.363 & 0.564 & 0.485 & 0.568 & 0.641 & 0.381 \\
+%  & SEER-MoE & \underline{0.5872} & 0.420 & \underline{0.672} & \underline{0.665} & 0.617 & \underline{0.755} & \underline{0.394} \\
+%  & GEM & 0.5870 & \underline{0.422} & 0.67 & 0.658 & \textbf{0.649} & 0.739 & 0.384 \\
+%  & \textbf{CAEP (Ours)} & \textbf{0.612} & \textbf{0.473} & \textbf{0.693} & \textbf{0.691} & \underline{0.635} & \textbf{0.757} & \textbf{0.424} \\
+% \bottomrule
+% \end{tabular}%
+% }
+% \end{table*}
+% \begin{table*}[ht]
+% \centering
+% \caption{Performance evaluation of different expert pruning methods with 25\% experts dropped.}
+% \label{tab:Evaluate}
+% \scriptsize
+% \resizebox{\linewidth}{!}{%
+% \begin{tabular}{llccccccc}
+% \toprule
+% \textbf{Model} & \textbf{Method} & \textbf{AVG↑} & \textbf{OBQA↑} & \textbf{ARC-C↑} & \textbf{HellaSwag↑} & \textbf{WinoGrande↑} & \textbf{RTE↑} & \textbf{PIQA↑} \\
+% \midrule
+% \multirow{5}{*}{DeepSeek} & original model & 0.654 & 0.491 & 0.732 & 0.791 & 0.655 & 0.791 & 0.464\\
+% & Random & 0.500 & 0.363 & 0.564 & 0.485 & 0.568 & 0.641 & 0.381 \\
+%  & SEER-MoE & \underline{0.5872} & 0.420 & \underline{0.672} & \underline{0.665} & 0.617 & \underline{0.755} & \underline{0.394} \\
+%  & GEM & 0.5870 & \underline{0.422} & 0.67 & 0.658 & \textbf{0.649} & 0.739 & 0.384 \\
+%  & \textbf{CAEP (Ours)} & \textbf{0.612} & \textbf{0.473} & \textbf{0.693} & \textbf{0.691} & \underline{0.635} & \textbf{0.757} & \textbf{0.424} \\
+% \midrule
+% \multirow{5}{*}{Phi-MoE} & original model & 0.654 & 0.508 & 0.534 & 0.799 & 0.766 & 0.769 & 0.782\\
+% & Random & 0.510 & 0.410 & 0.390 & 0.660 & 0.580 & 0.610 & 0.410 \\
+%  & SEER-MoE & 0.565 & \textbf{0.470} & 0.450 & 0.720 & 0.660 & 0.640 & \textbf{0.450} \\
+%  & GEM &  \underline{0.600} & 0.400 & \textbf{0.530} &  \underline{0.740} &  \underline{0.720} &  \underline{0.790} & 0.420 \\
+%  & \textbf{CAEP (Ours)} & \textbf{0.615} &  \underline{0.430} &  \underline{0.510} & \textbf{0.750} & \textbf{0.760} & \textbf{0.810} &  \underline{0.430} \\
+% \bottomrule
+% \end{tabular}%
+% }
+% \end{table*}
+
+\begin{table*}[ht]
+\centering
+\caption{Performance evaluation of different expert pruning methods with 25\% experts dropped.}
+\label{tab:Evaluate}
+\scriptsize
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llcllllll}
+\toprule
+\textbf{Model} & \textbf{Method} & \textbf{AVG↑} & \textbf{OBQA↑} & \textbf{ARC-C↑} & \textbf{HellaSwag↑} & \textbf{WinoGrande↑} & \textbf{RTE↑} \\
+\midrule
+\multirow{5}{*}{DeepSeek} & original model & 0.692 & 0.491 & 0.732 & 0.791 & 0.655 & 0.791\\
+& Random & 0.524 & 0.363 & 0.564 & 0.485 & 0.568 & 0.641\\
+ & SEER-MoE & \underline{0.626} & 0.420 & \underline{0.672} & \underline{0.665} & 0.617 & \underline{0.755}\\
+ & GEM & 0.628 & \underline{0.422} & 0.67 & 0.658 & \textbf{0.649} & 0.739\\
+ & \textbf{CAEP (Ours)} & \textbf{0.650} & \textbf{0.473} & \textbf{0.693} & \textbf{0.691} & \underline{0.635} & \textbf{0.757}\\
+  & \textbf{CAEP ($L_{rec}+L_{sparse}$)} & \textbf{-} & \textbf{0.461 (-0.012)} & \textbf{0.698(+0.005)} & \textbf{0.667(-0.024)} & {-} & \textbf{-}\\
+    & \textbf{CAEP ($L_{rec}+L_{dict}$)} & \textbf{-} & \textbf{0.470 (-0.003)} & \textbf{0.681 (-0.012)} & \textbf{0.682 (-0.009)} & {-} & \textbf{-}\\
+\midrule
+\multirow{5}{*}{Phi-MoE} & original model & 0.675 & 0.508 & 0.534 & 0.799 & 0.766 & 0.769\\
+& Random & 0.530 & 0.410 & 0.390 & 0.660 & 0.580 & 0.610\\
+ & SEER-MoE & 0.588 & \textbf{0.470} & 0.450 & 0.720 & 0.660 & 0.640\\
+ & GEM &  \underline{0.636} & 0.400 & \textbf{0.530} &  \underline{0.740} &  \underline{0.720} &  \underline{0.790}\\
+ & \textbf{CAEP (Ours)} & \textbf{0.652} &  \underline{0.430} &  \underline{0.510} & \textbf{0.750} & \textbf{0.760} & \textbf{0.810}\\
+\bottomrule
+\end{tabular}%
+}
+\end{table*}
+
+
+
+\textbf{Results and Discussion.} Figure \ref{fig:benchmark_comparison} and Table \ref{tab:Evaluate} show that CAEP-pruned models maintain competitive performance, outperforming random and other baseline methods with an average score of 0.650 on DeepSeek and score of 0.652 on Phi-MoE. Notably, CAEP retains higher performance on DeepSeek model after pruning 25\% of the experts, especially on tasks like OBQA and RTE. This is further supported by Figure \ref{fig:benchmark_comparison}, where CAEP shows a low accuracy drop on both DeepSeek and Phi-MoE across multiple tasks even with a high pruning ratio.
+
+
+Through the analysis of the experimental results, we found that CAEP effectively retains performance across a broad set of general tasks while significantly reducing the number of experts. This demonstrates that \textbf{CAEP successfully balances pruning and performance retention, optimizing computational efficiency while minimizing performance loss.} 
+% 1. 三个方法性能的比较
+%  1. 总体上谁最好
+%  2. 随着drop的增加有什么趋势
+% 2. 表明
+%     1. 跨层的专家之间存在合作关系
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\columnwidth]{latex/pic/fig_change_ratio.png}
+    \caption{Performance of CAEP on benchmark tasks with varying expert pruning drop ratios.}
+    \label{fig:benchmark_comparison}
+\end{figure}
+
+
+
+
+\renewcommand{\arraystretch}{1.2} 
+
+\useunder{\uline}{\ul}{}
+
+% \begin{table*}[]
+% \caption{Performance evaluation of different expert pruning methods with 25\% experts dropped}
+
+% \label{tab:Evaluate} % 添加标签  
+% % \begin{tabular}{c|c|cccccc|l}
+% % \hline
+% % \textbf{Model}                & \textbf{Method}                               & \textbf{OBQA}  & \textbf{ARC-C} & \textbf{HellaSwag} & \textbf{WinoGrande} & \textbf{RTE}   & \textbf{PIQA}  & \textbf{AVG}   \\ \hline
+% % \multirow{4}{*}{DeepSeek-MoE} & Random                                        & 0.381          & 0.363          & 0.564              & 0.485               & 0.568          & 0.641          & 0.500          \\
+% %                               & \cite{muzio_seer-moe_2024}   & {\ul 0.394}    & 0.420          & 0.672              & {\ul 0.665}         & 0.617          & {\ul 0.755}    & 0.587          \\
+% %                               & \cite{zhang_diversifying_2024}& 0.384          & {\ul 0.422}    & \textbf{0.67}      & 0.658               & \textbf{0.649} & 0.739          & {\ul 0.587}    \\
+% %                               & Our method                                    & \textbf{0.424} & \textbf{0.473} & {\ul 0.693}        & \textbf{0.691}      & {\ul 0.635}    & \textbf{0.757} & \textbf{0.613} \\ \hline
+% % \end{tabular}
+
+% % Please add the following required packages to your document preamble:
+% % \usepackage{multirow}
+
+% % Please add the following required packages to your document preamble:
+% % \usepackage{multirow}
+% % \usepackage[normalem]{ulem}
+% % \useunder{\uline}{\ul}{}
+
+% \begin{tabular}{l|l|lllllll}
+% \hline
+% % Model                     & Method            & AVG            & ARC-C          & HellaSwag      & winogrande     & rte            & piqa           & OBQA           
+
+% \textbf{Model}                & \textbf{Method}       & \textbf{AVG}                        & \textbf{OBQA}  & \textbf{ARC-C} & \textbf{HellaSwag} & \textbf{WinoGrande} & \textbf{RTE}   & \textbf{PIQA}  
+
+% \\ \hline
+% \multirow{4}{*}{DeepSeek} & Random            & 0.500          & 0.363          & 0.564          & 0.485          & 0.568          & 0.641          & 0.381          \\
+%                           & \cite{muzio_seer-moe_2024} & {\ul 0.5872}   & 0.420          & {\ul 0.672}    & {\ul 0.665}    & 0.617          & {\ul 0.755}    & {\ul 0.394}    \\
+%                           & \cite{zhang_diversifying_2024} & 0.5870         & {\ul 0.422}    & 0.67           & 0.658          & \textbf{0.649} & 0.739          & 0.384          \\
+%                           & Our Method        & \textbf{0.612} & \textbf{0.473} & \textbf{0.693} & \textbf{0.691} & {\ul 0.635}    & \textbf{0.757} & \textbf{0.424} \\ \hline
+% % \multirow{4}{*}{Phi}      & Random            &                &                &                &                &                &                &                \\
+% %                           & \cite{muzio_seer-moe_2024} & 0.555          & 0.45           &                & 0.66           & 0.64           &                & \textbf{0.47}  \\
+% %                           & \cite{zhang_diversifying_2024} & {\ul 0.610}    & \textbf{0.53}  &                & {\ul 0.72}     & {\ul 0.79}     &                & 0.4            \\
+% %                           & Our Method        & \textbf{0.625} & {\ul 0.5}      &                & \textbf{0.76}  & \textbf{0.81}  &                & {\ul 0.43}     \\ \hline
+% \end{tabular}
+
+
+
+% \end{table*}
+
+
+
+\subsubsection{Experiments on Domain-Specific Tasks}
+In this experiment, we focus on investigating how expert collaboration patterns differ across various domains and how these differences reflect the domain-specific interactions within MoE LLMs. Our objective is to analyze the activation frequencies of experts for inputs from five fields—mathematics, computer science, physics, law, and psychology—in order to identify domain-dependent patterns in expert selection. For each domain, we prune 50\% of the experts using CAEP on Phi-MoE. This setup enables us to assess whether the pruned model retains superior performance in a specific domain at the expense of others.
+
+
+
+\textbf{Performance Evaluation Metric.}  
+To assess the impact of pruning, we focus primarily on the relative changes in performance. The metric is computed as:
+\begin{equation}
+\frac{Acc_{\text{pruned}} - Acc_{\text{no-pruned}}}{Acc_{\text{no-pruned}}}.
+\end{equation}
+A higher value indicates better retention of domain-specific capabilities, with the ideal result being maximized diagonal elements, showing that each pruned model retains domain-specific expertise.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\columnwidth]{latex/pic/domain_specific.png}
+    \caption{Performance degradation accuracy after pruning for specific domain}
+    \label{fig:heatmap}
+\end{figure}
+
+\textbf{Results and Discussion.} Figure \ref{fig:heatmap} shows the accuracy degradation after pruning for different domains, presented as a heatmap. The color scale indicates the percentage of accuracy drop, where darker blue shades represent larger losses. From the figure, we observe that pruning for domains like law and psychology leads to the most significant accuracy drops, particularly when the target domain is law. In contrast, pruning for the "physics" or "psychology" domains results in relatively smaller accuracy drops, suggesting a less severe impact on performance.
+
+\textbf{We find that this variation in pruning impact, depending on both the target and benchmark domains, reveals an uneven distribution of domain-specific knowledge across the model.} Some domains rely more heavily on specialized expertise, while others are more flexible in terms of expert collaboration. These findings suggest that \textbf{pruning strategies should account for the varying importance of domain-specific knowledge, allowing for more efficient expert retention and minimizing unnecessary performance degradation in MoE LLMs.}
+
+
+
+
+%\section{Discussion}
+%In this study, we addressed two key questions raised in the introduction about expert collaboration patterns in MoE models. By applying hierarchical sparse dictionary learning (HSDL), we identified dominant collaboration patterns that shed light on how MoE models allocate expertise and process inputs across different tasks. Building on these insights, we introduced the Contribution-Aware Expert Pruning (CAEP) algorithm, which leverages the discovered patterns to optimize the model by pruning low-contribution experts. This reduces computational costs while maintaining or even improving performance. Ultimately, our work not only advances the understanding of expert collaboration in MoE models but also opens up practical avenues for optimizing performance and enhancing model explainability in real-world applications.
+
+
+
+\section{Conclusion}
+
+This paper addresses a key gap in MoE LLMs, where existing research has largely overlooked the collaboration patterns among experts, both within the same layer and across layers. By applying hierarchical sparse dictionary learning, we uncover dominant expert collaboration patterns and develop a pruning strategy to enhance MoE LLMs' efficiency. Our experiments demonstrate that this approach not only improves accuracy but also significantly boosts model compression and inference efficiency compared to existing methods. This work provides valuable insights into expert interactions and offers a novel way to optimize MoE LLMs for both performance and scalability.
+
+\newpage
+
+
+\bibliography{moe_reference, references_1}
+
+\newpage
+
+\appendix
+\section*{Appendix} 
+\section{Limitations}
+The entire work operates under the assumption that the allocation result provided by the router is the most optimal. However, this may only reflect one aspect of the model's behavior. By considering both router information and weight data in a more comprehensive way, we could gain a deeper and more complete understanding. Additionally, there has been limited analysis from the perspective of combinatorial learning, which might offer useful insights into the task selection process. Moreover, the labeling of mined patterns has primarily been done manually up until now, which is very labor-intensive.
+
+% \section{Future Work}  
+% In the future, we aim to explore automating this process, such as using large language models to identify and summarize common tokens associated with specific expert collaboration patterns.
+% \section{Expert Ensemble Model Decomposition Exploration}
+% In the process of analyzing expert ensemble models using HSDL, we observed that as the level of hierarchy deepens, the average number of experts in each dictionary item corresponding to each layer decreases. This downward trend is intuitively reasonable: for most expert ensemble models, a larger number of experts indicates a wider range of semantic meanings, while a smaller number suggests a narrower scope of meanings. We can understand this concept through an extreme example: when the number of experts in the ensemble model equals the total number of experts in the model, this ensemble essentially becomes equivalent to the model itself, covering the same semantic range as the model. Thus, this experiment demonstrates that the ongoing process of hierarchical dictionary refinement is, in fact, a continual decomposition of the semantic meanings contained within the expert ensemble model.
+
+% \begin{figure}[ht]
+%     \centering
+%     \includegraphics[width=\columnwidth]{latex/pic/ACL_f1.png}
+%     \caption{Average number of experts per individual dictionary item in HSDL}
+%     \label{fig:heatmap}
+% \end{figure}
+
+
+\section{Pruning Effect Calculation}
+For the DeepSeek-MoE-16B model, considering the significant impact of shared experts on the model, we only prune the normal experts during the pruning operation. Through calculations, we estimate the parameter counts of various parts of DeepSeek-MoE-16B as follows: word embeddings 0.2B, attention mechanism 0.4B, gate and shared experts 0.9B, routing network of MoE 14.7B, and output layer 0.2B. Therefore, for this model, our conclusion is that the total parameters after pruning with a pruning ratio of \( k\% \) can be calculated as:
+
+\begin{equation}
+\text{New Total Parameters} = (16.4 - 14.7 \times k\%) \, \text{B}
+\end{equation}
+
+\section{Experiment Setup}
+\subsection{HSDL Experiment Setup}
+Hierarchical Sparse Dictionary Learning (HSDL) is a critical component of CAEP algorithm. Unlike direct training on the main task, the HSDL module requires additional pre-training. This section aims to elaborate on the experiment setup for the HSDL module, specific training details, and the associated computational overhead.
+
+During the dictionary training phase of HSDL, we selected 604,109 tokens from the MMLU-Pro dataset as training data. The entire dictionary training process took approximately 1200 seconds for 2000 epochs on 4 NVIDIA 4090D GPUs. We set the initial learning rate to 4e-4 and decay the learning rate 0.5 times with every 500 epochs. 
+Despite this additional computational cost, considering the significant performance improvements brought by the CAEP method in subsequent tasks, we believe this overhead is worthwhile and within an acceptable range. 
+
+The core of HSDL lies in its dictionary learning and optimization process. The objective of this process is to minimize a comprehensive loss function, denoted as $L_{total}$ in Equation 7. This total loss function is composed of three key parts: $L_{sparse}$, $L_{hier}$ and $L_{rec}$. $L_{sparse}$ represents the sparsity constraint, aiming to ensure that the learned representations are sparse;  $L_{hier}$ represents the inter-layer consistency constraint, used to maintain consistency between dictionaries at different hierarchical levels; and $L_{rec}$ represents the reconstruction constraint, ensuring that the input signal can be effectively reconstructed from the sparse representation and the dictionary. 
+
+% L_{\text{total}} = L_{\text{sparse}} + \lambda_1 L_{\text{hier}} + \lambda_2 L_{\text{rec}},
+
+\subsection{Pruning Experiment Setup}
+In section 5, following the setup in \cite{he_demystifying_2024}, we implement our pruning method on the MMLU \cite{hendrycks2021measuring} dataset, using 128 samples with an input sequence length of 2,048 tokens. All pruning experiments are conducted on the DeepSeek-MoE-16B model and Phi-MoE model, where only normal experts are pruned, preserving shared experts due to their importance. Model performance is evaluated using the LM-Harness benchmark, which includes a range of tasks: ARC-C \cite{clark2018think},  HellaSwag \cite{zellers2019hellaswag}
+, OBQA \cite{mihaylov2018suit},  RTE \cite{wang2019glue}, and WinoGrande \cite{ai2:winogrande}. The evaluation is carried out using the EleutherAI LM Harness framework \cite{eval-harness}, and we report normalized zero-shot accuracy for each task.
+
+\section{Comparison of Pruning Algorithms Under 75\% Pruning Rate}
+From Table 2, we can see that our pruning scheme still outperforms the baselines at a pruning ratio of 75\%.
+\begin{table}[h]
+\centering
+\begin{tabular}{l|ccc}
+\toprule
+         & \textbf{SEER-MoE} & \textbf{GEM} & \textbf{Ours} \\
+\midrule
+AVG        & 0.363  & 0.387  & \textbf{0.398} \\
+OBOA       & 0.252  & 0.292  & \textbf{0.298} \\
+ARC-C      & 0.249  & 0.278  & \textbf{0.286} \\
+HellaSwag  & 0.309  & 0.356  & \textbf{0.363} \\
+WinoGrande & 0.517  & 0.504  & \textbf{0.512} \\
+RTE        & 0.516  & 0.538  & \textbf{0.552} \\
+PIQA       & 0.337  & 0.358  & \textbf{0.380} \\
+\bottomrule
+\end{tabular}
+\caption{Comparison of  performance between different pruning algorithm across benchmarks when the pruning rate is 75\%.}
+\end{table}
+
+\section{Semantic Annotation for Expert Collaboration Patterns}
+
+We also conducted similar analyses on DeepSeekMoE using MMLUPro as dataset. Here's how the original text was processed by the hierarchical expert collaboration.
+
+\newpage
+
+% \noindent
+
+\begin{verbatim}
+---Layer0 - Original Text---
+..........|   
+..........|----Layer1-dict27  
+..........|.........|   
+..........|.........|----Layer2-dict659  
+..........|   
+..........|----Layer1-dict446   
+....................|   
+....................|----Layer2-dict94  
+....................|   
+....................|----Layer2-dict1156
+\end{verbatim}
+
+\medskip
+
+\noindent
+\textbf{Original Text:}
+/Q 2: A radioactive material, such as thorium-234, disintegrates at a rate proportional to the amount currently present. If $Q(t)$ is the amount present at time $t$, then $\frac{dQ}{dt} = -rQ$, where $r> 0$ is the decay rate. If 70 mg of thorium-234 decays to 28 mg in one week, determine the decay rate $r$.
+
+\bigskip
+
+\noindent
+{Relationship between tokens and expert combinations:}
+
+ \textbf{First Layer Breakdown:}
+    \begin{itemize}
+        \item \textcolor{orange}{Layer1-dict27 Contextual Text}: Radioactive material, such as thorium, disintegrates at a rate
+        \item \textcolor{purple}{Layer1-dict446 Mathematical Calculation}: /Q 2: A rate. If $Q(t)$, $t$, then $\frac{dQ}{dt} = -r$,  $r > 0$ 70
+    \end{itemize}
+    
+\textbf{Second Layer Breakdown:}
+    \begin{itemize}
+        \item \textcolor{red}{Layer2-dict659 Contextual Text}: Radioactive material, such as thorium, disintegrates at a rate
+        \item \textcolor{brown}{Layer2-dict94 Numbers}: 2 34 0 0 70
+        \item \textcolor{blue}{Layer2-dict1156 Symbols}: /Q : -\. If $Q(t)$ is $t$, $\frac{dQ}{dt} = -r$
+    \end{itemize}
+
+\bigskip
+
+From the above examples, it can be observed that in different MOE models, we can also find various expert collaboration patterns with clear tendencies. Furthermore, based on our extensive experiments with other MOE models and datasets, the aforementioned patterns are widely present, indicating that our method possesses strong generality.
+
+
+
+
+\end{document}
+

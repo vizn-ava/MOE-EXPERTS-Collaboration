@@ -1,0 +1,807 @@
+/* 品字布局样式 */
+.triangle-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1.5fr 1fr;
+    gap: 20px;
+    height: 700px;
+    width: 100%;
+}
+
+.triangle-top {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.triangle-bottom-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.triangle-bottom-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.triangle-layout h3 {
+    margin: 0 0 15px 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+}
+
+/* 词云图容器样式 */
+.wordcloud-container {
+    width: 100%;
+    height: 250px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 暗色主题下的品字布局样式 */
+.dark-theme .triangle-top,
+.dark-theme .triangle-bottom-left,
+.dark-theme .triangle-bottom-right {
+    background: #34495e;
+}
+
+.dark-theme .triangle-layout h3 {
+    color: #ecf0f1;
+}
+
+.dark-theme .wordcloud-container {
+    background: #2c3e50;
+}
+
+/* 悬浮窗模态框样式 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 0;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 1000px;
+    max-height: 80vh;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.close-button {
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.close-button:hover {
+    opacity: 1;
+}
+
+.modal-body {
+    padding: 30px;
+    max-height: calc(80vh - 100px);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* 悬浮窗图像样式 */
+.modal-image-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.modal-image {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    object-fit: contain;
+}
+
+/* 悬浮窗中的MOE网络样式 */
+#modal-moe-network {
+    display: grid;
+    grid-template-columns: repeat(64, 1fr);
+    grid-template-rows: repeat(27, 1fr);
+    gap: 2px;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    aspect-ratio: 64/27;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#modal-moe-network .circle {
+    width: 100%;
+    height: 100%;
+    background-color: #e9ecef;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    border: 1px solid #dee2e6;
+}
+
+#modal-moe-network .circle.active {
+    background-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+    transform: scale(1.1);
+}
+
+/* 暗色主题下的悬浮窗样式 */
+.dark-theme .modal-content {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+}
+
+.dark-theme .modal-header {
+    background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+}
+
+.dark-theme .modal-body {
+    background-color: #2c3e50;
+}
+
+.dark-theme #modal-moe-network {
+    background: #34495e;
+}
+
+/* 暗色主题下的图像样式 */
+.dark-theme .modal-image {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme #modal-moe-network .circle {
+    background-color: #4a5568;
+    border-color: #5a6c7d;
+}
+
+.dark-theme #modal-moe-network .circle.active {
+    background-color: #3182ce;
+    box-shadow: 0 0 8px rgba(49, 130, 206, 0.6);
+}
+
+/* 全局字体设置 - 统一使用现代无衬线字体 */
+* {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: #232946;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    letter-spacing: 0.01em;
+}
+
+header {
+    background: none;
+    color: #232946;
+    text-align: center;
+    padding: 48px 0 24px 0;
+    font-size: 2.8rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    border-bottom: 1px solid #e0e6ed;
+    position: relative;
+}
+
+.main-content {
+    padding: 48px 0 0 0;
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 指导模块样式 */
+.guide-module {
+    background: #fff;
+    padding: 24px 32px;
+    border-radius: 24px;
+    box-shadow: 0 2px 16px 0 rgba(0,0,0,0.04);
+    margin-bottom: 32px;
+}
+
+.guide-module h2 {
+    font-size: 1.5rem !important;
+    font-weight: 900;
+    letter-spacing: 0.03em;
+    text-shadow: 0 4px 24px rgba(44,62,80,0.10), 0 1.5px 0 #fff2, 0 0.5px 0 #fff4;
+    color: #232946;
+    margin: 0 0 16px 0;
+}
+
+.guide-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+}
+
+.guide-steps {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.guide-steps li {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #444;
+    margin-bottom: 8px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+}
+
+.guide-steps li:last-child {
+    margin-bottom: 0;
+}
+
+.row {
+    display: flex;
+    width: 100%;
+    gap: 32px;
+    margin-bottom: 32px;
+}
+.first-row > .input-module,
+.first-row > .token-list,
+.first-row > .highlight-module {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 50%;
+    height: 250px;
+    box-sizing: border-box;
+}
+.second-row > .expert-explanation,
+.second-row > .expert-decomposition {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 50%;
+    height: 380px;
+    box-sizing: border-box;
+}
+.third-row {
+    justify-content: center;
+}
+.third-row > .neural-mapping-module {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    min-height: 920px;
+}
+
+.input-module,
+.output-module,
+.neural-mapping-module {
+    flex: 1;
+    padding: 32px 32px 24px 32px;
+    border: none;
+    border-radius: 32px;
+    background: #fff;
+    box-shadow: 0 4px 32px 0 rgba(44,62,80,0.08);
+}
+
+/* 统一四个主要标题的字体样式 */
+.input-module h2, 
+.token-list h2,
+.expert-explanation h2,
+.expert-decomposition h2,
+.output-module h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: #1d1d1f;
+}
+
+#input-text, #output-content {
+    font-size: 1.1rem;
+    height: 120px;
+    border-radius: 16px;
+    border: 1px solid #e0e6ed;
+    background: #f5f7fa;
+    color: #232946;
+    padding: 16px;
+    box-sizing: border-box;
+    margin-bottom: 8px;
+}
+
+#input-text {
+    width: 100%;
+    resize: none;
+}
+
+.token-list,
+.highlight-module {
+    flex: 1;
+    padding: 32px 32px 24px 32px;
+    border: none;
+    border-radius: 32px;
+    background: #fff;
+    box-shadow: 0 4px 32px 0 rgba(44,62,80,0.08);
+}
+
+.expert-explanation,
+.expert-decomposition {
+    flex: 2;
+    background: #fff;
+    padding: 24px 24px 16px 24px;
+    border-radius: 24px;
+    height: 380px;
+    overflow-y: auto;
+    box-shadow: 0 2px 16px 0 rgba(0,0,0,0.04);
+}
+
+/* Token Display 样式 */
+.token-display {
+    width: 100%;
+    font-size: 1.1rem;
+    height: 120px;
+    border-radius: 16px;
+    border: 1px solid #e0e6ed;
+    background: #f5f7fa;
+    color: #232946;
+    padding: 16px;
+    box-sizing: border-box;
+    margin-bottom: 8px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-y: auto;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+}
+
+.token-table {
+    width: 100%;
+    table-layout: fixed;
+    font-size: 1.1rem;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    background: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+}
+
+.token-table th,
+.token-table td {
+    padding: 8px 4px;
+    text-align: left;
+    border: none;
+    background: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+}
+
+.token-table th {
+    background: none;
+    color: #6a82fb;
+    font-weight: 700;
+    font-size: 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+}
+
+.token-list h2 {
+    justify-content: flex-end;
+}
+
+.token-list .add-button {
+    float: right;
+}
+
+
+.visualization-area {
+    background: none;
+    border-radius: 12px;
+    margin-top: 0;
+    padding: 0;
+    height: auto;
+}
+
+footer {
+    background: none;
+    color: #aeb8c4;
+    text-align: center;
+    padding: 32px 0 16px 0;
+    font-size: 1rem;
+    border-top: 1px solid #e0e6ed;
+    margin-top: auto;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+}
+
+#confirm-button {
+    background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
+    color: #fff;
+    border: none;
+    border-radius: 999px; /* 保持原来的圆角矩形样式 */
+    padding: 10px 32px; /* 恢复原来的内边距 */
+    font-size: 1rem; /* 恢复原来的字体大小 */
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px 0 rgba(44,62,80,0.08);
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+.decompose-button, .add-button {
+    background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
+    color: #fff;
+    border: none;
+    border-radius: 50%; /* 改为圆形 */
+    width: 40px; /* 设置固定宽度 */
+    height: 40px; /* 设置固定高度 */
+    padding: 0; /* 移除内边距 */
+    font-size: 1.2rem; /* 调整字体大小 */
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px 0 rgba(44,62,80,0.08);
+    transition: background 0.2s, box-shadow 0.2s;
+    display: flex; /* 使用flex布局 */
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+}
+#confirm-button:hover {
+    background: linear-gradient(90deg, #fc5c7d 0%, #6a82fb 100%);
+    box-shadow: 0 4px 16px 0 rgba(44,62,80,0.16);
+}
+
+.decompose-button:hover, .add-button:hover {
+    background: linear-gradient(90deg, #fc5c7d 0%, #6a82fb 100%);
+    box-shadow: 0 4px 16px 0 rgba(44,62,80,0.16);
+}
+
+#branch-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.branch, .branch-label, .expert-dot {
+    color: #1d1d1f;
+    stroke: #1d1d1f;
+    fill: #1d1d1f;
+}
+
+.expert-decomposition .token-table td {
+    font-size: 1rem;
+    line-height: 1.6;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+}
+
+.expert-explanation .token-table th:nth-child(1),
+.expert-explanation .token-table td:nth-child(1) {
+    width: 30%;
+}
+.expert-explanation .token-table th:nth-child(2),
+.expert-explanation .token-table td:nth-child(2) {
+    width: 60%;
+}
+.expert-explanation .token-table th:nth-child(3),
+.expert-explanation .token-table td:nth-child(3) {
+    width: 10%;
+    text-align: left;
+}
+
+.expert-explanation, .expert-decomposition {
+    font-size: 1.1rem;
+}
+
+.expert-decomposition .token-table th:nth-child(1),
+.expert-decomposition .token-table td:nth-child(1) {
+    width: 20%;
+}
+.expert-decomposition .token-table th:nth-child(2),
+.expert-decomposition .token-table td:nth-child(2) {
+    width: 80%;
+}
+
+
+.expert-explanation .token-table td:nth-child(1) {
+    color: #1d1d1f;
+}
+
+/* 专家名称单元格的悬停和选中状态样式 */
+.expert-explanation .token-table td:nth-child(2) {
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.expert-explanation .token-table td:nth-child(2):hover {
+    background-color: #f0f8ff;
+    color: #0066cc;
+}
+
+.expert-explanation .token-table td:nth-child(2).selected {
+    background-color: #e6f3ff;
+    color: #0066cc;
+    font-weight: 500;
+}
+
+/* 暗色主题下的专家名称单元格样式 */
+.dark-theme .expert-explanation .token-table td:nth-child(2):hover {
+    background-color: #2a3f5f;
+    color: #66b3ff;
+}
+
+.dark-theme .expert-explanation .token-table td:nth-child(2).selected {
+    background-color: #1e3a5f;
+    color: #66b3ff;
+    font-weight: 500;
+}
+
+.expert-decomposition .token-table th:nth-child(2),
+.expert-decomposition .token-table td:nth-child(2) {
+    width: 80%;
+}
+
+.expert-decomposition .token-table th:nth-child(3),
+.expert-decomposition .token-table td:nth-child(3) {
+    width: 10%;
+    text-align: left;
+}
+
+.expert-decomposition .token-table th:nth-child(1),
+.expert-decomposition .token-table td:nth-child(1) {
+    width: 20%;
+}
+.expert-decomposition .token-table th:nth-child(2),
+.expert-decomposition .token-table td:nth-child(2) {
+    width: 80%;
+}
+
+
+.expert-explanation .token-table td:nth-child(1) {
+    color: #1d1d1f;
+}
+
+.neural-mapping-module h2 {
+    margin-bottom: 16px;
+    font-size: 1.2rem;
+    color: #1d1d1f;
+    font-weight: 500;
+}
+
+.input-module h2, .output-module h2, .neural-mapping-module h2 {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.output-box {
+    width: 100%;
+    min-height: 50px;
+    border: none;
+    padding: 16px;
+    margin-top: 10px;
+    background: #f5f5f7;
+    overflow: auto;
+    border-radius: 12px;
+}
+
+.decompose-button {
+    margin: 32px auto 0 auto;
+    display: block;
+    background: #0071e3;
+    color: #fff;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 10px 28px;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.04);
+}
+
+.hidden {
+    display: none;
+}
+
+.input-module h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 24px 0;
+}
+
+#decompose-button {
+    display: block;
+}
+
+
+.token-table tr {
+    transition: background 0.2s;
+}
+
+
+/* 其他细节优化 */
+::-webkit-scrollbar {
+    width: 8px;
+    background: #e0e6ed;
+    border-radius: 8px;
+}
+::-webkit-scrollbar-thumb {
+    background: #c3cfe2;
+    border-radius: 8px;
+}
+
+/* 主题切换按钮样式 */
+.theme-toggle {
+    position: absolute;
+    top: 32px;
+    right: 48px;
+    z-index: 10;
+    background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    font-size: 1.5rem;
+    box-shadow: 0 2px 8px 0 rgba(44,62,80,0.12);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+.theme-toggle:hover {
+    background: linear-gradient(90deg, #fc5c7d 0%, #6a82fb 100%);
+    box-shadow: 0 4px 16px 0 rgba(44,62,80,0.18);
+}
+
+
+/* 语言切换按钮样式：与主题按钮并排，右上角更靠左一点 */
+.lang-toggle {
+    position: absolute;
+    top: 34px;
+    right: 104px;
+    z-index: 10;
+    background: #ffffff;
+    color: #232946;
+    border: 1px solid #e0e6ed;
+    border-radius: 999px;
+    height: 36px;
+    padding: 0 14px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    box-shadow: 0 2px 8px 0 rgba(44,62,80,0.08);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+}
+.lang-toggle:hover {
+    background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 4px 16px 0 rgba(44,62,80,0.16);
+}
+
+/* 深色主题 */
+.dark-theme {
+    background: linear-gradient(135deg, #181c24 0%, #232946 100%) !important;
+    color: #f5f7fa !important;
+}
+.dark-theme header {
+    color: #f5f7fa;
+    border-bottom: 1px solid #232946;
+}
+.dark-theme .main-content {
+    background: none;
+}
+.dark-theme .row > div,
+.dark-theme .input-module, .dark-theme .token-list, .dark-theme .highlight-module, .dark-theme .expert-explanation, .dark-theme .expert-decomposition, .dark-theme .neural-mapping-module, .dark-theme .guide-module {
+    background: #232946;
+    color: #f5f7fa;
+    box-shadow: 0 4px 32px 0 rgba(0,0,0,0.32);
+    border-radius: 32px;
+}
+.dark-theme .token-table th {
+    color: #fc5c7d;
+}
+.dark-theme .token-table td {
+    color: #f5f7fa;
+}
+.dark-theme #input-text, .dark-theme textarea, .dark-theme input, .dark-theme select {
+    background: #181c24;
+    color: #f5f7fa;
+    border: 1px solid #232946;
+}
+
+/* 深色主题下的 token-display 样式 */
+.dark-theme .token-display {
+    background: #181c24;
+    color: #f5f7fa;
+    border: 1px solid #232946;
+}
+.dark-theme #confirm-button, .dark-theme .decompose-button, .dark-theme .add-button, .dark-theme .theme-toggle {
+    background: linear-gradient(90deg, #232946 0%, #fc5c7d 100%);
+    color: #fff;
+}
+.dark-theme #confirm-button:hover, .dark-theme .decompose-button:hover, .dark-theme .add-button:hover, .dark-theme .theme-toggle:hover {
+    background: linear-gradient(90deg, #fc5c7d 0%, #232946 100%);
+}
+.dark-theme footer {
+    color: #aeb8c4;
+    border-top: 1px solid #232946;
+}
+.dark-theme ::-webkit-scrollbar-thumb {
+    background: #232946;
+}
+
+/* Token表格行高亮样式 - 覆盖内联样式 */
+/* 移除了所有覆盖淡蓝色背景的渐变样式，保持JavaScript设置的统一淡蓝色背景 */
+}
+

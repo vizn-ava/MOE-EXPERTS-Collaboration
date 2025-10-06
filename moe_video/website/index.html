@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOE Expert Collaboration Mining Visualization</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- 引入axios库（改为本地文件，避免CDN超时） -->
+    <script src="node_modules/axios/dist/axios.min.js"></script>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <h1 data-i18n="title">MOE Expert Collaboration Mining Visualization</h1>
+        <button id="lang-toggle" class="lang-toggle" title="Switch Language">中文</button>
+        <button id="theme-toggle" class="theme-toggle" title="切换风格" data-i18n-title="theme_toggle_title">🌙</button>
+    </header>
+
+    <div class="main-content">
+        <!-- 指导模块 -->
+        <div class="guide-module" id="guide-module">
+            <h2 data-i18n="guide_title">Usage Guide</h2>
+            <div class="guide-description" data-i18n="guide_description">
+                This page displays the activation and decomposition relationships of SuperExpert in MOE models, providing interactive visualization.
+            </div>
+            <ol class="guide-steps">
+                <li data-i18n="guide_step1">Enter your text in the input box on the left and click "Confirm".</li>
+                <li data-i18n="guide_step2">Click the "+" buttons in the Token List to query the corresponding Top 5 first-level SuperExpert.</li>
+                <li data-i18n="guide_step3">Click the "+" buttons in the first-level SuperExpert to view Top 5 second-level SuperExpert and visualization branches.</li>
+            </ol>
+        </div>
+        
+        <!-- 第一行：输入模块 + token列表 -->
+        <div class="row first-row">
+            <div class="input-module">
+                <h2><span data-i18n="input_title">Input Text</span> <button id="confirm-button" data-i18n="confirm">Confirm</button></h2>
+                <textarea id="input-text" placeholder="Enter your text here..." data-i18n-placeholder="input_placeholder">An air-vapor mixture, initially at 60 °F and 55 percent relative humidity, is heated until its temperature reaches 85 °F. Determine (a) the initial and final specific humidities, (b) the final relative humidity, and (c) the amount of heat added per lbm of dry air. Assume the mixture to be at a pressure of 14.7 psia.</textarea>
+            </div>
+            <div class="token-list">
+                <h2 data-i18n="token_list">Token List</h2>
+                <div class="visualization-area">
+                    <div id="token-display" class="token-display">
+                        <!-- 这里将显示输入文本的内容 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 第二行：一级专家组合 + 二级专家组合 -->
+        <div class="row second-row">
+            <div class="expert-explanation">
+                <h2 data-i18n="first_experts_title">First-Level SuperExpert</h2>
+                <div class="visualization-area">
+                    <table class="token-table">
+                        <thead>
+                            <tr>
+                                <th data-i18n="first_expert_index">Expert ID</th>
+                                <th data-i18n="first_expert_name">Expert Name (Function)</th>
+                                <th data-i18n="decompose_header">Detail</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- 初始为空，动态生成内容 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="expert-decomposition">
+                <h2 data-i18n="second_experts_title">Second-Level SuperExpert</h2>
+                <div class="visualization-area">
+                    <table class="token-table">
+                        <thead>
+                            <tr>
+                                <th data-i18n="second_expert_index">Expert ID</th>
+                                <th data-i18n="second_expert_name">Expert Name (Function)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- 初始为空，动态生成内容 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- 第三行：MOE网络映射 - 移除，改为悬浮窗显示 -->
+    </div>
+
+    <!-- 悬浮窗模态框 -->
+    <div id="activation-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title" data-i18n="network_title">Expert Group Mapping on MOE Network</h2>
+                <span class="close-button">&times;</span>
+            </div>
+            <div class="modal-body">
+                <!-- 品字布局容器 -->
+                <div class="triangle-layout">
+                    <!-- 上方：MOE网络映射 -->
+                    <div class="triangle-top">
+                        <h3>MOE Network Mapping</h3>
+                        <div class="neural-mapping-module">
+                            <div id="modal-moe-network">
+                                <!-- 动态生成64x27的圆圈 -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 下方左：词云图 -->
+                    <div class="triangle-bottom-left">
+                        <h3>Token Word Cloud</h3>
+                        <div id="math-wordcloud" class="wordcloud-container"></div>
+                    </div>
+                    <!-- 下方右：专家分析图表 -->
+                    <div class="triangle-bottom-right">
+                        <h3>Expert Analysis Chart</h3>
+                        <div class="modal-image-section">
+                            <img src="Snipaste_2025-09-23_23-59-55.jpg" alt="Expert Analysis Chart" class="modal-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p data-i18n="footer">© 2025 MOE Visualization Platform</p>
+    </footer>
+
+    <!-- 引入自定义的script.js -->
+    <script src="wordcloud.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

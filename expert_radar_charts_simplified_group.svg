@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1800" height="1020" xmlns="http://www.w3.org/2000/svg">
+<defs>
+    <!-- 渐变定义 -->
+    <linearGradient id="titleGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 阴影滤镜 -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#00000020"/>
+    </filter>
+</defs>
+
+<style>
+    .main-title { 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        font-size: 32px; 
+        font-weight: bold; 
+        text-anchor: middle; 
+        fill: url(#titleGradient);
+        filter: url(#shadow);
+    }
+    .subtitle { 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        font-size: 16px; 
+        text-anchor: middle; 
+        fill: #666;
+        font-style: italic;
+    }
+    .expert-title { 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        font-size: 16px; 
+        font-weight: bold; 
+        text-anchor: middle; 
+        fill: #333;
+    }
+    .expert-subtitle { 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        font-size: 12px; 
+        text-anchor: middle; 
+        fill: #666;
+    }
+    .domain-label { 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        font-size: 11px; 
+        text-anchor: middle; 
+        fill: #444;
+        font-weight: 500;
+    }
+    .grid-line { 
+        stroke: #e0e0e0; 
+        stroke-width: 1.5; 
+        fill: none; 
+        opacity: 0.7;
+    }
+    .grid-circle { 
+        stroke: #d0d0d0; 
+        stroke-width: 1; 
+        fill: none; 
+        opacity: 0.5;
+    }
+    .radar-area { 
+        stroke-width: 2.5; 
+        fill-opacity: 0.25; 
+        filter: url(#shadow);
+    }
+    .radar-border { 
+        stroke-width: 2.5; 
+        fill: none; 
+        opacity: 0.8;
+    }
+    .data-point { 
+        filter: url(#shadow);
+    }
+</style>
+
+<!-- 背景渐变 -->
+<rect width="1800" height="1020" fill="#f8f9fa" opacity="0.05"/>
+
+<!-- 主标题 -->
+<text x="900" y="50" class="main-title">MoE Expert Domain Specialization Analysis</text>
+<text x="900" y="75" class="subtitle">Radar Chart Visualization (2×5 Layout)</text>
+
+<!-- 分隔线 -->
+<line x1="100" y1="90" x2="1700" y2="90" stroke="#ddd" stroke-width="2" opacity="0.5"/>
+
+<!-- 专家 78 信息区域 -->
+<rect x="120" y="105" width="160" height="45" 
+      fill="#f8f9fa" stroke="#e9ecef" stroke-width="1" rx="8" opacity="0.8"/>
+
+<text x="200" y="130" class="expert-title">Expert #78</text>
+<text x="200" y="145" class="expert-subtitle">
+    Primary: computer science (61.3%)
+</text>
+<circle cx="200" cy="250" r="25" 
+                              class="grid-circle" style="opacity: 0.3;" />
+<circle cx="200" cy="250" r="50" 
+                              class="grid-circle" style="opacity: 0.4;" />
+<circle cx="200" cy="250" r="75" 
+                              class="grid-circle" style="opacity: 0.5;" />
+<text x="230" y="248" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.3
+                          </text>
+<text x="255" y="248" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.7
+                          </text>
+<text x="280" y="248" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              1.0
+                          </text>
+<line x1="200" y1="250" x2="200.0" y2="175.0" class="grid-line" />
+<text x="200.0" y="169.0" class="domain-label">Physics</text>
+<line x1="200" y1="250" x2="264.9519052838329" y2="287.5" class="grid-line" />
+<text x="273.61215932167727" y="296.5" class="domain-label">computer science</text>
+<line x1="200" y1="250" x2="135.0480947161671" y2="287.5" class="grid-line" />
+<text x="126.38784067832273" y="296.5" class="domain-label">math</text>
+<polygon points="200.0,248.88322843346427 239.8318912979221,272.99695316318724 175.8471385609333,263.9446610535449" fill="#FF6B6B" class="radar-area" />
+<polygon points="200.0,248.88322843346427 239.8318912979221,272.99695316318724 175.8471385609333,263.9446610535449" stroke="#FF6B6B" class="radar-border" />
+<circle cx="200.0" cy="248.88322843346427" r="3.0446708626614294" 
+                              fill="#FF6B6B" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="239.8318912979221" cy="272.99695316318724" r="4.839756253054979" 
+                              fill="#FF6B6B" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="239.8318912979221" cy="272.99695316318724" r="7.839756253054979" 
+                                  fill="none" stroke="#FF6B6B" stroke-width="3" opacity="0.6" />
+<circle cx="175.8471385609333" cy="263.9446610535449" r="4.115572884283591" 
+                              fill="#FF6B6B" stroke="white" stroke-width="2" class="data-point" />
+
+<!-- 专家 106 信息区域 -->
+<rect x="440" y="105" width="160" height="45" 
+      fill="#f8f9fa" stroke="#e9ecef" stroke-width="1" rx="8" opacity="0.8"/>
+
+<text x="520" y="130" class="expert-title">Expert #106</text>
+<text x="520" y="145" class="expert-subtitle">
+    Primary: computer science (60.7%)
+</text>
+<circle cx="520" cy="250" r="25" 
+                              class="grid-circle" style="opacity: 0.3;" />
+<circle cx="520" cy="250" r="50" 
+                              class="grid-circle" style="opacity: 0.4;" />
+<circle cx="520" cy="250" r="75" 
+                              class="grid-circle" style="opacity: 0.5;" />
+<text x="550" y="248" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.3
+                          </text>
+<text x="575" y="248" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.7
+                          </text>
+<text x="600" y="248" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              1.0
+                          </text>
+<line x1="520" y1="250" x2="520.0" y2="175.0" class="grid-line" />
+<text x="520.0" y="169.0" class="domain-label">Physics</text>
+<line x1="520" y1="250" x2="584.951905283833" y2="287.5" class="grid-line" />
+<text x="593.6121593216773" y="296.5" class="domain-label">computer science</text>
+<line x1="520" y1="250" x2="455.0480947161671" y2="287.5" class="grid-line" />
+<text x="446.38784067832273" y="296.5" class="domain-label">math</text>
+<polygon points="520.0,249.08594114680088 559.424168694791,272.76155440851477 495.26386159838256,264.2814161648857" fill="#4ECDC4" class="radar-area" />
+<polygon points="520.0,249.08594114680088 559.424168694791,272.76155440851477 495.26386159838256,264.2814161648857" stroke="#4ECDC4" class="radar-border" />
+<circle cx="520.0" cy="249.08594114680088" r="3.036562354127965" 
+                              fill="#4ECDC4" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="559.424168694791" cy="272.76155440851477" r="4.820924352681181" 
+                              fill="#4ECDC4" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="559.424168694791" cy="272.76155440851477" r="7.820924352681181" 
+                                  fill="none" stroke="#4ECDC4" stroke-width="3" opacity="0.6" />
+<circle cx="495.26386159838256" cy="264.2814161648857" r="4.142513293190854" 
+                              fill="#4ECDC4" stroke="white" stroke-width="2" class="data-point" />
+
+<!-- 专家 159 信息区域 -->
+<rect x="760" y="105" width="160" height="45" 
+      fill="#f8f9fa" stroke="#e9ecef" stroke-width="1" rx="8" opacity="0.8"/>
+
+<text x="840" y="130" class="expert-title">Expert #159</text>
+<text x="840" y="145" class="expert-subtitle">
+    Primary: computer science (49.3%)
+</text>
+<circle cx="840" cy="250" r="25" 
+                              class="grid-circle" style="opacity: 0.3;" />
+<circle cx="840" cy="250" r="50" 
+                              class="grid-circle" style="opacity: 0.4;" />
+<circle cx="840" cy="250" r="75" 
+                              class="grid-circle" style="opacity: 0.5;" />
+<text x="870" y="248" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.3
+                          </text>
+<text x="895" y="248" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.7
+                          </text>
+<text x="920" y="248" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              1.0
+                          </text>
+<line x1="840" y1="250" x2="840.0" y2="175.0" class="grid-line" />
+<text x="840.0" y="169.0" class="domain-label">Physics</text>
+<line x1="840" y1="250" x2="904.951905283833" y2="287.5" class="grid-line" />
+<text x="913.6121593216773" y="296.5" class="domain-label">computer science</text>
+<line x1="840" y1="250" x2="775.0480947161672" y2="287.5" class="grid-line" />
+<text x="766.3878406783227" y="296.5" class="domain-label">math</text>
+<polygon points="840.0,247.92002290277415 872.0253619777629,268.4898513587566 808.8747696994175,267.97016009263046" fill="#45B7D1" class="radar-area" />
+<polygon points="840.0,247.92002290277415 872.0253619777629,268.4898513587566 808.8747696994175,267.97016009263046" stroke="#45B7D1" class="radar-border" />
+<circle cx="840.0" cy="247.92002290277415" r="3.0831990838890335" 
+                              fill="#45B7D1" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="872.0253619777629" cy="268.4898513587566" r="4.47918810870053" 
+                              fill="#45B7D1" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="872.0253619777629" cy="268.4898513587566" r="7.47918810870053" 
+                                  fill="none" stroke="#45B7D1" stroke-width="3" opacity="0.6" />
+<circle cx="808.8747696994175" cy="267.97016009263046" r="4.437612807410436" 
+                              fill="#45B7D1" stroke="white" stroke-width="2" class="data-point" />
+
+<!-- 专家 439 信息区域 -->
+<rect x="1080" y="105" width="160" height="45" 
+      fill="#f8f9fa" stroke="#e9ecef" stroke-width="1" rx="8" opacity="0.8"/>
+
+<text x="1160" y="130" class="expert-title">Expert #439</text>
+<text x="1160" y="145" class="expert-subtitle">
+    Primary: math (49.6%)
+</text>
+<circle cx="1160" cy="250" r="25" 
+                              class="grid-circle" style="opacity: 0.3;" />
+<circle cx="1160" cy="250" r="50" 
+                              class="grid-circle" style="opacity: 0.4;" />
+<circle cx="1160" cy="250" r="75" 
+                              class="grid-circle" style="opacity: 0.5;" />
+<text x="1190" y="248" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.3
+                          </text>
+<text x="1215" y="248" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.7
+                          </text>
+<text x="1240" y="248" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              1.0
+                          </text>
+<line x1="1160" y1="250" x2="1160.0" y2="175.0" class="grid-line" />
+<text x="1160.0" y="169.0" class="domain-label">Physics</text>
+<line x1="1160" y1="250" x2="1224.951905283833" y2="287.5" class="grid-line" />
+<text x="1233.6121593216774" y="296.5" class="domain-label">computer science</text>
+<line x1="1160" y1="250" x2="1095.048094716167" y2="287.5" class="grid-line" />
+<text x="1086.3878406783228" y="296.5" class="domain-label">math</text>
+<polygon points="1160.0,248.4178842931241 1191.336233634367,268.09198292419086 1127.754480744415,268.6169592223712" fill="#96CEB4" class="radar-area" />
+<polygon points="1160.0,248.4178842931241 1191.336233634367,268.09198292419086 1127.754480744415,268.6169592223712" stroke="#96CEB4" class="radar-border" />
+<circle cx="1160.0" cy="248.4178842931241" r="3.0632846282750363" 
+                              fill="#96CEB4" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="1191.336233634367" cy="268.09198292419086" r="4.44735863393527" 
+                              fill="#96CEB4" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="1127.754480744415" cy="268.6169592223712" r="4.489356737789693" 
+                              fill="#96CEB4" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="1127.754480744415" cy="268.6169592223712" r="7.489356737789693" 
+                                  fill="none" stroke="#96CEB4" stroke-width="3" opacity="0.6" />
+
+<!-- 专家 491 信息区域 -->
+<rect x="1400" y="105" width="160" height="45" 
+      fill="#f8f9fa" stroke="#e9ecef" stroke-width="1" rx="8" opacity="0.8"/>
+
+<text x="1480" y="130" class="expert-title">Expert #491</text>
+<text x="1480" y="145" class="expert-subtitle">
+    Primary: math (53.8%)
+</text>
+<circle cx="1480" cy="250" r="25" 
+                              class="grid-circle" style="opacity: 0.3;" />
+<circle cx="1480" cy="250" r="50" 
+                              class="grid-circle" style="opacity: 0.4;" />
+<circle cx="1480" cy="250" r="75" 
+                              class="grid-circle" style="opacity: 0.5;" />
+<text x="1510" y="248" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.3
+                          </text>
+<text x="1535" y="248" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.7
+                          </text>
+<text x="1560" y="248" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              1.0
+                          </text>
+<line x1="1480" y1="250" x2="1480.0" y2="175.0" class="grid-line" />
+<text x="1480.0" y="169.0" class="domain-label">Physics</text>
+<line x1="1480" y1="250" x2="1544.951905283833" y2="287.5" class="grid-line" />
+<text x="1553.6121593216774" y="296.5" class="domain-label">computer science</text>
+<line x1="1480" y1="250" x2="1415.048094716167" y2="287.5" class="grid-line" />
+<text x="1406.3878406783228" y="296.5" class="domain-label">math</text>
+<polygon points="1480.0,248.58498426574772 1508.789081503875,266.6213839559843 1445.0626157926592,270.17110817688956" fill="#FFEAA7" class="radar-area" />
+<polygon points="1480.0,248.58498426574772 1508.789081503875,266.6213839559843 1445.0626157926592,270.17110817688956" stroke="#FFEAA7" class="radar-border" />
+<circle cx="1480.0" cy="248.58498426574772" r="3.056600629370091" 
+                              fill="#FFEAA7" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="1508.789081503875" cy="266.6213839559843" r="4.329710716478746" 
+                              fill="#FFEAA7" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="1445.0626157926592" cy="270.17110817688956" r="4.613688654151163" 
+                              fill="#FFEAA7" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="1445.0626157926592" cy="270.17110817688956" r="7.613688654151163" 
+                                  fill="none" stroke="#FFEAA7" stroke-width="3" opacity="0.6" />
+
+<!-- 专家 561 信息区域 -->
+<rect x="120" y="365" width="160" height="45" 
+      fill="#f8f9fa" stroke="#e9ecef" stroke-width="1" rx="8" opacity="0.8"/>
+
+<text x="200" y="390" class="expert-title">Expert #561</text>
+<text x="200" y="405" class="expert-subtitle">
+    Primary: computer science (67.4%)
+</text>
+<circle cx="200" cy="510" r="25" 
+                              class="grid-circle" style="opacity: 0.3;" />
+<circle cx="200" cy="510" r="50" 
+                              class="grid-circle" style="opacity: 0.4;" />
+<circle cx="200" cy="510" r="75" 
+                              class="grid-circle" style="opacity: 0.5;" />
+<text x="230" y="508" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.3
+                          </text>
+<text x="255" y="508" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.7
+                          </text>
+<text x="280" y="508" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              1.0
+                          </text>
+<line x1="200" y1="510" x2="200.0" y2="435.0" class="grid-line" />
+<text x="200.0" y="429.0" class="domain-label">Physics</text>
+<line x1="200" y1="510" x2="264.9519052838329" y2="547.5" class="grid-line" />
+<text x="273.61215932167727" y="556.5" class="domain-label">computer science</text>
+<line x1="200" y1="510" x2="135.0480947161671" y2="547.5" class="grid-line" />
+<text x="126.38784067832273" y="556.5" class="domain-label">math</text>
+<polygon points="200.0,508.4161266586595 243.79486715200514,535.2849783393341 180.21463641815004,521.4230849899957" fill="#DDA0DD" class="radar-area" />
+<polygon points="200.0,508.4161266586595 243.79486715200514,535.2849783393341 180.21463641815004,521.4230849899957" stroke="#DDA0DD" class="radar-border" />
+<circle cx="200.0" cy="508.4161266586595" r="3.0633549336536197" 
+                              fill="#DDA0DD" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="243.79486715200514" cy="535.2849783393341" r="5.022798267146725" 
+                              fill="#DDA0DD" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="243.79486715200514" cy="535.2849783393341" r="8.022798267146726" 
+                                  fill="none" stroke="#DDA0DD" stroke-width="3" opacity="0.6" />
+<circle cx="180.21463641815004" cy="521.4230849899957" r="3.9138467991996557" 
+                              fill="#DDA0DD" stroke="white" stroke-width="2" class="data-point" />
+
+<!-- 专家 698 信息区域 -->
+<rect x="440" y="365" width="160" height="45" 
+      fill="#f8f9fa" stroke="#e9ecef" stroke-width="1" rx="8" opacity="0.8"/>
+
+<text x="520" y="390" class="expert-title">Expert #698</text>
+<text x="520" y="405" class="expert-subtitle">
+    Primary: computer science (48.9%)
+</text>
+<circle cx="520" cy="510" r="25" 
+                              class="grid-circle" style="opacity: 0.3;" />
+<circle cx="520" cy="510" r="50" 
+                              class="grid-circle" style="opacity: 0.4;" />
+<circle cx="520" cy="510" r="75" 
+                              class="grid-circle" style="opacity: 0.5;" />
+<text x="550" y="508" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.3
+                          </text>
+<text x="575" y="508" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.7
+                          </text>
+<text x="600" y="508" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              1.0
+                          </text>
+<line x1="520" y1="510" x2="520.0" y2="435.0" class="grid-line" />
+<text x="520.0" y="429.0" class="domain-label">Physics</text>
+<line x1="520" y1="510" x2="584.951905283833" y2="547.5" class="grid-line" />
+<text x="593.6121593216773" y="556.5" class="domain-label">computer science</text>
+<line x1="520" y1="510" x2="455.0480947161671" y2="547.5" class="grid-line" />
+<text x="446.38784067832273" y="556.5" class="domain-label">math</text>
+<polygon points="520.0,507.209628049261 551.7713993445942,528.3432259641326 489.2360270561088,527.761588060498" fill="#98D8C8" class="radar-area" />
+<polygon points="520.0,507.209628049261 551.7713993445942,528.3432259641326 489.2360270561088,527.761588060498" stroke="#98D8C8" class="radar-border" />
+<circle cx="520.0" cy="507.209628049261" r="3.1116148780295583" 
+                              fill="#98D8C8" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="551.7713993445942" cy="528.3432259641326" r="4.467458077130607" 
+                              fill="#98D8C8" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="551.7713993445942" cy="528.3432259641326" r="7.467458077130607" 
+                                  fill="none" stroke="#98D8C8" stroke-width="3" opacity="0.6" />
+<circle cx="489.2360270561088" cy="527.761588060498" r="4.420927044839835" 
+                              fill="#98D8C8" stroke="white" stroke-width="2" class="data-point" />
+
+<!-- 专家 752 信息区域 -->
+<rect x="760" y="365" width="160" height="45" 
+      fill="#f8f9fa" stroke="#e9ecef" stroke-width="1" rx="8" opacity="0.8"/>
+
+<text x="840" y="390" class="expert-title">Expert #752</text>
+<text x="840" y="405" class="expert-subtitle">
+    Primary: math (58.6%)
+</text>
+<circle cx="840" cy="510" r="25" 
+                              class="grid-circle" style="opacity: 0.3;" />
+<circle cx="840" cy="510" r="50" 
+                              class="grid-circle" style="opacity: 0.4;" />
+<circle cx="840" cy="510" r="75" 
+                              class="grid-circle" style="opacity: 0.5;" />
+<text x="870" y="508" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.3
+                          </text>
+<text x="895" y="508" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.7
+                          </text>
+<text x="920" y="508" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              1.0
+                          </text>
+<line x1="840" y1="510" x2="840.0" y2="435.0" class="grid-line" />
+<text x="840.0" y="429.0" class="domain-label">Physics</text>
+<line x1="840" y1="510" x2="904.951905283833" y2="547.5" class="grid-line" />
+<text x="913.6121593216773" y="556.5" class="domain-label">computer science</text>
+<line x1="840" y1="510" x2="775.0480947161672" y2="547.5" class="grid-line" />
+<text x="766.3878406783227" y="556.5" class="domain-label">math</text>
+<polygon points="840.0,509.1280410269038 866.165310303821,525.1065489473411 801.9685436417473,531.9574715661107" fill="#F7DC6F" class="radar-area" />
+<polygon points="840.0,509.1280410269038 866.165310303821,525.1065489473411 801.9685436417473,531.9574715661107" stroke="#F7DC6F" class="radar-border" />
+<circle cx="840.0" cy="509.1280410269038" r="3.034878358923848" 
+                              fill="#F7DC6F" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="866.165310303821" cy="525.1065489473411" r="4.208523915787293" 
+                              fill="#F7DC6F" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="801.9685436417473" cy="531.9574715661107" r="4.756597725288859" 
+                              fill="#F7DC6F" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="801.9685436417473" cy="531.9574715661107" r="7.756597725288859" 
+                                  fill="none" stroke="#F7DC6F" stroke-width="3" opacity="0.6" />
+
+<!-- 专家 920 信息区域 -->
+<rect x="1080" y="365" width="160" height="45" 
+      fill="#f8f9fa" stroke="#e9ecef" stroke-width="1" rx="8" opacity="0.8"/>
+
+<text x="1160" y="390" class="expert-title">Expert #920</text>
+<text x="1160" y="405" class="expert-subtitle">
+    Primary: math (54.5%)
+</text>
+<circle cx="1160" cy="510" r="25" 
+                              class="grid-circle" style="opacity: 0.3;" />
+<circle cx="1160" cy="510" r="50" 
+                              class="grid-circle" style="opacity: 0.4;" />
+<circle cx="1160" cy="510" r="75" 
+                              class="grid-circle" style="opacity: 0.5;" />
+<text x="1190" y="508" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.3
+                          </text>
+<text x="1215" y="508" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.7
+                          </text>
+<text x="1240" y="508" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              1.0
+                          </text>
+<line x1="1160" y1="510" x2="1160.0" y2="435.0" class="grid-line" />
+<text x="1160.0" y="429.0" class="domain-label">Physics</text>
+<line x1="1160" y1="510" x2="1224.951905283833" y2="547.5" class="grid-line" />
+<text x="1233.6121593216774" y="556.5" class="domain-label">computer science</text>
+<line x1="1160" y1="510" x2="1095.048094716167" y2="547.5" class="grid-line" />
+<text x="1086.3878406783228" y="556.5" class="domain-label">math</text>
+<polygon points="1160.0,508.4549363836398 1188.1842910628598,526.2722080320608 1124.5704501212579,530.4552601597591" fill="#BB8FCE" class="radar-area" />
+<polygon points="1160.0,508.4549363836398 1188.1842910628598,526.2722080320608 1124.5704501212579,530.4552601597591" stroke="#BB8FCE" class="radar-border" />
+<circle cx="1160.0" cy="508.4549363836398" r="3.0618025446544084" 
+                              fill="#BB8FCE" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="1188.1842910628598" cy="526.2722080320608" r="4.301776642564868" 
+                              fill="#BB8FCE" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="1124.5704501212579" cy="530.4552601597591" r="4.636420812780724" 
+                              fill="#BB8FCE" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="1124.5704501212579" cy="530.4552601597591" r="7.636420812780724" 
+                                  fill="none" stroke="#BB8FCE" stroke-width="3" opacity="0.6" />
+
+<!-- 专家 1035 信息区域 -->
+<rect x="1400" y="365" width="160" height="45" 
+      fill="#f8f9fa" stroke="#e9ecef" stroke-width="1" rx="8" opacity="0.8"/>
+
+<text x="1480" y="390" class="expert-title">Expert #1035</text>
+<text x="1480" y="405" class="expert-subtitle">
+    Primary: math (52.6%)
+</text>
+<circle cx="1480" cy="510" r="25" 
+                              class="grid-circle" style="opacity: 0.3;" />
+<circle cx="1480" cy="510" r="50" 
+                              class="grid-circle" style="opacity: 0.4;" />
+<circle cx="1480" cy="510" r="75" 
+                              class="grid-circle" style="opacity: 0.5;" />
+<text x="1510" y="508" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.3
+                          </text>
+<text x="1535" y="508" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              0.7
+                          </text>
+<text x="1560" y="508" 
+                              style="font-size: 9px; fill: #999; font-family: monospace;">
+                              1.0
+                          </text>
+<line x1="1480" y1="510" x2="1480.0" y2="435.0" class="grid-line" />
+<text x="1480.0" y="429.0" class="domain-label">Physics</text>
+<line x1="1480" y1="510" x2="1544.951905283833" y2="547.5" class="grid-line" />
+<text x="1553.6121593216774" y="556.5" class="domain-label">computer science</text>
+<line x1="1480" y1="510" x2="1415.048094716167" y2="547.5" class="grid-line" />
+<text x="1406.3878406783228" y="556.5" class="domain-label">math</text>
+<polygon points="1480.0,508.48573448198965 1509.4957443294086,527.0293759285324 1445.8552314522474,529.7134913124625" fill="#85C1E9" class="radar-area" />
+<polygon points="1480.0,508.48573448198965 1509.4957443294086,527.0293759285324 1445.8552314522474,529.7134913124625" stroke="#85C1E9" class="radar-border" />
+<circle cx="1480.0" cy="508.48573448198965" r="3.0605706207204144" 
+                              fill="#85C1E9" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="1509.4957443294086" cy="527.0293759285324" r="4.362350074282594" 
+                              fill="#85C1E9" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="1445.8552314522474" cy="529.7134913124625" r="4.5770793049969924" 
+                              fill="#85C1E9" stroke="white" stroke-width="2" class="data-point" />
+<circle cx="1445.8552314522474" cy="529.7134913124625" r="7.5770793049969924" 
+                                  fill="none" stroke="#85C1E9" stroke-width="3" opacity="0.6" />
+
+<!-- 图例 -->
+<rect x="50" y="920" width="1700" height="60" 
+      fill="#f8f9fa" stroke="#dee2e6" stroke-width="1" rx="8" opacity="0.9"/>
+
+<text x="70" y="940" style="font-family: 'Segoe UI'; font-size: 14px; font-weight: bold; fill: #333;">
+    Legend:
+</text>
+<text x="130" y="940" style="font-family: 'Segoe UI'; font-size: 12px; fill: #666;">
+    Circle size indicates specialization strength • Highlighted border shows primary domain
+</text>
+</svg>
