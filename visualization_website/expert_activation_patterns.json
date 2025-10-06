@@ -243,67 +243,22 @@
       1712,
       1716
     ],
-    "secondary_count": 12,
+    "secondary_count": 3,
     "secondary_experts": [
       {
-        "index": "40",
-        "name": "Code Snippet Analyzer",
-        "description": "Analyzes code snippets and programming constructs, understanding code structure and functionality."
+        "index": "134",
+        "name": "Calculus & Analysis",
+        "description": "Mathematical analysis and integral calculus methods."
       },
       {
-        "index": "41",
-        "name": "API Documentation Processor",
-        "description": "Processes API documentation, extracting and organizing technical interface information."
+        "index": "672",
+        "name": "Algebra & Geometry",
+        "description": "Algebraic and geometric analysis methods."
       },
       {
-        "index": "42",
-        "name": "Technical Term Identifier",
-        "description": "Identifies and categorizes technical terminology, recognizing domain-specific vocabulary."
-      },
-      {
-        "index": "43",
-        "name": "Programming Language Detector",
-        "description": "Detects programming languages in code snippets, identifying syntax patterns and language features."
-      },
-      {
-        "index": "44",
-        "name": "Technical Specification Parser",
-        "description": "Parses technical specifications and requirements, extracting structured information from technical documents."
-      },
-      {
-        "index": "45",
-        "name": "Code Comment Analyzer",
-        "description": "Analyzes code comments and documentation strings, understanding explanatory text in code."
-      },
-      {
-        "index": "46",
-        "name": "Technical Document Structure Analyzer",
-        "description": "Analyzes the structure of technical documents, identifying sections, hierarchies, and organizational patterns."
-      },
-      {
-        "index": "47",
-        "name": "Version Control Info Processor",
-        "description": "Processes version control information, handling commit messages, change logs, and versioning data."
-      },
-      {
-        "index": "48",
-        "name": "Configuration File Parser",
-        "description": "Parses configuration files and settings, extracting structured configuration information."
-      },
-      {
-        "index": "49",
-        "name": "Log File Analyzer",
-        "description": "Analyzes log files and system outputs, extracting relevant information from technical logs."
-      },
-      {
-        "index": "50",
-        "name": "Technical Error Message Processor",
-        "description": "Processes technical error messages and diagnostics, understanding error conditions and solutions."
-      },
-      {
-        "index": "51",
-        "name": "Technical Documentation Generator",
-        "description": "Generates technical documentation from code and specifications, creating structured technical content."
+        "index": "859",
+        "name": "Statistics & Probability",
+        "description": "Statistical analysis and probability theory."
       }
     ]
   },
@@ -469,67 +424,22 @@
       1706,
       1724
     ],
-    "secondary_count": 12,
+    "secondary_count": 3,
     "secondary_experts": [
       {
-        "index": "52",
-        "name": "Language Detector",
-        "description": "Detects the language of text content, identifying the primary language and language variants."
+        "index": "291",
+        "name": "Numerical Computing",
+        "description": "Computational algorithms and methods for scientific problem solving and modeling."
       },
       {
-        "index": "53",
-        "name": "Cross-lingual Aligner",
-        "description": "Aligns text across different languages, establishing correspondences between multilingual content."
+        "index": "748",
+        "name": "Data Processing",
+        "description": "Scientific data analysis and processing for computational modeling."
       },
       {
-        "index": "54",
-        "name": "Multilingual Tokenizer",
-        "description": "Tokenizes text in multiple languages, handling language-specific tokenization requirements."
-      },
-      {
-        "index": "55",
-        "name": "Language-specific Processor",
-        "description": "Processes text according to language-specific rules and conventions, adapting to linguistic variations."
-      },
-      {
-        "index": "56",
-        "name": "Translation Quality Assessor",
-        "description": "Assesses the quality of translations, evaluating accuracy and fluency of translated content."
-      },
-      {
-        "index": "57",
-        "name": "Multilingual Grammar Analyzer",
-        "description": "Analyzes grammar across multiple languages, understanding diverse grammatical structures."
-      },
-      {
-        "index": "58",
-        "name": "Cross-lingual Semantic Mapper",
-        "description": "Maps semantic concepts across languages, establishing semantic correspondences in multilingual contexts."
-      },
-      {
-        "index": "59",
-        "name": "Multilingual Entity Recognizer",
-        "description": "Recognizes named entities in multiple languages, identifying entities across linguistic boundaries."
-      },
-      {
-        "index": "60",
-        "name": "Code-mixed Text Processor",
-        "description": "Processes code-mixed text containing multiple languages, handling multilingual content within single texts."
-      },
-      {
-        "index": "61",
-        "name": "Multilingual Sentiment Analyzer",
-        "description": "Analyzes sentiment in multiple languages, understanding emotional content across linguistic contexts."
-      },
-      {
-        "index": "62",
-        "name": "Cross-lingual Information Retriever",
-        "description": "Retrieves information across languages, enabling multilingual search and information access."
-      },
-      {
-        "index": "63",
-        "name": "Multilingual Text Classifier",
-        "description": "Classifies text in multiple languages, categorizing content regardless of language."
+        "index": "814",
+        "name": "Knowledge Integration",
+        "description": "Cross-disciplinary knowledge synthesis for scientific computing applications."
       }
     ]
   },
@@ -711,72 +621,22 @@
       1715,
       1721
     ],
-    "secondary_count": 13,
+    "secondary_count": 3,
     "secondary_experts": [
       {
-        "index": "0",
-        "name": "Syntactic Parser",
-        "description": "Analyzes sentence structure and grammatical relationships, identifying syntactic patterns and parsing complex sentence constructions."
+        "index": "365",
+        "name": "Research Methods",
+        "description": "Applied research methodologies for practical knowledge application and solution development."
       },
       {
-        "index": "1",
-        "name": "Grammar Rule Checker",
-        "description": "Validates text against grammatical rules and conventions, detecting violations and ensuring linguistic correctness."
+        "index": "527",
+        "name": "Problem Solving",
+        "description": "Practical problem-solving approaches for applied knowledge implementation."
       },
       {
-        "index": "2",
-        "name": "Sentence Structure Analyzer",
-        "description": "Examines the internal structure of sentences, identifying clauses, phrases, and their hierarchical relationships."
-      },
-      {
-        "index": "3",
-        "name": "POS Tagger",
-        "description": "Assigns part-of-speech tags to words, identifying nouns, verbs, adjectives, and other grammatical categories."
-      },
-      {
-        "index": "4",
-        "name": "Dependency Parser",
-        "description": "Analyzes grammatical dependencies between words, creating dependency trees to represent syntactic relationships."
-      },
-      {
-        "index": "5",
-        "name": "Phrase Structure Parser",
-        "description": "Identifies and analyzes phrase structures, breaking down sentences into constituent phrases and their types."
-      },
-      {
-        "index": "6",
-        "name": "Grammar Error Detector",
-        "description": "Detects and identifies grammatical errors in text, providing feedback on syntactic mistakes and inconsistencies."
-      },
-      {
-        "index": "7",
-        "name": "Syntactic Pattern Recognizer",
-        "description": "Recognizes recurring syntactic patterns and structures, identifying common grammatical constructions."
-      },
-      {
-        "index": "8",
-        "name": "Parse Tree Builder",
-        "description": "Constructs hierarchical parse trees representing the syntactic structure of sentences and phrases."
-      },
-      {
-        "index": "9",
-        "name": "Grammar Consistency Checker",
-        "description": "Ensures grammatical consistency across text, checking for coherent use of tenses, voices, and structures."
-      },
-      {
-        "index": "10",
-        "name": "Syntactic Ambiguity Resolver",
-        "description": "Resolves syntactic ambiguities in text, choosing the most appropriate grammatical interpretation."
-      },
-      {
-        "index": "11",
-        "name": "Grammar Complexity Analyzer",
-        "description": "Analyzes the grammatical complexity of text, measuring syntactic sophistication and structural intricacy."
-      },
-      {
-        "index": "12",
-        "name": "Syntactic Style Analyzer",
-        "description": "Analyzes syntactic style patterns, identifying characteristic grammatical features and writing styles."
+        "index": "814",
+        "name": "Knowledge Integration",
+        "description": "Integration of knowledge systems for applied research and solution development."
       }
     ]
   },
@@ -988,67 +848,22 @@
       1719,
       1727
     ],
-    "secondary_count": 12,
+    "secondary_count": 3,
     "secondary_experts": [
       {
-        "index": "13",
-        "name": "Word Sense Disambiguator",
-        "description": "Resolves word sense ambiguities by determining the correct meaning of polysemous words in context."
+        "index": "123",
+        "name": "General Analysis",
+        "description": "Comprehensive problem analysis and decomposition for systematic solution planning."
       },
       {
-        "index": "14",
-        "name": "Semantic Role Labeler",
-        "description": "Identifies and labels semantic roles of constituents in sentences, determining who did what to whom."
+        "index": "456",
+        "name": "Solution Design",
+        "description": "Strategic solution development and design for complex problem scenarios."
       },
       {
-        "index": "15",
-        "name": "Concept Relation Analyzer",
-        "description": "Analyzes relationships between concepts, identifying semantic connections and conceptual hierarchies."
-      },
-      {
-        "index": "16",
-        "name": "Semantic Similarity Calculator",
-        "description": "Computes semantic similarity between words, phrases, and sentences using various similarity metrics."
-      },
-      {
-        "index": "17",
-        "name": "Metaphor Comprehender",
-        "description": "Understands and interprets metaphorical language, identifying figurative expressions and their meanings."
-      },
-      {
-        "index": "18",
-        "name": "Semantic Inference Engine",
-        "description": "Performs semantic reasoning and inference, drawing logical conclusions from textual information."
-      },
-      {
-        "index": "19",
-        "name": "Contextual Semantic Analyzer",
-        "description": "Analyzes semantic meaning in context, considering surrounding text to determine appropriate interpretations."
-      },
-      {
-        "index": "20",
-        "name": "Semantic Frame Identifier",
-        "description": "Identifies semantic frames and frame elements, recognizing structured semantic representations."
-      },
-      {
-        "index": "21",
-        "name": "Semantic Consistency Checker",
-        "description": "Ensures semantic consistency across text, detecting contradictions and maintaining coherent meaning."
-      },
-      {
-        "index": "22",
-        "name": "Semantic Network Builder",
-        "description": "Constructs semantic networks representing relationships between concepts and entities."
-      },
-      {
-        "index": "23",
-        "name": "Semantic Annotator",
-        "description": "Adds semantic annotations to text, marking semantic features and relationships."
-      },
-      {
-        "index": "24",
-        "name": "Semantic Parser",
-        "description": "Parses text to extract semantic representations, converting natural language to structured semantic forms."
+        "index": "527",
+        "name": "Problem Solving",
+        "description": "Practical problem-solving approaches and methodologies for effective analysis."
       }
     ]
   },
@@ -1291,82 +1106,22 @@
       1704,
       1709
     ],
-    "secondary_count": 15,
+    "secondary_count": 3,
     "secondary_experts": [
       {
-        "index": "25",
-        "name": "Noisy Text Cleaner",
-        "description": "Removes noise and artifacts from text, cleaning corrupted or malformed textual data."
+        "index": "291",
+        "name": "Numerical Computing",
+        "description": "Numerical computation methods for process engineering and optimization tasks."
       },
       {
-        "index": "26",
-        "name": "Text Normalizer",
-        "description": "Normalizes text format and structure, standardizing inconsistent textual representations."
+        "index": "814",
+        "name": "Knowledge Integration",
+        "description": "Integration of knowledge systems for process optimization and engineering solutions."
       },
       {
-        "index": "27",
-        "name": "Tokenizer",
-        "description": "Segments text into tokens, breaking down text into meaningful units for further processing."
-      },
-      {
-        "index": "28",
-        "name": "Text Formatter",
-        "description": "Formats and structures text according to specified standards and conventions."
-      },
-      {
-        "index": "29",
-        "name": "Character Encoding Handler",
-        "description": "Handles character encoding issues, converting between different encoding formats and resolving encoding problems."
-      },
-      {
-        "index": "30",
-        "name": "Text Segmenter",
-        "description": "Segments text into logical units such as sentences, paragraphs, or sections."
-      },
-      {
-        "index": "31",
-        "name": "Punctuation Processor",
-        "description": "Processes punctuation marks, handling punctuation normalization and punctuation-based segmentation."
-      },
-      {
-        "index": "32",
-        "name": "Case Normalizer",
-        "description": "Normalizes text case, converting between uppercase, lowercase, and title case as needed."
-      },
-      {
-        "index": "33",
-        "name": "Special Character Handler",
-        "description": "Handles special characters and symbols, processing non-standard characters and escape sequences."
-      },
-      {
-        "index": "34",
-        "name": "Text Deduplicator",
-        "description": "Identifies and removes duplicate text content, ensuring uniqueness in text collections."
-      },
-      {
-        "index": "35",
-        "name": "Text Compressor",
-        "description": "Compresses text data while preserving essential information, optimizing storage and transmission."
-      },
-      {
-        "index": "36",
-        "name": "Text Repairer",
-        "description": "Repairs corrupted or damaged text, reconstructing missing or malformed textual content."
-      },
-      {
-        "index": "37",
-        "name": "Encoding Converter",
-        "description": "Converts text between different encoding formats, ensuring proper character representation."
-      },
-      {
-        "index": "38",
-        "name": "Text Validator",
-        "description": "Validates text format and structure, ensuring compliance with specified standards and requirements."
-      },
-      {
-        "index": "39",
-        "name": "Text Statistics Calculator",
-        "description": "Calculates various statistical measures of text, providing quantitative analysis of textual properties."
+        "index": "748",
+        "name": "Data Processing",
+        "description": "Advanced data processing and transformation for process engineering applications."
       }
     ]
   }

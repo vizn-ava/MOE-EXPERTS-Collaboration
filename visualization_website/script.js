@@ -2,6 +2,9 @@
 console.log('axios是否加载成功:', typeof axios);
 
 document.addEventListener('DOMContentLoaded', function () {
+    // 页面加载时自动加载专家-token映射关系
+    loadExpertTokenMapping();
+    
     // 移除input-text的input事件监听
     const inputText = document.getElementById('input-text');
     if (inputText) {
@@ -45,9 +48,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 初始化悬浮窗中的MOE网络
     initializeModalMoeNetwork();
-
-    // 初始化词云图
-    initializeMathWordCloud();
 
     // 移除原有的MOE网络初始化代码，因为已经移到悬浮窗中
     // const moeNetwork = document.getElementById('moe-network');
@@ -96,12 +96,21 @@ document.addEventListener('DOMContentLoaded', function () {
             // 重新渲染二级专家颜色
             const secondLevelTableBody = document.querySelector('.expert-decomposition .token-table tbody');
             if (secondLevelTableBody && secondLevelTableBody.children.length > 0) {
-                const experts = Array.from(secondLevelTableBody.children).map(row => ({
-                    'Expert Index': row.children[0].textContent,
-                    'Expert Name': row.children[1].children[0].textContent,
-                    'Function Description': row.children[1].children[1].textContent
-                }));
-                displaySecondLevelExperts(experts);
+                // 获取当前选中的一级专家ID（从URL参数或全局变量）
+                // 这里需要重新调用displaySecondLevelExperts，传入正确的一级专家ID
+                // 由于我们无法直接获取当前的一级专家ID，我们重新渲染所有二级专家
+                const colors = getExpertColors();
+                Array.from(secondLevelTableBody.children).forEach((row, index) => {
+                    const colorIndex = (index + 5) % colors.length;
+                    const expertColor = colors[colorIndex];
+                    
+                    // 更新专家ID和名称的颜色
+                    const indexCell = row.children[0];
+                    const nameDiv = row.children[1].children[0];
+                    
+                    if (indexCell) indexCell.style.color = expertColor;
+                    if (nameDiv) nameDiv.style.color = expertColor;
+                });
             }
         });
     }
@@ -295,69 +304,71 @@ function activateModalCirclesByVector(vector) {
     console.log('每列激活的专家数量:', layersCount);
 }
 
+// 修改processInput函数，直接使用本地CSV数据而不是后端API
 async function processInput() {    
     const inputText = document.getElementById('input-text').value;
-    console.log('输入文本:', inputText); // 调试信息
+    console.log('输入文本:', inputText);
 
     // 直接显示输入文本到token list区域
     displayInputText(inputText);
 
     try {
-        console.log('发送请求到后端'); // 调试信息
-        const response = await axios.post('http://localhost:3000/api/process', { input: inputText }, {
-            headers: {
-                'Content-Type': 'application/json' // 设置请求头
+        // 直接从CSV文件加载专家数据
+        const response = await fetch('./experts_summary.csv');
+        const csvText = await response.text();
+        
+        // 解析CSV数据
+        const lines = csvText.split('\n');
+        const headers = lines[0].split(',');
+        const experts = [];
+        
+        for (let i = 1; i < lines.length; i++) {
+            if (lines[i].trim()) {
+                const values = lines[i].split(',');
+                experts.push({
+                    'Expert Index': values[0],
+                    'Expert Name': values[1],
+                    'Function Description': values[2]
+                });
             }
-        });
-        console.log('后端返回的数据:', response.data); // 调试信息
-
-        const tokenVectors = response.data.tokenVectors;
-        if (!tokenVectors || !Array.isArray(tokenVectors)) {
-            console.error('tokenVectors 不是数组或未定义:', tokenVectors);
-            return;
         }
-
-        console.log('tokenVectors 数据:', tokenVectors); // 调试信息
-
-        // 注意：现在不再显示token列表，而是显示输入文本
-        // displayTokenList(tokenVectors); // 这行被注释掉
-        console.log('输入文本已显示在token list区域'); // 调试信息
-
-        // 自动显示第一个token的专家组合
-        if (tokenVectors.length > 0) {
-            const firstTokenVector = tokenVectors[0];
-            console.log('第一个token:', firstTokenVector.token, '向量:', firstTokenVector.vector);
-            
-            // 发送请求查询第一个token的Top 5专家
-            const expertResponse = await axios.post('http://localhost:3000/api/top5-experts', {
-                tokenVector: firstTokenVector.vector
-            });
-            console.log('第一个token的Top 5专家:', expertResponse.data);
-            
-            // 显示Top 5专家
-            displayTop5Experts(expertResponse.data);
-        }
+        
+        console.log('从CSV加载的专家数据:', experts);
+        
+        // 显示前5个专家（或所有专家如果少于5个）
+        const top5Experts = experts.slice(0, 5);
+        displayTop5Experts(top5Experts);
 
     } catch (error) {
-        console.error('请求失败:', error);
+        console.error('加载专家数据失败:', error);
     }
 }
 
-// 定义5种主题一致的颜色
+// 定义主题一致的颜色 - 扩展为10种颜色支持一级和二级专家
 const EXPERT_COLORS = {
     light: [
-        '#FF6B6B', // 红色
-        '#4ECDC4', // 青色
-        '#45B7D1', // 蓝色
-        '#96CEB4', // 绿色
-        '#FFEAA7'  // 黄色
+        '#FF6B6B', // 红色 - 一级专家
+        '#4ECDC4', // 青色 - 一级专家
+        '#45B7D1', // 蓝色 - 一级专家
+        '#96CEB4', // 绿色 - 一级专家
+        '#FFEAA7', // 黄色 - 一级专家
+        '#DDA0DD', // 紫色 - 二级专家
+        '#F0E68C', // 卡其色 - 二级专家
+        '#FFA07A', // 浅鲑鱼色 - 二级专家
+        '#98FB98', // 浅绿色 - 二级专家
+        '#F5DEB3'  // 小麦色 - 二级专家
     ],
     dark: [
-        '#FF8A80', // 亮红色
-        '#80CBC4', // 亮青色
-        '#81D4FA', // 亮蓝色
-        '#A5D6A7', // 亮绿色
-        '#FFF59D'  // 亮黄色
+        '#FF8A80', // 亮红色 - 一级专家
+        '#80CBC4', // 亮青色 - 一级专家
+        '#81D4FA', // 亮蓝色 - 一级专家
+        '#A5D6A7', // 亮绿色 - 一级专家
+        '#FFF59D', // 亮黄色 - 一级专家
+        '#E1BEE7', // 亮紫色 - 二级专家
+        '#FFF9C4', // 亮卡其色 - 二级专家
+        '#FFCDD2', // 亮浅鲑鱼色 - 二级专家
+        '#C8E6C9', // 亮浅绿色 - 二级专家
+        '#FFF3E0'  // 亮小麦色 - 二级专家
     ]
 };
 
@@ -420,10 +431,133 @@ function highlightTokensRandomly() {
     tokenDisplay.innerHTML = coloredTokens.join(' ');
 }
 
+// 新函数：为特定专家高亮对应的token
+function highlightTokensForExpert(expertIndex, expertColor) {
+    const tokenDisplay = document.getElementById('token-display');
+    if (!tokenDisplay || originalTokens.length === 0) {
+        console.error('未找到token-display元素或tokens为空');
+        return;
+    }
+
+    let highlightedTokens = [];
+    
+    // 检查是否已有保存的映射关系
+    if (expertTokenMapping.has(expertIndex)) {
+        const savedMapping = expertTokenMapping.get(expertIndex);
+        highlightedTokens = savedMapping.tokens;
+        console.log(`使用已保存的专家 ${expertIndex} 映射关系:`, highlightedTokens);
+    } else {
+        // 如果没有保存的映射，生成新的映射关系
+        const seed = parseInt(expertIndex) || 0;
+        
+        // 简单的伪随机数生成器，基于专家索引
+        function seededRandom(seed) {
+            const x = Math.sin(seed) * 10000;
+            return x - Math.floor(x);
+        }
+        
+        // 为每个token决定是否被该专家高亮（40%的token会被高亮）
+        const highlightProbability = 0.4;
+        highlightedTokens = originalTokens.filter((token, index) => {
+            const randomValue = seededRandom(seed + index);
+            return randomValue < highlightProbability;
+        });
+        
+        // 保存新生成的映射关系到内存中（不自动保存到文件）
+        expertTokenMapping.set(expertIndex, {
+            color: expertColor,
+            tokens: highlightedTokens
+        });
+        
+        // 注释掉自动保存功能，防止覆盖手动修改的JSON文件
+        // saveExpertTokenMapping();
+        
+        console.log(`生成专家 ${expertIndex} 的临时映射关系:`, highlightedTokens);
+    }
+    
+    // 创建高亮显示的token数组
+    const coloredTokens = originalTokens.map((token) => {
+        const shouldHighlight = highlightedTokens.includes(token);
+        
+        if (shouldHighlight) {
+            return `<span style="color: ${expertColor}; font-weight: bold; background-color: ${expertColor}20; padding: 2px 4px; border-radius: 3px;">${token}</span>`;
+        } else {
+            // 不高亮的token保持默认颜色
+            return `<span style="color: inherit;">${token}</span>`;
+        }
+    });
+    
+    // 显示高亮后的分词结果
+    tokenDisplay.innerHTML = coloredTokens.join(' ');
+}
+
 // 原有的displayTokenList函数现在不再使用，保留以防需要
 function displayTokenList(tokenVectors) {
     // 这个函数已被废弃，token list现在直接显示输入文本
     console.log('displayTokenList函数已废弃，现在直接显示输入文本');
+}
+
+// 存储一级专家与token的对应关系
+let expertTokenMapping = new Map();
+
+// 从服务器加载专家-token映射关系
+async function loadExpertTokenMapping() {
+    try {
+        const response = await fetch('http://localhost:3000/api/expert-token-mapping');
+        if (response.ok) {
+            const data = await response.json();
+            if (data.mappings) {
+                // 将JSON对象转换为Map
+                expertTokenMapping.clear();
+                for (const [key, value] of Object.entries(data.mappings)) {
+                    expertTokenMapping.set(parseInt(key), value);
+                }
+                console.log('专家-token映射关系加载成功:', expertTokenMapping);
+            }
+        } else {
+            console.warn('加载映射关系失败，使用空映射');
+        }
+    } catch (error) {
+        console.error('加载专家-token映射关系时出错:', error);
+    }
+}
+
+// 保存专家-token映射关系到服务器
+async function saveExpertTokenMapping() {
+    try {
+        // 将Map转换为普通对象
+        const mappingsObj = {};
+        for (const [key, value] of expertTokenMapping.entries()) {
+            mappingsObj[key] = value;
+        }
+        
+        const data = {
+            mappings: mappingsObj,
+            metadata: {
+                created_at: new Date().toISOString(),
+                last_updated: new Date().toISOString(),
+                version: "1.0",
+                description: "专家组合与token映射关系存储文件"
+            }
+        };
+        
+        const response = await fetch('http://localhost:3000/api/expert-token-mapping', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+        
+        if (response.ok) {
+            const result = await response.json();
+            console.log('映射关系保存成功:', result.message);
+        } else {
+            console.error('保存映射关系失败');
+        }
+    } catch (error) {
+        console.error('保存专家-token映射关系时出错:', error);
+    }
 }
 
 // 显示Top 5专家
@@ -436,112 +570,15 @@ function displayTop5Experts(top5Experts) {
 
     // 清空现有的内容
     expertTableBody.innerHTML = '';
+    
+    // 获取颜色数组
+    const colors = getExpertColors();
 
     // 遍历Top 5专家，生成每一行的内容
-    top5Experts.forEach(expert => {
-        const row = document.createElement('tr');
-
-        // 创建Expert Index单元格
-        const indexCell = document.createElement('td');
-        indexCell.textContent = expert['Expert Index'];
-        row.appendChild(indexCell);
-
-        // 创建Expert Name和Function Description单元格
-        const infoCell = document.createElement('td');
-        const nameDiv = document.createElement('div');
-        nameDiv.textContent = expert['Expert Name'];
-        const descDiv = document.createElement('div');
-        descDiv.textContent = expert['Function Description'];
-        descDiv.style.fontSize = '12px'; // 设置功能描述字体大小
-        descDiv.style.color = '#666'; // 设置功能描述颜色
-        infoCell.appendChild(nameDiv);
-        infoCell.appendChild(descDiv);
-        
-        // 为专家名称单元格添加点击事件，用于显示二级专家组合
-        infoCell.style.cursor = 'pointer'; // 添加鼠标指针样式
-        infoCell.addEventListener('click', async () => {
-            console.log('专家名称被点击，专家:', expert['Expert Name']); // 调试信息
-
-            // 清除之前的选中状态
-            document.querySelectorAll('.expert-explanation .token-table td:nth-child(2)').forEach(cell => {
-                cell.classList.remove('selected');
-            });
-            
-            // 添加选中状态
-            infoCell.classList.add('selected');
-
-            // 生成64维随机向量
-            const randomVector = Array.from({ length: 64 }, () => Math.random());
-            console.log('生成的64维随机向量:', randomVector); // 调试信息
-
-            try {
-                // 发送请求查询Top 5二级专家组合
-                const response = await axios.post('http://localhost:3000/api/top5-second-level-experts', {
-                    tokenVector: randomVector
-                });
-                console.log('Top 5二级专家组合:', response.data); // 调试信息
-
-                // 显示Top 5二级专家组合
-                displaySecondLevelExperts(response.data);
-
-                // 随机点亮Token List中的文本
-                highlightTokensRandomly();
-
-                // 高亮当前行
-                highlightRowAndButton(row, null, null);
-
-            } catch (error) {
-                console.error('请求二级专家组合失败:', error);
-            }
-        });
-        
-        row.appendChild(infoCell);
-
-        // 创建"分解"按钮单元格
-        const buttonCell = document.createElement('td');
-        const button = document.createElement('button');
-        button.textContent = '🔍'; // 放大镜图标
-        button.classList.add('add-button'); // 添加按钮样式类
-        button.addEventListener('click', async () => {
-            console.log('分解按钮被点击，专家:', expert['Expert Name']); // 调试信息
-
-            // 生成1728维随机向量用于激活图显示
-            const activationVector = Array.from({ length: 1728 }, () => Math.random() > 0.95 ? Math.random() : 0);
-            
-            // 只显示悬浮窗并展示激活图
-            showActivationModal(expert['Expert Name'], activationVector);
-        });
-        buttonCell.appendChild(button);
-        row.appendChild(buttonCell);
-
-        // 将行添加到表格中
-        expertTableBody.appendChild(row);
-    });
-}
-
-// 根据激活向量点亮圆圈 - 这个函数现在不再使用，因为激活图已移到悬浮窗中
-function activateCirclesByVector(vector) {
-    // 这个函数保留但不再使用，激活图现在在悬浮窗中显示
-    console.log('activateCirclesByVector函数已废弃，请使用悬浮窗显示激活图');
-}
-
-// 显示二级专家组合
-function displaySecondLevelExperts(secondLevelExperts) {
-    const secondLevelTableBody = document.querySelector('.expert-decomposition .token-table tbody');
-    if (!secondLevelTableBody) {
-        console.error('未找到二级专家组合的tbody元素');
-        return;
-    }
-
-    // 清空现有的内容
-    secondLevelTableBody.innerHTML = '';
-
-    // 遍历二级专家组合，生成每一行的内容
-    secondLevelExperts.forEach((expert, index) => {
+    top5Experts.forEach((expert, index) => {
         const row = document.createElement('tr');
         
-        // 为每个专家分配颜色
-        const colors = getExpertColors();
+        // 为每个一级专家分配不同颜色
         const colorIndex = index % colors.length;
         const expertColor = colors[colorIndex];
 
@@ -566,6 +603,155 @@ function displaySecondLevelExperts(secondLevelExperts) {
         
         infoCell.appendChild(nameDiv);
         infoCell.appendChild(descDiv);
+        
+        // 为专家名称单元格添加点击事件，用于显示二级专家组合和高亮对应token
+        infoCell.style.cursor = 'pointer';
+        infoCell.addEventListener('click', async () => {
+            console.log('专家名称被点击，专家:', expert['Expert Name']);
+
+            // 清除之前的选中状态
+            document.querySelectorAll('.expert-explanation .token-table td:nth-child(2)').forEach(cell => {
+                cell.classList.remove('selected');
+            });
+            
+            // 添加选中状态
+            infoCell.classList.add('selected');
+
+            // 直接显示真实的二级专家数据，传入专家ID
+            displaySecondLevelExperts(expert['Expert Index']);
+
+            // 高亮对应的token（使用该专家的颜色）
+            highlightTokensForExpert(expert['Expert Index'], expertColor);
+
+            // 高亮当前行
+            highlightRowAndButton(row, null, null);
+        });
+        
+        row.appendChild(infoCell);
+
+        // 创建"分解"按钮单元格
+        const buttonCell = document.createElement('td');
+        const button = document.createElement('button');
+        button.textContent = '🔍';
+        button.classList.add('add-button');
+        button.addEventListener('click', async () => {
+            console.log('分解按钮被点击，专家:', expert['Expert Name']);
+
+            // 生成1728维随机向量用于激活图显示
+            const activationVector = Array.from({ length: 1728 }, () => Math.random() > 0.95 ? Math.random() : 0);
+            
+            // 只显示悬浮窗并展示激活图
+            showActivationModal(expert['Expert Name'], activationVector);
+        });
+        buttonCell.appendChild(button);
+        row.appendChild(buttonCell);
+
+        // 将行添加到表格中
+        expertTableBody.appendChild(row);
+    });
+}
+
+// 根据激活向量点亮圆圈 - 这个函数现在不再使用，因为激活图已移到悬浮窗中
+function activateCirclesByVector(vector) {
+    // 这个函数保留但不再使用，激活图现在在悬浮窗中显示
+    console.log('activateCirclesByVector函数已废弃，请使用悬浮窗显示激活图');
+}
+
+// 显示二级专家组合
+async function displaySecondLevelExperts(primaryExpertId) {
+    const secondLevelTableBody = document.querySelector('.expert-decomposition .token-table tbody');
+    if (!secondLevelTableBody) {
+        console.error('未找到二级专家组合的tbody元素');
+        return;
+    }
+
+    // 清空现有的内容
+    secondLevelTableBody.innerHTML = '';
+    
+    // 获取颜色数组
+    const colors = getExpertColors();
+
+    let secondLevelExperts = [];
+    
+    try {
+        // 从expert_activation_patterns.json加载真实的二级专家数据
+        const response = await fetch('expert_activation_patterns.json');
+        if (response.ok) {
+            const activationData = await response.json();
+            const expertData = activationData[primaryExpertId.toString()];
+            
+            if (expertData && expertData.secondary_experts) {
+                secondLevelExperts = expertData.secondary_experts;
+                console.log(`加载专家 ${primaryExpertId} 的二级专家数据:`, secondLevelExperts);
+            } else {
+                console.warn(`未找到专家 ${primaryExpertId} 的二级专家数据`);
+            }
+        }
+    } catch (error) {
+        console.error('加载二级专家数据时出错:', error);
+    }
+
+    // 如果没有加载到真实数据，使用模拟数据
+    if (secondLevelExperts.length === 0) {
+        console.log('使用模拟的二级专家数据');
+        secondLevelExperts = [
+            { 'index': '12', 'name': 'Numerical Computing Sub-Expert', 'description': 'Specialized numerical algorithms' },
+            { 'index': '13', 'name': 'Data Processing Sub-Expert', 'description': 'Advanced data manipulation' },
+            { 'index': '14', 'name': 'Research Methods Sub-Expert', 'description': 'Methodological approaches' },
+            { 'index': '15', 'name': 'Problem Solving Sub-Expert', 'description': 'Solution optimization' }
+        ];
+    }
+
+    // 遍历二级专家，生成每一行的内容
+    secondLevelExperts.forEach((expert, index) => {
+        const row = document.createElement('tr');
+        
+        // 为每个二级专家分配不同颜色（从第6个颜色开始，避免与一级专家重复）
+        const colorIndex = (index + 5) % colors.length;
+        const expertColor = colors[colorIndex];
+
+        // 创建Expert Index单元格
+        const indexCell = document.createElement('td');
+        indexCell.textContent = expert.index || expert['Expert Index'];
+        indexCell.style.color = expertColor;
+        indexCell.style.fontWeight = 'bold';
+        row.appendChild(indexCell);
+
+        // 创建Expert Name和Function Description单元格
+        const infoCell = document.createElement('td');
+        const nameDiv = document.createElement('div');
+        nameDiv.textContent = expert.name || expert['Expert Name'];
+        nameDiv.style.color = expertColor;
+        nameDiv.style.fontWeight = 'bold';
+        
+        const descDiv = document.createElement('div');
+        descDiv.textContent = expert.description || expert['Function Description'];
+        descDiv.style.fontSize = '12px';
+        descDiv.style.color = '#666';
+        
+        infoCell.appendChild(nameDiv);
+        infoCell.appendChild(descDiv);
+        
+        // 为二级专家名称单元格添加点击事件，用于高亮对应token
+        infoCell.style.cursor = 'pointer';
+        infoCell.addEventListener('click', () => {
+            console.log('二级专家名称被点击，专家:', expert.name || expert['Expert Name']);
+
+            // 清除之前的选中状态
+            document.querySelectorAll('.expert-decomposition .token-table td:nth-child(2)').forEach(cell => {
+                cell.classList.remove('selected');
+            });
+            
+            // 添加选中状态
+            infoCell.classList.add('selected');
+
+            // 高亮对应的token（使用该二级专家的颜色）
+            highlightTokensForExpert(expert.index || expert['Expert Index'], expertColor);
+
+            // 高亮当前行
+            highlightRowAndButton(row, null, null);
+        });
+        
         row.appendChild(infoCell);
 
         // 将行添加到表格中
@@ -620,19 +806,4 @@ function highlightRowAndButton(row, button, column) {
     lastHighlightedRow = row;
     lastHighlightedButton = button;
     lastHighlightedColumn = column;
-}
-
-// 初始化数学词云图
-async function initializeMathWordCloud() {
-    try {
-        const response = await fetch('math_wordcloud_data.json');
-        const data = await response.json();
-        
-        // 创建词云图实例
-        const wordcloud = new MathWordCloud('math-wordcloud', data);
-        
-        console.log('数学词云图初始化成功');
-    } catch (error) {
-        console.error('初始化数学词云图失败:', error);
-    }
 }

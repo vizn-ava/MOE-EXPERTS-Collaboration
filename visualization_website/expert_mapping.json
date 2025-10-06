@@ -1,0 +1,14 @@
+{
+  "primary_experts": [247, 583, 916, 134, 672],
+  "expert_mapping": {
+    "247": [134, 672, 859],
+    "583": [291, 748, 814],
+    "916": [365, 527, 814],
+    "134": [123, 456, 527],
+    "672": [291, 814, 748]
+  },
+  "description": {
+    "primary_experts": "Fixed list of primary expert IDs to be displayed (using new hierarchical ID system)",
+    "expert_mapping": "Mapping from primary expert ID to list of secondary expert IDs - redesigned for logical domain relationships"
+  }
+}

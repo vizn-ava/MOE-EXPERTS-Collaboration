@@ -1,3 +1,56 @@
+/* 单列布局样式 */
+.single-column-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 600px;
+}
+
+.column-single {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+}
+
+.column-single h3 {
+    margin: 0 0 15px 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+}
+
+/* 一行三列布局样式 */
+.three-column-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    height: 600px;
+    width: 100%;
+}
+
+.column-left,
+.column-center,
+.column-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.column-left h3,
+.column-center h3,
+.column-right h3 {
+    margin: 0 0 15px 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+}
+
 /* 品字布局样式 */
 .triangle-layout {
     display: grid;
@@ -47,16 +100,16 @@
     text-align: center;
 }
 
-/* 词云图容器样式 */
-.wordcloud-container {
-    width: 100%;
-    height: 250px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* 暗色主题下的单列布局样式 */
+.dark-theme .column-single h3 {
+    color: #ecf0f1;
+}
+
+/* 暗色主题下的三列布局样式 */
+.dark-theme .column-left h3,
+.dark-theme .column-center h3,
+.dark-theme .column-right h3 {
+    color: #ecf0f1;
 }
 
 /* 暗色主题下的品字布局样式 */
@@ -68,10 +121,6 @@
 
 .dark-theme .triangle-layout h3 {
     color: #ecf0f1;
-}
-
-.dark-theme .wordcloud-container {
-    background: #2c3e50;
 }
 
 /* 悬浮窗模态框样式 */
@@ -171,13 +220,23 @@
     grid-template-rows: repeat(27, 1fr);
     gap: 2px;
     width: 100%;
-    max-width: 450px;
+    max-width: 800px;
     margin: 0 auto;
     aspect-ratio: 64/27;
     background: #f8f9fa;
     padding: 20px;
     border-radius: 12px;
     box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 悬浮窗中的neural-mapping-module样式 */
+.modal-body .neural-mapping-module {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 }
 
 #modal-moe-network .circle {
@@ -368,8 +427,8 @@ header {
 }
 
 #input-text, #output-content {
-    font-size: 1.1rem;
-    height: 120px;
+    font-size: 0.95rem;
+    height: 132px;
     border-radius: 16px;
     border: 1px solid #e0e6ed;
     background: #f5f7fa;
@@ -408,8 +467,8 @@ header {
 /* Token Display 样式 */
 .token-display {
     width: 100%;
-    font-size: 1.1rem;
-    height: 120px;
+    font-size: 0.95rem;
+    height: 132px;
     border-radius: 16px;
     border: 1px solid #e0e6ed;
     background: #f5f7fa;
@@ -543,11 +602,11 @@ footer {
 
 .expert-explanation .token-table th:nth-child(1),
 .expert-explanation .token-table td:nth-child(1) {
-    width: 30%;
+    width: 20%;
 }
 .expert-explanation .token-table th:nth-child(2),
 .expert-explanation .token-table td:nth-child(2) {
-    width: 60%;
+    width: 70%;
 }
 .expert-explanation .token-table th:nth-child(3),
 .expert-explanation .token-table td:nth-child(3) {
@@ -589,6 +648,22 @@ footer {
     font-weight: 500;
 }
 
+/* 二级专家名称单元格的悬停和选中状态样式 */
+.expert-decomposition .token-table td:nth-child(2) {
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.expert-decomposition .token-table td:nth-child(2):hover {
+    background-color: #f0f8ff;
+    color: #0066cc;
+}
+
+.expert-decomposition .token-table td:nth-child(2).selected {
+    background-color: #e6f3ff;
+    color: #0066cc;
+    font-weight: 500;
+}
+
 /* 暗色主题下的专家名称单元格样式 */
 .dark-theme .expert-explanation .token-table td:nth-child(2):hover {
     background-color: #2a3f5f;
@@ -596,6 +671,18 @@ footer {
 }
 
 .dark-theme .expert-explanation .token-table td:nth-child(2).selected {
+    background-color: #1e3a5f;
+    color: #66b3ff;
+    font-weight: 500;
+}
+
+/* 暗色主题下的二级专家名称单元格样式 */
+.dark-theme .expert-decomposition .token-table td:nth-child(2):hover {
+    background-color: #2a3f5f;
+    color: #66b3ff;
+}
+
+.dark-theme .expert-decomposition .token-table td:nth-child(2).selected {
     background-color: #1e3a5f;
     color: #66b3ff;
     font-weight: 500;

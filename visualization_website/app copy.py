@@ -16,20 +16,6 @@ CORS(app)
 # 读取 CSV 文件到内存
 experts = []
 
-# 读取专家映射关系
-expert_mapping = {}
-
-def load_expert_mapping():
-    global expert_mapping
-    mapping_path = os.path.join(os.path.dirname(__file__), 'expert_mapping.json')
-    if not os.path.exists(mapping_path):
-        print('警告: 未找到 expert_mapping.json')
-        expert_mapping = {}
-        return
-    with open(mapping_path, 'r', encoding='utf-8') as f:
-        expert_mapping = json.load(f)
-    print('专家映射文件已加载')
-
 
 def load_experts():
     global experts
@@ -45,126 +31,130 @@ def load_experts():
 
 
 load_experts()
-load_expert_mapping()
+
+
 
 
 def generate_sparse_vector(dimensions, active_count):
     """
     生成稀疏向量，每64维度中激活指定数量的位置
+    :param dimensions: 向量总维度
+    :param active_count: 每64维度中激活的位置数量
+    :return: 稀疏向量列表
     """
     vector = [0.0] * dimensions
-    num_groups = dimensions // 64
+    # 计算有多少个64维的块
+    blocks = dimensions // 64
     
-    for group in range(num_groups):
-        start_idx = group * 64
-        end_idx = start_idx + 64
+    for block in range(blocks):
+        # 在每个64维块中随机选择active_count个位置
+        start_pos = block * 64
+        end_pos = min(start_pos + 64, dimensions)
+        block_size = end_pos - start_pos
         
-        # 在当前64维组中随机选择active_count个位置
-        active_positions = random.sample(range(start_idx, end_idx), min(active_count, 64))
+        # 在当前块中随机选择位置
+        active_positions = random.sample(range(block_size), min(active_count, block_size))
         
+        # 为选中的位置填充随机数据
         for pos in active_positions:
-            vector[pos] = random.uniform(0.1, 1.0)
+            actual_pos = start_pos + pos
+            vector[actual_pos] = random.uniform(0.1, 1.0)  # 随机值在0.1到1.0之间
     
     return vector
 
 
-# 远程服务配置
 REMOTE_BASE = os.environ.get('REMOTE_BASE', 'http://localhost:9000')
 USE_REMOTE = os.environ.get('USE_REMOTE', 'false').lower() == 'true'
-
+# 复用 HTTP 连接，减少握手时延
 SESSION = requests.Session()
 SESSION.headers.update({'Accept-Encoding': 'gzip, deflate'})
 
-
+#归一化处理
 def l1_normalize(vector: List[float]) -> List[float]:
-    """L1 归一化"""
-    total = sum(abs(x) for x in vector)
-    if total == 0:
-        return vector
-    return [x / total for x in vector]
+    s = sum(abs(float(x)) for x in vector) if vector else 0.0
+    if s == 0:
+        return [float(x) for x in vector]
+    return [float(x) / s for x in vector]
 
 
 def apply_top_k_per_64(vector: List[float], k: int = 6) -> List[float]:
-    """
-    对1728维向量，每64维取Top-K
-    """
-    if len(vector) != 1728:
+    """每64维块应用Top-K选择，保留前k个最大的值，其他设为0"""
+    if len(vector) <= k:
         return vector
     
-    result = [0.0] * 1728
-    num_groups = 1728 // 64
+    result = [0.0] * len(vector)
+    # 计算有多少个64维的块
+    blocks = len(vector) // 64
     
-    for group in range(num_groups):
-        start_idx = group * 64
-        end_idx = start_idx + 64
-        group_values = vector[start_idx:end_idx]
+    for block in range(blocks):
+        start_pos = block * 64
+        end_pos = min(start_pos + 64, len(vector))
+        block_size = end_pos - start_pos
         
-        # 获取当前组的索引-值对
-        indexed_values = [(i + start_idx, val) for i, val in enumerate(group_values)]
-        # 按值降序排序
-        indexed_values.sort(key=lambda x: x[1], reverse=True)
+        # 获取当前64维块中前k个最大值的索引
+        block_values = [(start_pos + i, abs(vector[start_pos + i])) 
+                       for i in range(block_size)]
+        block_values.sort(key=lambda x: x[1], reverse=True)
+        top_k_indices = {i for i, _ in block_values[:k]}
         
-        # 取前k个
-        for i in range(min(k, len(indexed_values))):
-            idx, val = indexed_values[i]
-            result[idx] = val
+        # 在当前块中保留Top-K位置的值
+        for i in top_k_indices:
+            result[i] = vector[i]
     
     return result
 
 
 def call_remote_tokenize(input_text: str) -> (List[str], bool, float):
-    """调用远程tokenize服务"""
     if not USE_REMOTE:
-        # 本地简单分词
-        tokens = input_text.split()
+        # 如果不使用远程服务，使用空格分词
+        tokens = [t for t in (input_text or '').split(' ') if t.strip()]
         return tokens, False, 0.0
     
     try:
         t1 = time.perf_counter()
-        resp = SESSION.post(f"{REMOTE_BASE}/tokenize", json={'text': input_text}, timeout=(5, 30))
+        resp = SESSION.post(f"{REMOTE_BASE}/tokenize_readable", json={'text': input_text}, timeout=(5, 120))
         resp.raise_for_status()
-        ms = (time.perf_counter() - t1) * 1000.0
         data = resp.json() or {}
-        tokens = data.get('tokens', input_text.split())
-        return tokens, True, ms
+        tokens = data.get('decoded_tokens') or data.get('tokens')
+        if isinstance(tokens, list) and tokens:
+            return [str(t) for t in tokens], True, (time.perf_counter() - t1) * 1000.0
     except Exception as e:
-        print(f"tokenize 调用失败: {e}")
-        tokens = input_text.split()
-        return tokens, False, 0.0
+        print(f"tokenize_readable 调用失败: {e}")
+    # 失败回退：空格分词
+    tokens = [t for t in (input_text or '').split(' ') if t.strip()]
+    return tokens, False, 0.0
 
 
 def extract_last_column_1728(matrix: List[List[Any]]) -> List[float]:
-    """从矩阵中提取最后一列作为1728维向量"""
-    if not matrix or not isinstance(matrix, list):
-        return None
-    
+    # 期望形状 [1728, seq_len]，取最后一列；若是 [seq_len, 1728]，取最后一行
+    if not matrix:
+        return []
     try:
-        # 假设matrix是二维数组，取最后一列
-        if len(matrix) >= 1728:
-            vector = []
-            for i in range(1728):
-                if i < len(matrix) and len(matrix[i]) > 0:
-                    # 取每行的最后一个元素
-                    vector.append(float(matrix[i][-1]))
-                else:
-                    vector.append(0.0)
-            return vector
-        else:
-            # 如果行数不够，用0填充
-            vector = []
-            for i in range(1728):
-                if i < len(matrix) and len(matrix[i]) > 0:
-                    vector.append(float(matrix[i][-1]))
-                else:
-                    vector.append(0.0)
-            return vector
-    except Exception as e:
-        print(f"提取向量失败: {e}")
-        return None
+        rows = len(matrix)
+        cols = len(matrix[0]) if rows > 0 and isinstance(matrix[0], list) else 0
+        if rows == 1728 and cols >= 1:
+            # [1728, seq_len]
+            return [float(row[-1]) if isinstance(row, list) and row else 0.0 for row in matrix]
+        if cols == 1728 and rows >= 1:
+            # [seq_len, 1728] -> 最后一行即 1728 维
+            last_row = matrix[-1]
+            return [float(v) for v in last_row]
+        # 其他意外形状，尝试扁平后截断/补零到 1728
+        flat = []
+        for r in matrix:
+            if isinstance(r, list):
+                flat.extend(r)
+            else:
+                flat.append(r)
+        if len(flat) >= 1728:
+            return [float(x) for x in flat[:1728]]
+        return [float(x) for x in (flat + [0.0] * (1728 - len(flat)))[:1728]]
+    except Exception:
+        return []
 
 
 def process_input(input_text: str) -> Dict[str, Any]:
-    """处理输入文本，返回token向量"""
+    # 调用远端服务获取 tokens 与 activations，并统计耗时
     t0 = time.perf_counter()
     tokens, tokens_from_remote, ms_tokenize = call_remote_tokenize(input_text)
     token_vectors: List[Dict[str, Any]] = []
@@ -172,7 +162,6 @@ def process_input(input_text: str) -> Dict[str, Any]:
     error_message = None
     ms_experts = 0.0
     ms_post = 0.0
-
     if USE_REMOTE:
         try:
             t2 = time.perf_counter()
@@ -182,64 +171,76 @@ def process_input(input_text: str) -> Dict[str, Any]:
             data = resp.json() or {}
             activations = data.get('activations')
             used_remote_activations = True
-
+            # 期待 activations 为每 token 一个 2D 矩阵（1728 x seq_len 或 seq_len x 1728）
+            # 使用远程服务的真实激活向量
             t3 = time.perf_counter()
             if activations and len(activations) == len(tokens):
                 for i, token in enumerate(tokens):
+                    # 提取第i个token的1728维向量（取最后一列）
                     vec = extract_last_column_1728(activations[i])
                     if vec:
+                        # 应用每64维的Top6选择
                         vec = apply_top_k_per_64(vec, k=6)
+                        # L1归一化
                         vec = l1_normalize(vec)
                         token_vectors.append({'token': token, 'vector': vec})
                     else:
-                        vec = generate_sparse_vector(1728, 6)
+                        # 如果提取失败，使用本地生成
+                        vec = generate_sparse_vector(1728, 6)  # 改为6个激活
                         token_vectors.append({'token': token, 'vector': vec})
             else:
+                # 如果activations格式不对，使用本地生成
                 for token in tokens:
-                    vec = generate_sparse_vector(1728, 6)
+                    vec = generate_sparse_vector(1728, 6)  # 改为6个激活
                     token_vectors.append({'token': token, 'vector': vec})
             ms_post = (time.perf_counter() - t3) * 1000.0
         except Exception as e:
             print(f"experts_full64 调用失败: {e}")
             error_message = str(e)
             used_remote_activations = False
-
+    
+    # 如果不使用远程服务或远程调用失败，使用本地生成
     if not used_remote_activations:
+        # 回退：使用本地生成的向量
         t3 = time.perf_counter()
         for token in tokens:
-            vec = generate_sparse_vector(1728, 6)
+            vec = generate_sparse_vector(1728, 6)  # 1728维中6个位置有数据
+            # vec = l1_normalize(vec)  # 暂时去掉归一化
             token_vectors.append({'token': token, 'vector': vec})
         ms_post = (time.perf_counter() - t3) * 1000.0
-
+    # 过滤控制类特殊 token（例如 <|begin_of_sentence|>、<bos> 等），保持 token 与向量对齐后再返回
     def is_control_token(tok: str) -> bool:
         if not isinstance(tok, str):
             return False
         t = tok.strip()
-        if not t:
-            return True
+        # 规范化全角/特殊字符到 ASCII，便于匹配
         trans = {
-            ord('｜'): '|',
-            ord('＜'): '<',
-            ord('＞'): '>',
-            ord('▁'): '_',
+            ord('｜'): '|',  # 全角竖线
+            ord('＜'): '<',  # 全角小于
+            ord('＞'): '>',  # 全角大于
+            ord('▁'): '_',  # 下划线块
         }
         t_norm = t.translate(trans).lower()
 
+        # 常见控制 token 别名集合
         known = {
             '<s>', '</s>', '<pad>', '<bos>', '<eos>', '<unk>',
             '<|begin_of_sentence|>', '<|end_of_sentence|>'
         }
         if t_norm in known:
             return True
+        # 形如 <|...|> 且包含 begin/end_of_sentence 关键字
         if t_norm.startswith('<|') and t_norm.endswith('|>'):
             if 'begin_of_sentence' in t_norm or 'end_of_sentence' in t_norm:
                 return True
+        # 兜底：包含 begin 与 sentence 关键片段
         if ('begin' in t_norm and 'sentence' in t_norm) or ('end' in t_norm and 'sentence' in t_norm):
             return True
         return False
 
     token_vectors = [tv for tv in token_vectors if not is_control_token(tv.get('token'))]
 
+    # 元信息便于前端判断来源与维度
     vector_dim = len(token_vectors[0]['vector']) if token_vectors else 0
     total_ms = (time.perf_counter() - t0) * 1000.0
     return {
@@ -266,62 +267,37 @@ def to_float(value):
 
 
 def find_expert_by_index(idx):
-    """从 CSV 中按 Expert Index 匹配"""
+    # 从 CSV 中按 Expert Index 匹配
     for e in experts:
         if str(e.get('Expert Index')) == str(idx):
             return e
     return None
 
 
-def get_top5_experts(token_vector=None):
-    """返回固定的5个一级专家：使用新的层次化ID系统"""
-    global expert_mapping
-    
-    # 使用固定的专家ID列表（新的层次化ID系统）
-    fixed_expert_ids = expert_mapping.get('primary_experts', [247, 583, 916, 134, 672])
-    
+def get_top5_experts(token_vector):
+    # 固定返回CSV文件中的前6个专家
     result = []
-    for idx in fixed_expert_ids:
+    for idx in range(6):  # 显示前6个专家（索引0-5）
         expert = find_expert_by_index(idx)
-        if expert is None:
-            result.append({
-                'Expert Index': idx,
-                'Expert Name': 'Unknown',
-                'Function Description': 'No description available',
-            })
-        else:
+        if expert is not None:
             result.append({
                 'Expert Index': expert.get('Expert Index'),
                 'Expert Name': expert.get('Expert Name'),
                 'Function Description': expert.get('Function Description'),
             })
-    return result
-
-
-def get_top5_second_level_experts(primary_expert_id):
-    """根据一级专家ID返回对应的二级专家"""
-    global expert_mapping
-    
-    # 从映射文件中获取对应的二级专家ID列表
-    mapping = expert_mapping.get('expert_mapping', {})
-    secondary_expert_ids = mapping.get(str(primary_expert_id), [])
-    
-    result = []
-    for idx in secondary_expert_ids:
-        expert = find_expert_by_index(idx)
-        if expert is None:
+        else:
+            # 如果找不到专家，添加默认信息
             result.append({
                 'Expert Index': idx,
-                'Expert Name': 'Unknown',
+                'Expert Name': f'Expert {idx}',
                 'Function Description': 'No description available',
             })
-        else:
-            result.append({
-                'Expert Index': expert.get('Expert Index'),
-                'Expert Name': expert.get('Expert Name'),
-                'Function Description': expert.get('Function Description'),
-            })
     return result
+
+
+def get_top5_second_level_experts(token_vector):
+    # 与一级专家类似的示例逻辑
+    return get_top5_experts(token_vector)
 
 
 @app.route('/', methods=['GET'])
@@ -339,23 +315,25 @@ def api_process():
     return jsonify(result)
 
 
+
+
 @app.route('/api/top5-experts', methods=['POST'])
 def api_top5_experts():
-    """返回固定的5个一级专家"""
-    top5 = get_top5_experts()
+    data = request.get_json(silent=True) or {}
+    token_vector = data.get('tokenVector')
+    if not isinstance(token_vector, list):
+        return jsonify({'error': 'tokenVector 不能为空且必须为数组'}), 400
+    top5 = get_top5_experts(token_vector)
     return jsonify(top5)
 
 
 @app.route('/api/top5-second-level-experts', methods=['POST'])
 def api_top5_second_level_experts():
-    """根据一级专家ID返回对应的二级专家"""
     data = request.get_json(silent=True) or {}
-    primary_expert_id = data.get('primaryExpertId')
-    
-    if primary_expert_id is None:
-        return jsonify({'error': 'primaryExpertId 不能为空'}), 400
-    
-    top5 = get_top5_second_level_experts(primary_expert_id)
+    token_vector = data.get('tokenVector')
+    if not isinstance(token_vector, list):
+        return jsonify({'error': 'tokenVector 不能为空且必须为数组'}), 400
+    top5 = get_top5_second_level_experts(token_vector)
     return jsonify(top5)
 
 
@@ -369,6 +347,7 @@ def get_expert_token_mapping():
                 data = json.load(f)
             return jsonify(data)
         else:
+            # 如果文件不存在，返回空的映射结构
             return jsonify({
                 "mappings": {},
                 "metadata": {
@@ -389,6 +368,7 @@ def save_expert_token_mapping():
         data = request.get_json(silent=True) or {}
         mapping_path = os.path.join(os.path.dirname(__file__), 'expert_token_mapping.json')
         
+        # 更新时间戳
         if 'metadata' not in data:
             data['metadata'] = {}
         data['metadata']['last_updated'] = time.strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -402,6 +382,7 @@ def save_expert_token_mapping():
 
 
 if __name__ == '__main__':
+    # 监听 3000 端口以保持与前端一致
     app.run(host='0.0.0.0', port=3000)
 
 

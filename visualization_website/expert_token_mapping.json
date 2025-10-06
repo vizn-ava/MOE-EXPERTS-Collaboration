@@ -1,0 +1,225 @@
+{
+  "mappings": {
+    "123": {
+      "color": "#DDA0DD",
+      "tokens": [
+        "comprehensive",
+        "analysis",
+        "evaluation",
+        "assessment",
+        "review",
+        "examination",
+        "investigation",
+        "study",
+        "survey",
+        "overview"
+      ]
+    },
+    "134": {
+      "color": "#96CEB4",
+      "tokens": [
+        "An",
+        "°F",
+        "55",
+        "temperature",
+        "85",
+        "°F.",
+        
+        "and",
+        "final",
+        "specific",
+        "final",
+        "(c)",
+        
+        "per",
+        "Assume",
+        "to",
+        "a",
+        "of",
+        "psia."
+      ]
+    },
+    "247": {
+      "color": "#FF6B6B",
+      "tokens": [
+        "60",
+        "°F",
+        "55",
+        "heated",
+        "its",
+        "85",
+        "specific",
+        "relative",
+        "to",
+        "a",
+        "pressure",
+        "14.7"
+      ]
+    },
+    "291": {
+      "color": "#87CEEB",
+      "tokens": [
+        "computational",
+        "algorithm",
+        "processing",
+        "calculation",
+        "numerical",
+        "software",
+        "modeling",
+        "simulation",
+        "optimization"
+      ]
+    },
+    "365": {
+      "color": "#F0E68C",
+      "tokens": [
+        "research",
+        "methodology",
+        "approach",
+        "technique",
+        "experimental",
+        "validation",
+        "testing"
+      ]
+    },
+    "456": {
+      "color": "#FFB6C1",
+      "tokens": [
+        "solution",
+        "design",
+        "strategy",
+        "planning",
+        "architecture",
+        "framework",
+        "development",
+        "implementation",
+        "optimization",
+        "innovation"
+      ]
+    },
+    "527": {
+      "color": "#98FB98",
+      "tokens": [
+        "problem",
+        "solving",
+        "solution",
+        "troubleshooting",
+        "debugging",
+        "optimization",
+        "improvement"
+      ]
+    },
+    "583": {
+      "color": "#4ECDC4",
+      "tokens": [
+        "60",
+        "and",
+        "its",
+        "temperature",
+        "85",
+        "°F.",
+        
+        "specific",
+        "humidities,",
+        "(b)",
+        
+        "final",
+        "relative",
+        "and",
+        "(c)",
+        
+        "lbm",
+        "of",
+        "Assume",
+        
+        "pressure",
+        "14.7",
+        "psia."
+      ]
+    },
+    "672": {
+      "color": "#FFEAA7",
+      "tokens": [
+        "initially",
+        "°F",
+        "relative",
+        "humidity,",
+        "heated",
+        "until",
+        "reaches",
+        "Determine",
+        "and",
+        "specific",
+        
+        "final",
+        
+        "added",
+        "Assume",
+        "to",
+        "be",
+        "a",
+        "pressure",
+        "14.7"
+      ]
+    },
+    "748": {
+      "color": "#FFA07A",
+      "tokens": [
+        "data",
+        "processing",
+        "analysis",
+        "mining",
+        "extraction",
+        "transformation",
+        "visualization",
+        "pattern",
+        "trend",
+        "correlation"
+      ]
+    },
+    "814": {
+      "color": "#20B2AA",
+      "tokens": [
+        "knowledge",
+        "integration",
+        "synthesis",
+        "combination",
+        "fusion",
+        "coordination",
+        "collaboration",
+        "interdisciplinary",
+        "comprehensive",
+        "systematic"
+      ]
+    },
+    "916": {
+      "color": "#45B7D1",
+      "tokens": [
+        "mixture,",
+        "relative",
+        "heated",
+        "temperature",
+        "°F.",
+        "Determine",
+        "(a)",
+        
+        "initial",
+        "final",
+        "(b)",
+        
+        "final",
+        "relative",
+        
+        "amount",
+        "mixture",
+        "of"
+      ]
+    }
+  },
+  "metadata": {
+    "created_at": "2025-09-28T14:54:48.724Z",
+    "last_updated": "2025-09-28T22:54:48Z",
+    "version": "1.0",
+    "description": "专家组合与token映射关系存储文件"
+  }
+}

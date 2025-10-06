@@ -53,7 +53,7 @@
                     <table class="token-table">
                         <thead>
                             <tr>
-                                <th data-i18n="first_expert_index">Expert ID</th>
+                                <th data-i18n="first_expert_index">SuperExpert ID</th>
                                 <th data-i18n="first_expert_name">Expert Name (Function)</th>
                                 <th data-i18n="decompose_header">Detail</th>
                             </tr>
@@ -70,7 +70,7 @@
                     <table class="token-table">
                         <thead>
                             <tr>
-                                <th data-i18n="second_expert_index">Expert ID</th>
+                                <th data-i18n="second_expert_index">SuperExpert ID</th>
                                 <th data-i18n="second_expert_name">Expert Name (Function)</th>
                             </tr>
                         </thead>
@@ -88,33 +88,28 @@
     <div id="activation-modal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 id="modal-title" data-i18n="network_title">Expert Group Mapping on MOE Network</h2>
+                <h2 id="modal-title" data-i18n="network_title">Expert Group Detail</h2>
                 <span class="close-button">&times;</span>
             </div>
             <div class="modal-body">
-                <!-- 品字布局容器 -->
-                <div class="triangle-layout">
-                    <!-- 上方：MOE网络映射 -->
-                    <div class="triangle-top">
-                        <h3>MOE Network Mapping</h3>
+                <!-- 单列布局容器 -->
+                <div class="single-column-layout">
+                    <!-- MOE网络映射 -->
+                    <div class="column-single">
                         <div class="neural-mapping-module">
                             <div id="modal-moe-network">
                                 <!-- 动态生成64x27的圆圈 -->
                             </div>
                         </div>
                     </div>
-                    <!-- 下方左：词云图 -->
-                    <div class="triangle-bottom-left">
-                        <h3>Token Word Cloud</h3>
-                        <div id="math-wordcloud" class="wordcloud-container"></div>
-                    </div>
-                    <!-- 下方右：专家分析图表 -->
-                    <div class="triangle-bottom-right">
+
+                    <!-- 右列：专家分析图表 -->
+                    <!-- <div class="column-right">
                         <h3>Expert Analysis Chart</h3>
                         <div class="modal-image-section">
                             <img src="Snipaste_2025-09-23_23-59-55.jpg" alt="Expert Analysis Chart" class="modal-image">
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -125,7 +120,6 @@
     </footer>
 
     <!-- 引入自定义的script.js -->
-    <script src="wordcloud.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

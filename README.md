@@ -20,6 +20,7 @@ This project presents a comprehensive framework for analyzing and visualizing ex
 MOE-EXPERTS-Collaboration/
 ├── visualization_website/     # Interactive web visualization platform
 ├── paper_implementation/     # Research code and analysis scripts
+├── MOE Expert Collaboration Mining Visualizatio User Guide.mp4  # User guide video
 └── README.md                # This file
 ```
 
@@ -56,7 +57,7 @@ python expert_analysis.py
 
 Watch the user guide video to see the interactive visualization platform in action:
 
-[![MOE Expert Collaboration Mining Visualization User Guide](https://img.shields.io/badge/Video-User%20Guide-blue)](MOE%20Expert%20Collaboration%20Mining%20Visualizatio%20User%20Guide.mp4)
+**Video**: `MOE Expert Collaboration Mining Visualizatio User Guide.mp4`
 
 ## Parameters
 
