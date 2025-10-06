@@ -52,6 +52,12 @@ cd paper_implementation
 python expert_analysis.py
 ```
 
+## Demo
+
+Watch the user guide video to see the interactive visualization platform in action:
+
+[![MOE Expert Collaboration Mining Visualization User Guide](https://img.shields.io/badge/Video-User%20Guide-blue)](MOE%20Expert%20Collaboration%20Mining%20Visualizatio%20User%20Guide.mp4)
+
 ## Parameters
 
 Key parameters in the analysis pipeline:
