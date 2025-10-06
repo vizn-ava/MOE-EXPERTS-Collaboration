@@ -57,7 +57,7 @@ python expert_analysis.py
 
 Watch the user guide video to see the interactive visualization platform in action:
 
-![MOE Expert Collaboration Mining Demo](MOE Expert Collaboration Mining Visualizatio User Guide (1).gif)
+![MOE Expert Collaboration Mining Demo](demo.gif)
 
 ## Parameters
 
