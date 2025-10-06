@@ -20,7 +20,8 @@ This project presents a comprehensive framework for analyzing and visualizing ex
 MOE-EXPERTS-Collaboration/
 ├── visualization_website/     # Interactive web visualization platform
 ├── paper_implementation/     # Research code and analysis scripts
-├── MOE Expert Collaboration Mining Visualizatio User Guide (1).gif  # Demo GIF
+├── demo1.png                 # Demo screenshot 1
+├── demo2.png                 # Demo screenshot 2
 └── README.md                # This file
 ```
 
@@ -57,7 +58,10 @@ python expert_analysis.py
 
 Watch the user guide video to see the interactive visualization platform in action:
 
-![MOE Expert Collaboration Mining Demo](demo.gif )
+<div align="center">
+  <img src="demo1.png" width="400" alt="Main Interface">
+  <img src="demo2.png" width="400" alt="Expert Analysis">
+</div>
 
 ## Parameters
 
