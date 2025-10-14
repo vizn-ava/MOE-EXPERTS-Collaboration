@@ -63,6 +63,8 @@ Watch the user guide video to see the interactive visualization platform in acti
   <img src="demo2.png" width="400" alt="Expert Analysis">
 </div>
 
+**Interactive Demo**: https://files.catbox.moe/rgan2m.gif
+
 ## Parameters
 
 Key parameters in the analysis pipeline:
