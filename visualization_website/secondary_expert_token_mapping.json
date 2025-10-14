@@ -1,0 +1,124 @@
+{
+  "secondary_mappings": {
+    "134": {
+      "parent_expert": "247",
+      "color": "#96CEB4",
+      "tokens": [
+        "°F",
+        "temperature",
+        "85"
+      ]
+    },
+    "672": {
+      "parent_expert": "247", 
+      "color": "#FFEAA7",
+      "tokens": [
+        "60",
+        "°F",
+        "relative",
+        "55",
+        "heated"
+      ]
+    },
+    "859": {
+      "parent_expert": "247",
+      "color": "#FFB6C1", 
+      "tokens": [
+        "pressure",
+        "14.7",
+        "psia",
+        "final",
+        "Assume"
+      ]
+    },
+    "291": {
+      "parent_expert": "583",
+      "color": "#87CEEB",
+      "tokens": [
+        "60",
+        "and",
+        "temperature",
+        "85",
+        "°F."
+      ]
+    },
+    "748": {
+      "parent_expert": "583",
+      "color": "#FFA07A", 
+      "tokens": [
+        "specific",
+        "final",
+        "relative",
+        "and",
+        "(c)"
+      ]
+    },
+    "814": {
+      "parent_expert": "583",
+      "color": "#20B2AA",
+      "tokens": [
+        "lbm",
+        "of",
+        "Assume",
+        "pressure",
+        "14.7"
+      ]
+    },
+    "365": {
+      "parent_expert": "916",
+      "color": "#F0E68C",
+      "tokens": [
+        "mixture,",
+        "relative",
+        "heated",
+        "temperature",
+        "°F."
+      ]
+    },
+    "527": {
+      "parent_expert": "916",
+      "color": "#98FB98",
+      "tokens": [
+        "Determine",
+        "(a)",
+        "initial",
+        "final",
+        "(b)"
+      ]
+    },
+    "123": {
+      "parent_expert": "134",
+      "color": "#DDA0DD",
+      "tokens": [
+        "comprehensive",
+        "analysis",
+        "evaluation",
+        "assessment",
+        "review"
+      ]
+    },
+    "456": {
+      "parent_expert": "134",
+      "color": "#FFB6C1",
+      "tokens": [
+        "An",
+        "and",
+        "final",
+        "specific",
+        "per"
+      ]
+    }
+  },
+  "metadata": {
+    "created_at": "2025-01-27T12:00:00Z",
+    "last_updated": "2025-01-27T12:00:00Z", 
+    "version": "1.0",
+    "description": "二级专家与token映射关系存储文件，每个二级专家的token都是其对应一级专家token的子集",
+    "structure": {
+      "secondary_mappings": "二级专家ID到token映射的对象",
+      "parent_expert": "对应的一级专家ID",
+      "color": "二级专家的显示颜色",
+      "tokens": "该二级专家对应的token列表（必须是parent_expert的token子集）"
+    }
+  }
+}

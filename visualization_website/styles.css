@@ -648,20 +648,26 @@ footer {
     font-weight: 500;
 }
 
-/* 二级专家名称单元格的悬停和选中状态样式 */
-.expert-decomposition .token-table td:nth-child(2) {
-    transition: background-color 0.2s ease, color 0.2s ease;
+/* 二级专家选中状态样式 */
+.expert-decomposition .token-table td:nth-child(2) div:first-child.selected {
+    background: linear-gradient(135deg, #e6f3ff 0%, #cce7ff 100%);
+    color: #0066cc;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 2px solid #0066cc;
+    box-shadow: 0 2px 8px rgba(0, 102, 204, 0.2);
+    transform: scale(1.02);
+    transition: all 0.2s ease;
 }
 
-.expert-decomposition .token-table td:nth-child(2):hover {
+.expert-decomposition .token-table td:nth-child(2) div:first-child:hover {
     background-color: #f0f8ff;
     color: #0066cc;
-}
-
-.expert-decomposition .token-table td:nth-child(2).selected {
-    background-color: #e6f3ff;
-    color: #0066cc;
-    font-weight: 500;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
 }
 
 /* 暗色主题下的专家名称单元格样式 */
@@ -676,16 +682,26 @@ footer {
     font-weight: 500;
 }
 
-/* 暗色主题下的二级专家名称单元格样式 */
-.dark-theme .expert-decomposition .token-table td:nth-child(2):hover {
-    background-color: #2a3f5f;
+/* 暗色主题下的二级专家样式 */
+.dark-theme .expert-decomposition .token-table td:nth-child(2) div:first-child.selected {
+    background: linear-gradient(135deg, #1e3a5f 0%, #2a4a6f 100%);
     color: #66b3ff;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 2px solid #66b3ff;
+    box-shadow: 0 2px 8px rgba(102, 179, 255, 0.2);
+    transform: scale(1.02);
+    transition: all 0.2s ease;
 }
 
-.dark-theme .expert-decomposition .token-table td:nth-child(2).selected {
-    background-color: #1e3a5f;
+.dark-theme .expert-decomposition .token-table td:nth-child(2) div:first-child:hover {
+    background-color: #2a3f5f;
     color: #66b3ff;
-    font-weight: 500;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
 }
 
 .expert-decomposition .token-table th:nth-child(2),

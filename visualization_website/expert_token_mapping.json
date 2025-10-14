@@ -43,17 +43,15 @@
       "color": "#FF6B6B",
       "tokens": [
         "60",
-        "°F",
         "55",
-        "heated",
-        "its",
         "85",
-        "specific",
-        "relative",
-        "to",
-        "a",
-        "pressure",
-        "14.7"
+        "14.7",
+        "percent",
+        "temperature",
+        "humidity",
+        "psia",
+        "°F",
+        "relative"
       ]
     },
     "291": {
@@ -112,29 +110,15 @@
     "583": {
       "color": "#4ECDC4",
       "tokens": [
-        "60",
-        "and",
-        "its",
-        "temperature",
-        "85",
-        "°F.",
-        
-        "specific",
-        "humidities,",
-        "(b)",
-        
-        "final",
+        "air",
+        "vapor",
+        "mixture",
+        "heated",
         "relative",
-        "and",
-        "(c)",
-        
-        "lbm",
-        "of",
-        "Assume",
-        
-        "pressure",
-        "14.7",
-        "psia."
+        "humidity",
+        "specific",
+        "heat",
+        "pressure"
       ]
     },
     "672": {
@@ -195,24 +179,15 @@
     "916": {
       "color": "#45B7D1",
       "tokens": [
-        "mixture,",
-        "relative",
-        "heated",
-        "temperature",
-        "°F.",
         "Determine",
-        "(a)",
-        
         "initial",
         "final",
-        "(b)",
-        
-        "final",
-        "relative",
-        
         "amount",
-        "mixture",
-        "of"
+        "added",
+        "per",
+        "lbm",
+        "dry",
+        "Assume"
       ]
     }
   },

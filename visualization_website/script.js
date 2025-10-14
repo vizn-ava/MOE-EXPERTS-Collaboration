@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // 页面加载时自动加载专家-token映射关系
     loadExpertTokenMapping();
     
+    // 加载二级专家-token映射关系
+    loadSecondaryExpertTokenMapping();
+    
     // 移除input-text的input事件监听
     const inputText = document.getElementById('input-text');
     if (inputText) {
@@ -96,21 +99,12 @@ document.addEventListener('DOMContentLoaded', function () {
             // 重新渲染二级专家颜色
             const secondLevelTableBody = document.querySelector('.expert-decomposition .token-table tbody');
             if (secondLevelTableBody && secondLevelTableBody.children.length > 0) {
-                // 获取当前选中的一级专家ID（从URL参数或全局变量）
-                // 这里需要重新调用displaySecondLevelExperts，传入正确的一级专家ID
-                // 由于我们无法直接获取当前的一级专家ID，我们重新渲染所有二级专家
-                const colors = getExpertColors();
-                Array.from(secondLevelTableBody.children).forEach((row, index) => {
-                    const colorIndex = (index + 5) % colors.length;
-                    const expertColor = colors[colorIndex];
-                    
-                    // 更新专家ID和名称的颜色
-                    const indexCell = row.children[0];
-                    const nameDiv = row.children[1].children[0];
-                    
-                    if (indexCell) indexCell.style.color = expertColor;
-                    if (nameDiv) nameDiv.style.color = expertColor;
-                });
+                const experts = Array.from(secondLevelTableBody.children).map(row => ({
+                    'Expert Index': row.children[0].textContent,
+                    'Expert Name': row.children[1].children[0].textContent,
+                    'Function Description': row.children[1].children[1].textContent
+                }));
+                displaySecondLevelExperts(experts);
             }
         });
     }
@@ -344,31 +338,21 @@ async function processInput() {
     }
 }
 
-// 定义主题一致的颜色 - 扩展为10种颜色支持一级和二级专家
+// 定义5种主题一致的颜色
 const EXPERT_COLORS = {
     light: [
-        '#FF6B6B', // 红色 - 一级专家
-        '#4ECDC4', // 青色 - 一级专家
-        '#45B7D1', // 蓝色 - 一级专家
-        '#96CEB4', // 绿色 - 一级专家
-        '#FFEAA7', // 黄色 - 一级专家
-        '#DDA0DD', // 紫色 - 二级专家
-        '#F0E68C', // 卡其色 - 二级专家
-        '#FFA07A', // 浅鲑鱼色 - 二级专家
-        '#98FB98', // 浅绿色 - 二级专家
-        '#F5DEB3'  // 小麦色 - 二级专家
+        '#FF6B6B', // 红色
+        '#4ECDC4', // 青色
+        '#45B7D1', // 蓝色
+        '#96CEB4', // 绿色
+        '#FFEAA7'  // 黄色
     ],
     dark: [
-        '#FF8A80', // 亮红色 - 一级专家
-        '#80CBC4', // 亮青色 - 一级专家
-        '#81D4FA', // 亮蓝色 - 一级专家
-        '#A5D6A7', // 亮绿色 - 一级专家
-        '#FFF59D', // 亮黄色 - 一级专家
-        '#E1BEE7', // 亮紫色 - 二级专家
-        '#FFF9C4', // 亮卡其色 - 二级专家
-        '#FFCDD2', // 亮浅鲑鱼色 - 二级专家
-        '#C8E6C9', // 亮浅绿色 - 二级专家
-        '#FFF3E0'  // 亮小麦色 - 二级专家
+        '#FF8A80', // 亮红色
+        '#80CBC4', // 亮青色
+        '#81D4FA', // 亮蓝色
+        '#A5D6A7', // 亮绿色
+        '#FFF59D'  // 亮黄色
     ]
 };
 
@@ -382,8 +366,61 @@ function getExpertColors() {
     return isDarkTheme ? EXPERT_COLORS.dark : EXPERT_COLORS.light;
 }
 
+// 获取当前选中的主专家颜色
+function getCurrentPrimaryExpertColor() {
+    const selectedCell = document.querySelector('.expert-explanation .token-table td:nth-child(2).selected');
+    if (!selectedCell) {
+        // 如果没有选中的专家，返回第一个专家的颜色
+        const colors = getExpertColors();
+        return colors[0];
+    }
+    
+    // 获取选中专家的索引
+    const expertRows = document.querySelectorAll('.expert-explanation .token-table tbody tr');
+    let selectedIndex = 0;
+    expertRows.forEach((row, index) => {
+        const infoCell = row.querySelector('td:nth-child(2)');
+        if (infoCell && infoCell.classList.contains('selected')) {
+            selectedIndex = index;
+        }
+    });
+    
+    const colors = getExpertColors();
+    return colors[selectedIndex % colors.length];
+}
+
+// 生成二级专家的同色系颜色
+function generateSecondaryColor(primaryColor, index) {
+    // 将十六进制颜色转换为RGB
+    const hex = primaryColor.replace('#', '');
+    const r = parseInt(hex.substr(0, 2), 16);
+    const g = parseInt(hex.substr(2, 2), 16);
+    const b = parseInt(hex.substr(4, 2), 16);
+    
+    // 为不同的二级专家生成不同的变化
+    const variations = [
+        { r: 0.8, g: 0.8, b: 0.8, alpha: 0.9 }, // 稍微变暗，高透明度
+        { r: 1.2, g: 1.2, b: 1.2, alpha: 0.8 }, // 稍微变亮，中透明度
+        { r: 0.9, g: 0.9, b: 0.9, alpha: 0.85 }, // 轻微变暗，中高透明度
+        { r: 1.1, g: 1.1, b: 1.1, alpha: 0.75 }  // 轻微变亮，中低透明度
+    ];
+    
+    const variation = variations[index % variations.length];
+    
+    // 应用变化并确保值在0-255范围内
+    const newR = Math.min(255, Math.max(0, Math.round(r * variation.r)));
+    const newG = Math.min(255, Math.max(0, Math.round(g * variation.g)));
+    const newB = Math.min(255, Math.max(0, Math.round(b * variation.b)));
+    
+    return `rgba(${newR}, ${newG}, ${newB}, ${variation.alpha})`;
+}
+
 // 存储原始tokens，用于后续随机着色
 let originalTokens = [];
+// 存储一级专家与token的对应关系
+let expertTokenMapping = new Map();
+// 存储二级专家-token映射关系
+let secondaryExpertTokenMapping = new Map();
 
 // 新函数：显示分词后的token列表到token list区域（初始不点亮颜色）
 function displayInputText(inputText) {
@@ -420,7 +457,7 @@ function highlightTokensRandomly() {
             // 随机选择颜色
             const randomColorIndex = Math.floor(Math.random() * colors.length);
             const color = colors[randomColorIndex];
-            return `<span style="color: ${color}; font-weight: bold;">${token}</span>`;
+            return `<span style="background-color: ${color}20; padding: 2px 4px; border-radius: 3px;">${token}</span>`;
         } else {
             // 不点亮，保持默认颜色
             return `<span style="color: inherit;">${token}</span>`;
@@ -441,9 +478,15 @@ function highlightTokensForExpert(expertIndex, expertColor) {
 
     let highlightedTokens = [];
     
+    // 添加调试信息
+    console.log(`查找专家 ${expertIndex} 的映射关系`);
+    console.log('expertTokenMapping内容:', expertTokenMapping);
+    console.log('expertTokenMapping.has(' + expertIndex + '):', expertTokenMapping.has(expertIndex));
+    console.log('expertTokenMapping.has(' + parseInt(expertIndex) + '):', expertTokenMapping.has(parseInt(expertIndex)));
+    
     // 检查是否已有保存的映射关系
-    if (expertTokenMapping.has(expertIndex)) {
-        const savedMapping = expertTokenMapping.get(expertIndex);
+    if (expertTokenMapping.has(parseInt(expertIndex))) {
+        const savedMapping = expertTokenMapping.get(parseInt(expertIndex));
         highlightedTokens = savedMapping.tokens;
         console.log(`使用已保存的专家 ${expertIndex} 映射关系:`, highlightedTokens);
     } else {
@@ -464,7 +507,7 @@ function highlightTokensForExpert(expertIndex, expertColor) {
         });
         
         // 保存新生成的映射关系到内存中（不自动保存到文件）
-        expertTokenMapping.set(expertIndex, {
+        expertTokenMapping.set(parseInt(expertIndex), {
             color: expertColor,
             tokens: highlightedTokens
         });
@@ -480,7 +523,7 @@ function highlightTokensForExpert(expertIndex, expertColor) {
         const shouldHighlight = highlightedTokens.includes(token);
         
         if (shouldHighlight) {
-            return `<span style="color: ${expertColor}; font-weight: bold; background-color: ${expertColor}20; padding: 2px 4px; border-radius: 3px;">${token}</span>`;
+            return `<span style="background-color: ${expertColor}20; padding: 2px 4px; border-radius: 3px;">${token}</span>`;
         } else {
             // 不高亮的token保持默认颜色
             return `<span style="color: inherit;">${token}</span>`;
@@ -496,9 +539,6 @@ function displayTokenList(tokenVectors) {
     // 这个函数已被废弃，token list现在直接显示输入文本
     console.log('displayTokenList函数已废弃，现在直接显示输入文本');
 }
-
-// 存储一级专家与token的对应关系
-let expertTokenMapping = new Map();
 
 // 从服务器加载专家-token映射关系
 async function loadExpertTokenMapping() {
@@ -522,7 +562,82 @@ async function loadExpertTokenMapping() {
     }
 }
 
-// 保存专家-token映射关系到服务器
+// 从服务器加载二级专家-token映射关系
+async function loadSecondaryExpertTokenMapping() {
+    try {
+        const response = await fetch('secondary_expert_token_mapping.json');
+        if (response.ok) {
+            const data = await response.json();
+            if (data.secondary_mappings) {
+                // 将JSON对象转换为Map
+                secondaryExpertTokenMapping.clear();
+                for (const [key, value] of Object.entries(data.secondary_mappings)) {
+                    secondaryExpertTokenMapping.set(parseInt(key), value);
+                }
+                console.log('二级专家-token映射关系加载成功:', secondaryExpertTokenMapping);
+            }
+        } else {
+            console.warn('加载二级专家映射关系失败，使用空映射');
+        }
+    } catch (error) {
+        console.error('加载二级专家-token映射关系时出错:', error);
+    }
+}
+
+// 新函数：为二级专家高亮对应的token
+function highlightTokensForSecondaryExpert(secondaryExpertId, expertColor) {
+    const tokenDisplay = document.getElementById('token-display');
+    if (!tokenDisplay) {
+        console.error('未找到token-display元素');
+        return;
+    }
+
+    let highlightedTokens = [];
+    
+    // 检查是否有二级专家的映射关系
+    if (secondaryExpertTokenMapping.has(secondaryExpertId)) {
+        const secondaryMapping = secondaryExpertTokenMapping.get(secondaryExpertId);
+        highlightedTokens = secondaryMapping.tokens;
+        console.log(`使用二级专家 ${secondaryExpertId} 的映射关系:`, highlightedTokens);
+    } else {
+        console.warn(`未找到二级专家 ${secondaryExpertId} 的token映射关系`);
+        return;
+    }
+    
+    // 先清除之前的二级专家高亮效果
+    clearSecondaryExpertHighlight();
+    
+    // 获取当前所有的span元素
+    const spans = tokenDisplay.querySelectorAll('span');
+    
+    spans.forEach((span) => {
+        const token = span.textContent.trim();
+        
+        if (highlightedTokens.includes(token)) {
+            // 为二级专家的token添加额外的样式，保持原有背景色
+            span.style.color = expertColor;
+            span.style.fontWeight = 'bold';
+            span.style.fontStyle = 'italic';
+            span.style.textDecoration = 'underline';
+            span.classList.add('secondary-expert-highlight');
+        }
+    });
+}
+
+// 清除二级专家高亮效果的辅助函数
+function clearSecondaryExpertHighlight() {
+    const tokenDisplay = document.getElementById('token-display');
+    if (!tokenDisplay) return;
+    
+    const spans = tokenDisplay.querySelectorAll('span.secondary-expert-highlight');
+    spans.forEach((span) => {
+        span.style.color = '';
+        span.style.fontWeight = '';
+        span.style.fontStyle = '';
+        span.style.textDecoration = '';
+        span.classList.remove('secondary-expert-highlight');
+    });
+}
 async function saveExpertTokenMapping() {
     try {
         // 将Map转换为普通对象
@@ -706,14 +821,16 @@ async function displaySecondLevelExperts(primaryExpertId) {
     secondLevelExperts.forEach((expert, index) => {
         const row = document.createElement('tr');
         
-        // 为每个二级专家分配不同颜色（从第6个颜色开始，避免与一级专家重复）
-        const colorIndex = (index + 5) % colors.length;
-        const expertColor = colors[colorIndex];
+        // 获取当前选中的主专家颜色
+        const primaryColor = getCurrentPrimaryExpertColor();
+        
+        // 生成二级专家的同色系颜色
+        const secondaryColor = generateSecondaryColor(primaryColor, index);
 
         // 创建Expert Index单元格
         const indexCell = document.createElement('td');
         indexCell.textContent = expert.index || expert['Expert Index'];
-        indexCell.style.color = expertColor;
+        indexCell.style.color = secondaryColor;
         indexCell.style.fontWeight = 'bold';
         row.appendChild(indexCell);
 
@@ -721,8 +838,26 @@ async function displaySecondLevelExperts(primaryExpertId) {
         const infoCell = document.createElement('td');
         const nameDiv = document.createElement('div');
         nameDiv.textContent = expert.name || expert['Expert Name'];
-        nameDiv.style.color = expertColor;
+        nameDiv.style.color = secondaryColor;
         nameDiv.style.fontWeight = 'bold';
+        nameDiv.style.cursor = 'pointer'; // 添加鼠标指针样式
+        
+        // 为二级专家名称添加点击事件
+        nameDiv.addEventListener('click', () => {
+            console.log('二级专家名称被点击，专家ID:', expert.index || expert['Expert Index']);
+            
+            // 清除之前的选中状态
+            document.querySelectorAll('.expert-decomposition .token-table td:nth-child(2) div:first-child').forEach(div => {
+                div.classList.remove('selected');
+            });
+            
+            // 添加选中状态
+            nameDiv.classList.add('selected');
+            
+            // 高亮对应的token（使用二级专家的颜色和加粗效果）
+            const secondaryExpertId = parseInt(expert.index || expert['Expert Index']);
+            highlightTokensForSecondaryExpert(secondaryExpertId, secondaryColor);
+        });
         
         const descDiv = document.createElement('div');
         descDiv.textContent = expert.description || expert['Function Description'];
@@ -731,27 +866,6 @@ async function displaySecondLevelExperts(primaryExpertId) {
         
         infoCell.appendChild(nameDiv);
         infoCell.appendChild(descDiv);
-        
-        // 为二级专家名称单元格添加点击事件，用于高亮对应token
-        infoCell.style.cursor = 'pointer';
-        infoCell.addEventListener('click', () => {
-            console.log('二级专家名称被点击，专家:', expert.name || expert['Expert Name']);
-
-            // 清除之前的选中状态
-            document.querySelectorAll('.expert-decomposition .token-table td:nth-child(2)').forEach(cell => {
-                cell.classList.remove('selected');
-            });
-            
-            // 添加选中状态
-            infoCell.classList.add('selected');
-
-            // 高亮对应的token（使用该二级专家的颜色）
-            highlightTokensForExpert(expert.index || expert['Expert Index'], expertColor);
-
-            // 高亮当前行
-            highlightRowAndButton(row, null, null);
-        });
-        
         row.appendChild(infoCell);
 
         // 将行添加到表格中
