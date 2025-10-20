@@ -1,200 +1,238 @@
 {
-  "mappings": {
-    "123": {
-      "color": "#DDA0DD",
-      "tokens": [
-        "comprehensive",
-        "analysis",
-        "evaluation",
-        "assessment",
-        "review",
-        "examination",
-        "investigation",
-        "study",
-        "survey",
-        "overview"
-      ]
+  "examples": {
+    "example1": {
+      "mappings": {
+        "247": {
+          "color": "#FF6B6B",
+          "tokens": [
+            "60",
+            "55",
+            "85",
+            "14.7",
+            "percent",
+            "temperature",
+            "humidity",
+            "psia",
+            "°F",
+            "relative"
+          ]
+        },
+        "583": {
+          "color": "#4ECDC4",
+          "tokens": [
+            "air",
+            "vapor",
+            "mixture",
+            "heated",
+            "relative",
+            "humidity",
+            "specific",
+            "heat",
+            "pressure"
+          ]
+        },
+        "916": {
+          "color": "#45B7D1",
+          "tokens": [
+            "Determine",
+            "initial",
+            "final",
+            "amount",
+            "added",
+            "per",
+            "lbm",
+            "dry",
+            "Assume"
+          ]
+        },
+        "134": {
+          "color": "#96CEB4",
+          "tokens": [
+            "An",
+            "°F",
+            "55",
+            "temperature",
+            "85",
+            "°F.",
+            "and",
+            "final",
+            "specific",
+            "(c)",
+            "per",
+            "Assume",
+            "to",
+            "a",
+            "of",
+            "psia."
+          ]
+        },
+        "672": {
+          "color": "#FFEAA7",
+          "tokens": [
+            "initially",
+            "°F",
+            "relative",
+            "humidity,",
+            "heated",
+            "until",
+            "reaches",
+            "Determine",
+            "and",
+            "specific",
+            "final",
+            "added",
+            "Assume",
+            "to",
+            "be",
+            "a",
+            "pressure",
+            "14.7"
+          ]
+        }
+      }
     },
-    "134": {
-      "color": "#96CEB4",
-      "tokens": [
-        "An",
-        "°F",
-        "55",
-        "temperature",
-        "85",
-        "°F.",
-        
-        "and",
-        "final",
-        "specific",
-        "final",
-        "(c)",
-        
-        "per",
-        "Assume",
-        "to",
-        "a",
-        "of",
-        "psia."
-      ]
+    "example2": {
+      "mappings": {
+        "247": {
+          "color": "#FF6B6B",
+          "tokens": [
+            "integral",
+            "definite",
+            "function",
+            "x^2",
+            "3x",
+            "Calculate",
+            "0",
+            "10"
+          ]
+        },
+        "583": {
+          "color": "#4ECDC4",
+          "tokens": [
+            "f(x)",
+            "=",
+            "+",
+            "-",
+            "5",
+            "from",
+            "to",
+            "x"
+          ]
+        },
+        "916": {
+          "color": "#45B7D1",
+          "tokens": [
+            "Determine",
+            "area",
+            "curve",
+            "verify",
+            "result",
+            "Show",
+            "all",
+            "steps"
+          ]
+        },
+        "134": {
+          "color": "#96CEB4",
+          "tokens": [
+            "the",
+            "of",
+            "and",
+            "Calculate",
+            "Determine",
+            "using",
+            "theorem",
+            "calculus"
+          ]
+        },
+        "672": {
+          "color": "#FFEAA7",
+          "tokens": [
+            "fundamental",
+            "theorem",
+            "calculus",
+            "intermediate",
+            "steps",
+            "calculation",
+            "verification",
+            "mathematical"
+          ]
+        }
+      }
     },
-    "247": {
-      "color": "#FF6B6B",
-      "tokens": [
-        "60",
-        "55",
-        "85",
-        "14.7",
-        "percent",
-        "temperature",
-        "humidity",
-        "psia",
-        "°F",
-        "relative"
-      ]
-    },
-    "291": {
-      "color": "#87CEEB",
-      "tokens": [
-        "computational",
-        "algorithm",
-        "processing",
-        "calculation",
-        "numerical",
-        "software",
-        "modeling",
-        "simulation",
-        "optimization"
-      ]
-    },
-    "365": {
-      "color": "#F0E68C",
-      "tokens": [
-        "research",
-        "methodology",
-        "approach",
-        "technique",
-        "experimental",
-        "validation",
-        "testing"
-      ]
-    },
-    "456": {
-      "color": "#FFB6C1",
-      "tokens": [
-        "solution",
-        "design",
-        "strategy",
-        "planning",
-        "architecture",
-        "framework",
-        "development",
-        "implementation",
-        "optimization",
-        "innovation"
-      ]
-    },
-    "527": {
-      "color": "#98FB98",
-      "tokens": [
-        "problem",
-        "solving",
-        "solution",
-        "troubleshooting",
-        "debugging",
-        "optimization",
-        "improvement"
-      ]
-    },
-    "583": {
-      "color": "#4ECDC4",
-      "tokens": [
-        "air",
-        "vapor",
-        "mixture",
-        "heated",
-        "relative",
-        "humidity",
-        "specific",
-        "heat",
-        "pressure"
-      ]
-    },
-    "672": {
-      "color": "#FFEAA7",
-      "tokens": [
-        "initially",
-        "°F",
-        "relative",
-        "humidity,",
-        "heated",
-        "until",
-        "reaches",
-        "Determine",
-        "and",
-        "specific",
-        
-        "final",
-        
-        "added",
-        "Assume",
-        "to",
-        "be",
-        "a",
-        "pressure",
-        "14.7"
-      ]
-    },
-    "748": {
-      "color": "#FFA07A",
-      "tokens": [
-        "data",
-        "processing",
-        "analysis",
-        "mining",
-        "extraction",
-        "transformation",
-        "visualization",
-        "pattern",
-        "trend",
-        "correlation"
-      ]
-    },
-    "814": {
-      "color": "#20B2AA",
-      "tokens": [
-        "knowledge",
-        "integration",
-        "synthesis",
-        "combination",
-        "fusion",
-        "coordination",
-        "collaboration",
-        "interdisciplinary",
-        "comprehensive",
-        "systematic"
-      ]
-    },
-    "916": {
-      "color": "#45B7D1",
-      "tokens": [
-        "Determine",
-        "initial",
-        "final",
-        "amount",
-        "added",
-        "per",
-        "lbm",
-        "dry",
-        "Assume"
-      ]
+    "example3": {
+      "mappings": {
+        "247": {
+          "color": "#FF6B6B",
+          "tokens": [
+            "dataset",
+            "customer",
+            "information",
+            "names",
+            "ages",
+            "purchase",
+            "history",
+            "preferences"
+          ]
+        },
+        "583": {
+          "color": "#4ECDC4",
+          "tokens": [
+            "data",
+            "cleaning",
+            "remove",
+            "duplicates",
+            "handle",
+            "missing",
+            "values",
+            "normalize"
+          ]
+        },
+        "916": {
+          "color": "#45B7D1",
+          "tokens": [
+            "Generate",
+            "summary",
+            "statistics",
+            "create",
+            "visualizations",
+            "for",
+            "analysis"
+          ]
+        },
+        "134": {
+          "color": "#96CEB4",
+          "tokens": [
+            "Process",
+            "the",
+            "containing",
+            "including",
+            "and",
+            "Perform",
+            "to",
+            "data"
+          ]
+        },
+        "672": {
+          "color": "#FFEAA7",
+          "tokens": [
+            "processing",
+            "analysis",
+            "transformation",
+            "visualization",
+            "pattern",
+            "trend",
+            "comprehensive",
+            "statistical"
+          ]
+        }
+      }
     }
   },
   "metadata": {
     "created_at": "2025-09-28T14:54:48.724Z",
-    "last_updated": "2025-09-28T22:54:48Z",
-    "version": "1.0",
-    "description": "专家组合与token映射关系存储文件"
+    "last_updated": "2025-10-15T12:00:00Z",
+    "version": "2.0",
+    "description": "一级专家组合与token映射关系存储文件，支持多个例子"
   }
 }

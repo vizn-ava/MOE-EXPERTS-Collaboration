@@ -2,6 +2,9 @@
 console.log('axios是否加载成功:', typeof axios);
 
 document.addEventListener('DOMContentLoaded', function () {
+    // 页面加载时自动加载例子数据
+    loadExamples();
+    
     // 页面加载时自动加载专家-token映射关系
     loadExpertTokenMapping();
     
@@ -16,6 +19,77 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
         console.error('未找到id为input-text的元素');
     }
+    
+    // 添加例子选择按钮的事件监听
+    const exampleButton = document.getElementById('example-button');
+    const exampleModal = document.getElementById('example-modal');
+    const exampleCloseButton = document.querySelector('.example-close');
+    
+    console.log('例子按钮:', exampleButton);
+    console.log('例子模态框:', exampleModal);
+    console.log('关闭按钮:', exampleCloseButton);
+    
+    if (exampleButton && exampleModal) {
+        exampleButton.addEventListener('click', function() {
+            console.log('点击了例子按钮');
+            exampleModal.style.display = 'block';
+        });
+    } else {
+        console.error('未找到例子按钮或模态框');
+    }
+    
+    // 关闭例子选择模态框
+    if (exampleCloseButton && exampleModal) {
+        exampleCloseButton.addEventListener('click', function() {
+            console.log('点击了关闭按钮');
+            exampleModal.style.display = 'none';
+        });
+    }
+    
+    // 点击例子模态框外部关闭（不影响其他模态框）
+    if (exampleModal) {
+        exampleModal.addEventListener('click', function(event) {
+            if (event.target === exampleModal) {
+                console.log('点击了模态框外部');
+                exampleModal.style.display = 'none';
+            }
+        });
+    }
+    
+    // 为每个例子项添加点击事件
+    const exampleItems = document.querySelectorAll('.example-item');
+    console.log('找到的例子项数量:', exampleItems.length);
+    
+    exampleItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const exampleId = this.getAttribute('data-example-id');
+            currentExampleId = exampleId;
+            console.log('选择的例子:', exampleId);
+            
+            // 加载对应的例子文本
+            if (examplesData.examples && examplesData.examples[exampleId]) {
+                const example = examplesData.examples[exampleId];
+                const inputTextArea = document.getElementById('input-text');
+                if (inputTextArea) {
+                    inputTextArea.value = example.text;
+                }
+            }
+            
+            // 重新加载一级专家映射关系
+            loadExpertTokenMapping();
+            
+            // 重新加载二级专家映射关系
+            loadSecondaryExpertTokenMapping();
+            
+            // 清空之前的显示
+            clearPreviousDisplay();
+            
+            // 关闭模态框
+            if (exampleModal) {
+                exampleModal.style.display = 'none';
+            }
+        });
+    });
 
     const addButtons = document.querySelectorAll('.add-button');
     const svg = document.getElementById('branch-svg');
@@ -72,43 +146,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const tokenTableBody = document.querySelector('.token-table tbody');
     tokenTableBody.innerHTML = ''; // 清空token列表
 
-    // 主题切换功能
-    const themeToggle = document.getElementById('theme-toggle');
-    if (themeToggle) {
-        themeToggle.addEventListener('click', function() {
-            document.body.classList.toggle('dark-theme');
-            if (document.body.classList.contains('dark-theme')) {
-                themeToggle.textContent = '☀️';
-            } else {
-                themeToggle.textContent = '🌙';
-            }
-            
-            // 重新渲染带颜色的内容
-            const inputText = document.getElementById('input-text').value;
-            if (inputText) {
-                // 如果有二级专家显示，则重新随机点亮
-                const secondLevelTableBody = document.querySelector('.expert-decomposition .token-table tbody');
-                if (secondLevelTableBody && secondLevelTableBody.children.length > 0) {
-                    highlightTokensRandomly();
-                } else {
-                    // 否则只显示分词结果
-                    displayInputText(inputText);
-                }
-            }
-            
-            // 重新渲染二级专家颜色
-            const secondLevelTableBody = document.querySelector('.expert-decomposition .token-table tbody');
-            if (secondLevelTableBody && secondLevelTableBody.children.length > 0) {
-                const experts = Array.from(secondLevelTableBody.children).map(row => ({
-                    'Expert Index': row.children[0].textContent,
-                    'Expert Name': row.children[1].children[0].textContent,
-                    'Function Description': row.children[1].children[1].textContent
-                }));
-                displaySecondLevelExperts(experts);
-            }
-        });
-    }
-
     // 语言切换功能
     let currentLanguage = 'en'; // 默认英文
     
@@ -117,15 +154,15 @@ document.addEventListener('DOMContentLoaded', function () {
             title: 'MOE Expert Collaboration Mining Visualization',
             lang_toggle_title: 'Switch Language',
             lang_toggle_label: '中文',
-            theme_toggle_title: 'Toggle Theme',
             guide_title: 'Usage Guide',
             guide_description: 'This page displays the activation and decomposition relationships of SuperExpert in MOE models, providing interactive visualization.',
-            guide_step1: 'Enter your text in the input box on the left and click "Confirm".',
-            guide_step2: 'Click the "+" buttons in the Token List to query the corresponding Top 5 first-level SuperExpert.',
-        guide_step3: 'Click the "+" buttons in the first-level SuperExpert to view Top 5 second-level SuperExpert and visualization branches.',
+            guide_step1: 'Select an example from the "Select Example" button.',
+            guide_step2: 'Click "Confirm" to analyze the text and display first-level SuperExpert.',
+            guide_step3: 'Click on expert names to view second-level SuperExpert and token highlights.',
             input_title: 'Input Text',
+            select_example: 'Select Example',
             confirm: 'Confirm',
-            input_placeholder: 'Enter your text here...',
+            input_placeholder: 'Please select an example first...',
             token_list: 'Token List',
             first_experts_title: 'First-Level SuperExpert',
             first_expert_index: 'Expert ID',
@@ -135,21 +172,28 @@ document.addEventListener('DOMContentLoaded', function () {
             second_expert_index: 'Expert ID',
             second_expert_name: 'Expert Name (Function)',
             network_title: 'Expert Group Mapping on MOE Network',
+            select_example_title: 'Select Example',
+            example1_title: 'Example 1: Thermodynamics Problem',
+            example1_desc: 'Air-vapor mixture thermodynamics calculation',
+            example2_title: 'Example 2: Mathematical Analysis',
+            example2_desc: 'Definite integral calculation and verification',
+            example3_title: 'Example 3: Data Processing Task',
+            example3_desc: 'Customer data cleaning and analysis',
             footer: '© 2025 MOE Visualization Platform'
         },
         zh: {
             title: 'MOE专家协作挖掘可视化展示',
             lang_toggle_title: '切换语言',
             lang_toggle_label: 'EN',
-            theme_toggle_title: '切换主题',
             guide_title: '使用指南',
             guide_description: '本页面用于展示MOE模型中专家组合的激活与分解关系，并提供交互式可视化。',
-            guide_step1: '在左侧输入框中输入文本，点击"确认"。',
-            guide_step2: '在Token列表中点击"+"查询对应的Top 5一级专家组合。',
-            guide_step3: '在一级专家组合中点击"+"查看Top 5二级专家组合与可视化分支。',
+            guide_step1: '点击"选择例子"按钮选择一个例子。',
+            guide_step2: '点击"确认"分析文本并显示一级专家组合。',
+            guide_step3: '点击专家名称查看二级专家组合与token高亮。',
             input_title: '输入文本',
+            select_example: '选择例子',
             confirm: '确认',
-            input_placeholder: '在此输入句子...',
+            input_placeholder: '请先选择一个例子...',
             token_list: 'Token列表',
             first_experts_title: '一级专家组合',
             first_expert_index: '专家ID',
@@ -159,6 +203,13 @@ document.addEventListener('DOMContentLoaded', function () {
             second_expert_index: '专家ID',
             second_expert_name: '专家名称（功能）',
             network_title: '专家组在MOE网络上的映射',
+            select_example_title: '选择例子',
+            example1_title: '例子1：热力学问题',
+            example1_desc: '空气-水蒸气混合物热力学计算',
+            example2_title: '例子2：数学分析',
+            example2_desc: '定积分计算与验证',
+            example3_title: '例子3：数据处理任务',
+            example3_desc: '客户数据清洗与分析',
             footer: '© 2025 MOE可视化平台'
         }
     };
@@ -338,32 +389,18 @@ async function processInput() {
     }
 }
 
-// 定义5种主题一致的颜色
-const EXPERT_COLORS = {
-    light: [
-        '#FF6B6B', // 红色
-        '#4ECDC4', // 青色
-        '#45B7D1', // 蓝色
-        '#96CEB4', // 绿色
-        '#FFEAA7'  // 黄色
-    ],
-    dark: [
-        '#FF8A80', // 亮红色
-        '#80CBC4', // 亮青色
-        '#81D4FA', // 亮蓝色
-        '#A5D6A7', // 亮绿色
-        '#FFF59D'  // 亮黄色
-    ]
-};
+// 定义5种专家颜色
+const EXPERT_COLORS = [
+    '#FF6B6B', // 红色
+    '#4ECDC4', // 青色
+    '#45B7D1', // 蓝色
+    '#96CEB4', // 绿色
+    '#FFEAA7'  // 黄色
+];
 
-// 获取当前主题的颜色
+// 获取专家颜色
 function getExpertColors() {
-    const body = document.body;
-    if (!body) {
-        return EXPERT_COLORS.light; // 默认返回亮色主题
-    }
-    const isDarkTheme = body.classList.contains('dark-theme');
-    return isDarkTheme ? EXPERT_COLORS.dark : EXPERT_COLORS.light;
+    return EXPERT_COLORS;
 }
 
 // 获取当前选中的主专家颜色
@@ -421,6 +458,10 @@ let originalTokens = [];
 let expertTokenMapping = new Map();
 // 存储二级专家-token映射关系
 let secondaryExpertTokenMapping = new Map();
+// 存储所有例子数据
+let examplesData = {};
+// 当前选择的例子ID
+let currentExampleId = 'example1';
 
 // 新函数：显示分词后的token列表到token list区域（初始不点亮颜色）
 function displayInputText(inputText) {
@@ -540,41 +581,118 @@ function displayTokenList(tokenVectors) {
     console.log('displayTokenList函数已废弃，现在直接显示输入文本');
 }
 
-// 从服务器加载专家-token映射关系
+// 从本地文件加载专家-token映射关系（根据当前选择的例子）
 async function loadExpertTokenMapping() {
     try {
-        const response = await fetch('http://localhost:3000/api/expert-token-mapping');
+        const response = await fetch('expert_token_mapping.json');
         if (response.ok) {
             const data = await response.json();
-            if (data.mappings) {
-                // 将JSON对象转换为Map
+            
+            // 检查新的数据结构（支持多个例子）
+            if (data.examples && data.examples[currentExampleId]) {
+                const exampleData = data.examples[currentExampleId];
+                if (exampleData.mappings) {
+                    // 将JSON对象转换为Map
+                    expertTokenMapping.clear();
+                    for (const [key, value] of Object.entries(exampleData.mappings)) {
+                        expertTokenMapping.set(parseInt(key), value);
+                    }
+                    console.log(`例子 ${currentExampleId} 的一级专家-token映射关系加载成功:`, expertTokenMapping);
+                }
+            }
+            // 兼容旧的数据结构
+            else if (data.mappings) {
                 expertTokenMapping.clear();
                 for (const [key, value] of Object.entries(data.mappings)) {
                     expertTokenMapping.set(parseInt(key), value);
                 }
-                console.log('专家-token映射关系加载成功:', expertTokenMapping);
+                console.log('一级专家-token映射关系加载成功（旧格式）:', expertTokenMapping);
             }
         } else {
-            console.warn('加载映射关系失败，使用空映射');
+            console.warn('加载一级专家映射关系失败，使用空映射');
         }
     } catch (error) {
-        console.error('加载专家-token映射关系时出错:', error);
+        console.error('加载一级专家-token映射关系时出错:', error);
     }
 }
 
-// 从服务器加载二级专家-token映射关系
+// 加载例子数据
+async function loadExamples() {
+    try {
+        const response = await fetch('examples.json');
+        if (response.ok) {
+            examplesData = await response.json();
+            console.log('例子数据加载成功:', examplesData);
+            
+            // 更新选择器的选项文本（支持多语言）
+            updateExampleSelectorOptions();
+        } else {
+            console.warn('加载例子数据失败');
+        }
+    } catch (error) {
+        console.error('加载例子数据时出错:', error);
+    }
+}
+
+// 更新例子选择器的选项文本
+function updateExampleSelectorOptions() {
+    const exampleSelector = document.getElementById('example-selector');
+    if (!exampleSelector || !examplesData.examples) return;
+    
+    // 这里可以根据当前语言更新选项文本
+    // 暂时保持HTML中的硬编码文本
+}
+
+// 清空之前的显示
+function clearPreviousDisplay() {
+    // 清空token显示
+    const tokenDisplay = document.getElementById('token-display');
+    if (tokenDisplay) {
+        tokenDisplay.textContent = '';
+    }
+    
+    // 清空一级专家表格
+    const firstLevelTableBody = document.querySelector('.expert-explanation .token-table tbody');
+    if (firstLevelTableBody) {
+        firstLevelTableBody.innerHTML = '';
+    }
+    
+    // 清空二级专家表格
+    const secondLevelTableBody = document.querySelector('.expert-decomposition .token-table tbody');
+    if (secondLevelTableBody) {
+        secondLevelTableBody.innerHTML = '';
+    }
+    
+    // 清空原始tokens
+    originalTokens = [];
+}
+
+// 从服务器加载二级专家-token映射关系（根据当前选择的例子）
 async function loadSecondaryExpertTokenMapping() {
     try {
         const response = await fetch('secondary_expert_token_mapping.json');
         if (response.ok) {
             const data = await response.json();
-            if (data.secondary_mappings) {
-                // 将JSON对象转换为Map
+            
+            // 检查新的数据结构（支持多个例子）
+            if (data.examples && data.examples[currentExampleId]) {
+                const exampleData = data.examples[currentExampleId];
+                if (exampleData.secondary_mappings) {
+                    // 将JSON对象转换为Map
+                    secondaryExpertTokenMapping.clear();
+                    for (const [key, value] of Object.entries(exampleData.secondary_mappings)) {
+                        secondaryExpertTokenMapping.set(parseInt(key), value);
+                    }
+                    console.log(`例子 ${currentExampleId} 的二级专家-token映射关系加载成功:`, secondaryExpertTokenMapping);
+                }
+            } 
+            // 兼容旧的数据结构
+            else if (data.secondary_mappings) {
                 secondaryExpertTokenMapping.clear();
                 for (const [key, value] of Object.entries(data.secondary_mappings)) {
                     secondaryExpertTokenMapping.set(parseInt(key), value);
                 }
-                console.log('二级专家-token映射关系加载成功:', secondaryExpertTokenMapping);
+                console.log('二级专家-token映射关系加载成功（旧格式）:', secondaryExpertTokenMapping);
             }
         } else {
             console.warn('加载二级专家映射关系失败，使用空映射');

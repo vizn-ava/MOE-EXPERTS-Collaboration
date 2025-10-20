@@ -775,6 +775,111 @@ footer {
     margin: 0 0 24px 0;
 }
 
+/* 按钮组样式 */
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+
+/* 例子选择按钮样式 - 与确认按钮完全一致 */
+#example-button {
+    background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 10px 32px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px 0 rgba(44,62,80,0.08);
+    transition: background 0.2s, box-shadow 0.2s;
+    font-family: inherit;
+}
+
+#example-button:hover {
+    background: linear-gradient(90deg, #fc5c7d 0%, #6a82fb 100%);
+    box-shadow: 0 4px 16px 0 rgba(44,62,80,0.16);
+}
+
+/* 例子选择模态框样式 */
+.example-modal-content {
+    max-width: 600px;
+}
+
+.example-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.example-item {
+    display: flex;
+    align-items: center;
+    padding: 24px 30px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 5%);
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.example-item:hover {
+    background: linear-gradient(135deg, #6a82fb 0%, #fc5c7d 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(106, 130, 251, 0.3);
+    border-color: transparent;
+}
+
+.example-item:hover .example-info h3,
+.example-item:hover .example-info p {
+    color: white;
+}
+
+.example-info h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #232946;
+    transition: color 0.3s ease;
+}
+
+.example-info p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+/* 暗色主题下的例子选择按钮样式 */
+.dark-theme #example-button {
+    background: linear-gradient(90deg, #232946 0%, #fc5c7d 100%);
+}
+
+.dark-theme #example-button:hover {
+    background: linear-gradient(90deg, #fc5c7d 0%, #232946 100%);
+}
+
+.dark-theme .example-item {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 5%);
+}
+
+.dark-theme .example-item:hover {
+    background: linear-gradient(135deg, #6a82fb 0%, #fc5c7d 100%);
+}
+
+.dark-theme .example-item:hover .example-info h3,
+.dark-theme .example-item:hover .example-info p {
+    color: white;
+}
+
+.dark-theme .example-info h3 {
+    color: #f5f7fa;
+}
+
+.dark-theme .example-info p {
+    color: #aeb8c4;
+}
+
 #decompose-button {
     display: block;
 }
@@ -796,37 +901,11 @@ footer {
     border-radius: 8px;
 }
 
-/* 主题切换按钮样式 */
-.theme-toggle {
-    position: absolute;
-    top: 32px;
-    right: 48px;
-    z-index: 10;
-    background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    width: 44px;
-    height: 44px;
-    font-size: 1.5rem;
-    box-shadow: 0 2px 8px 0 rgba(44,62,80,0.12);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s, box-shadow 0.2s;
-}
-.theme-toggle:hover {
-    background: linear-gradient(90deg, #fc5c7d 0%, #6a82fb 100%);
-    box-shadow: 0 4px 16px 0 rgba(44,62,80,0.18);
-}
-
-
-/* 语言切换按钮样式：与主题按钮并排，右上角更靠左一点 */
+/* 语言切换按钮样式：右上角 */
 .lang-toggle {
     position: absolute;
     top: 34px;
-    right: 104px;
+    right: 48px;
     z-index: 10;
     background: #ffffff;
     color: #232946;
@@ -906,5 +985,5 @@ footer {
 
 /* Token表格行高亮样式 - 覆盖内联样式 */
 /* 移除了所有覆盖淡蓝色背景的渐变样式，保持JavaScript设置的统一淡蓝色背景 */
-}
+
 

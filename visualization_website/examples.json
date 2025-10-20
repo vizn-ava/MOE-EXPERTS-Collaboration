@@ -1,0 +1,28 @@
+{
+  "examples": {
+    "example1": {
+      "id": "example1",
+      "name": "Thermodynamics Problem",
+      "name_zh": "热力学问题",
+      "text": "An air-vapor mixture, initially at 60 °F and 55 percent relative humidity, is heated until its temperature reaches 85 °F. Determine (a) the initial and final specific humidities, (b) the final relative humidity, and (c) the amount of heat added per lbm of dry air. Assume the mixture to be at a pressure of 14.7 psia."
+    },
+    "example2": {
+      "id": "example2",
+      "name": "Mathematical Analysis",
+      "name_zh": "数学分析问题",
+      "text": "Calculate the definite integral of the function f(x) = x^2 + 3x - 5 from x = 0 to x = 10. Determine the area under the curve and verify the result using the fundamental theorem of calculus. Show all intermediate steps in your calculation."
+    },
+    "example3": {
+      "id": "example3",
+      "name": "Data Processing Task",
+      "name_zh": "数据处理任务",
+      "text": "Process the dataset containing customer information including names, ages, purchase history, and preferences. Perform data cleaning to remove duplicates, handle missing values, and normalize the data. Generate summary statistics and create visualizations for analysis."
+    }
+  },
+  "metadata": {
+    "version": "1.0",
+    "created_at": "2025-10-15T00:00:00Z",
+    "description": "Example texts for MOE Expert visualization"
+  }
+}
+

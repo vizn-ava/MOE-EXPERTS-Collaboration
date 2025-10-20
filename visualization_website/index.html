@@ -13,7 +13,6 @@
     <header>
         <h1 data-i18n="title">MOE Expert Collaboration Mining Visualization</h1>
         <button id="lang-toggle" class="lang-toggle" title="Switch Language">中文</button>
-        <button id="theme-toggle" class="theme-toggle" title="切换风格" data-i18n-title="theme_toggle_title">🌙</button>
     </header>
 
     <div class="main-content">
@@ -33,8 +32,14 @@
         <!-- 第一行：输入模块 + token列表 -->
         <div class="row first-row">
             <div class="input-module">
-                <h2><span data-i18n="input_title">Input Text</span> <button id="confirm-button" data-i18n="confirm">Confirm</button></h2>
-                <textarea id="input-text" placeholder="Enter your text here..." data-i18n-placeholder="input_placeholder">An air-vapor mixture, initially at 60 °F and 55 percent relative humidity, is heated until its temperature reaches 85 °F. Determine (a) the initial and final specific humidities, (b) the final relative humidity, and (c) the amount of heat added per lbm of dry air. Assume the mixture to be at a pressure of 14.7 psia.</textarea>
+                <h2>
+                    <span data-i18n="input_title">Input Text</span> 
+                    <div class="button-group">
+                        <button id="example-button" data-i18n="select_example">Select Example</button>
+                        <button id="confirm-button" data-i18n="confirm">Confirm</button>
+                    </div>
+                </h2>
+                <textarea id="input-text" placeholder="Please select an example first..." data-i18n-placeholder="input_placeholder"></textarea>
             </div>
             <div class="token-list">
                 <h2 data-i18n="token_list">Token List</h2>
@@ -82,6 +87,38 @@
             </div>
         </div>
         <!-- 第三行：MOE网络映射 - 移除，改为悬浮窗显示 -->
+    </div>
+
+    <!-- 例子选择模态框 -->
+    <div id="example-modal" class="modal">
+        <div class="modal-content example-modal-content">
+            <div class="modal-header">
+                <h2 data-i18n="select_example_title">Select Example</h2>
+                <span class="close-button example-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="example-list">
+                    <div class="example-item" data-example-id="example1">
+                        <div class="example-info">
+                            <h3 data-i18n="example1_title">Example 1: Thermodynamics Problem</h3>
+                            <p data-i18n="example1_desc">Air-vapor mixture thermodynamics calculation</p>
+                        </div>
+                    </div>
+                    <div class="example-item" data-example-id="example2">
+                        <div class="example-info">
+                            <h3 data-i18n="example2_title">Example 2: Mathematical Analysis</h3>
+                            <p data-i18n="example2_desc">Definite integral calculation and verification</p>
+                        </div>
+                    </div>
+                    <div class="example-item" data-example-id="example3">
+                        <div class="example-info">
+                            <h3 data-i18n="example3_title">Example 3: Data Processing Task</h3>
+                            <p data-i18n="example3_desc">Customer data cleaning and analysis</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- 悬浮窗模态框 -->

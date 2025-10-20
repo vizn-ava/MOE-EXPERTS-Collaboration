@@ -1,120 +1,337 @@
 {
-  "secondary_mappings": {
-    "134": {
-      "parent_expert": "247",
-      "color": "#96CEB4",
-      "tokens": [
-        "°F",
-        "temperature",
-        "85"
-      ]
+  "examples": {
+    "example1": {
+      "secondary_mappings": {
+        "134": {
+          "parent_expert": "247",
+          "color": "#96CEB4",
+          "tokens": [
+            "°F",
+            "temperature",
+            "85"
+          ]
+        },
+        "672": {
+          "parent_expert": "247", 
+          "color": "#FFEAA7",
+          "tokens": [
+            "60",
+            "°F",
+            "relative",
+            "55",
+            "heated"
+          ]
+        },
+        "859": {
+          "parent_expert": "247",
+          "color": "#FFB6C1", 
+          "tokens": [
+            "pressure",
+            "14.7",
+            "psia",
+            "final",
+            "Assume"
+          ]
+        },
+        "291": {
+          "parent_expert": "583",
+          "color": "#87CEEB",
+          "tokens": [
+            "60",
+            "and",
+            "temperature",
+            "85",
+            "°F."
+          ]
+        },
+        "748": {
+          "parent_expert": "583",
+          "color": "#FFA07A", 
+          "tokens": [
+            "specific",
+            "final",
+            "relative",
+            "and",
+            "(c)"
+          ]
+        },
+        "814": {
+          "parent_expert": "583",
+          "color": "#20B2AA",
+          "tokens": [
+            "lbm",
+            "of",
+            "Assume",
+            "pressure",
+            "14.7"
+          ]
+        },
+        "365": {
+          "parent_expert": "916",
+          "color": "#F0E68C",
+          "tokens": [
+            "mixture,",
+            "relative",
+            "heated",
+            "temperature",
+            "°F."
+          ]
+        },
+        "527": {
+          "parent_expert": "916",
+          "color": "#98FB98",
+          "tokens": [
+            "Determine",
+            "(a)",
+            "initial",
+            "final",
+            "(b)"
+          ]
+        },
+        "123": {
+          "parent_expert": "134",
+          "color": "#DDA0DD",
+          "tokens": [
+            "comprehensive",
+            "analysis",
+            "evaluation",
+            "assessment",
+            "review"
+          ]
+        },
+        "456": {
+          "parent_expert": "134",
+          "color": "#FFB6C1",
+          "tokens": [
+            "An",
+            "and",
+            "final",
+            "specific",
+            "per"
+          ]
+        }
+      }
     },
-    "672": {
-      "parent_expert": "247", 
-      "color": "#FFEAA7",
-      "tokens": [
-        "60",
-        "°F",
-        "relative",
-        "55",
-        "heated"
-      ]
+    "example2": {
+      "secondary_mappings": {
+        "134": {
+          "parent_expert": "247",
+          "color": "#96CEB4",
+          "tokens": [
+            "integral",
+            "function",
+            "x^2"
+          ]
+        },
+        "672": {
+          "parent_expert": "247",
+          "color": "#FFEAA7",
+          "tokens": [
+            "Calculate",
+            "definite",
+            "from",
+            "to",
+            "10"
+          ]
+        },
+        "859": {
+          "parent_expert": "247",
+          "color": "#FFB6C1",
+          "tokens": [
+            "area",
+            "curve",
+            "verify",
+            "result"
+          ]
+        },
+        "291": {
+          "parent_expert": "583",
+          "color": "#87CEEB",
+          "tokens": [
+            "f(x)",
+            "3x",
+            "-",
+            "5",
+            "="
+          ]
+        },
+        "748": {
+          "parent_expert": "583",
+          "color": "#FFA07A",
+          "tokens": [
+            "x",
+            "0",
+            "10",
+            "Determine"
+          ]
+        },
+        "814": {
+          "parent_expert": "583",
+          "color": "#20B2AA",
+          "tokens": [
+            "fundamental",
+            "theorem",
+            "calculus",
+            "Show"
+          ]
+        },
+        "365": {
+          "parent_expert": "916",
+          "color": "#F0E68C",
+          "tokens": [
+            "intermediate",
+            "steps",
+            "calculation",
+            "using"
+          ]
+        },
+        "527": {
+          "parent_expert": "916",
+          "color": "#98FB98",
+          "tokens": [
+            "Determine",
+            "area",
+            "verify",
+            "Show",
+            "all"
+          ]
+        },
+        "123": {
+          "parent_expert": "134",
+          "color": "#DDA0DD",
+          "tokens": [
+            "Calculate",
+            "analysis",
+            "verification",
+            "mathematical"
+          ]
+        },
+        "456": {
+          "parent_expert": "134",
+          "color": "#FFB6C1",
+          "tokens": [
+            "the",
+            "and",
+            "of",
+            "in",
+            "your"
+          ]
+        }
+      }
     },
-    "859": {
-      "parent_expert": "247",
-      "color": "#FFB6C1", 
-      "tokens": [
-        "pressure",
-        "14.7",
-        "psia",
-        "final",
-        "Assume"
-      ]
-    },
-    "291": {
-      "parent_expert": "583",
-      "color": "#87CEEB",
-      "tokens": [
-        "60",
-        "and",
-        "temperature",
-        "85",
-        "°F."
-      ]
-    },
-    "748": {
-      "parent_expert": "583",
-      "color": "#FFA07A", 
-      "tokens": [
-        "specific",
-        "final",
-        "relative",
-        "and",
-        "(c)"
-      ]
-    },
-    "814": {
-      "parent_expert": "583",
-      "color": "#20B2AA",
-      "tokens": [
-        "lbm",
-        "of",
-        "Assume",
-        "pressure",
-        "14.7"
-      ]
-    },
-    "365": {
-      "parent_expert": "916",
-      "color": "#F0E68C",
-      "tokens": [
-        "mixture,",
-        "relative",
-        "heated",
-        "temperature",
-        "°F."
-      ]
-    },
-    "527": {
-      "parent_expert": "916",
-      "color": "#98FB98",
-      "tokens": [
-        "Determine",
-        "(a)",
-        "initial",
-        "final",
-        "(b)"
-      ]
-    },
-    "123": {
-      "parent_expert": "134",
-      "color": "#DDA0DD",
-      "tokens": [
-        "comprehensive",
-        "analysis",
-        "evaluation",
-        "assessment",
-        "review"
-      ]
-    },
-    "456": {
-      "parent_expert": "134",
-      "color": "#FFB6C1",
-      "tokens": [
-        "An",
-        "and",
-        "final",
-        "specific",
-        "per"
-      ]
+    "example3": {
+      "secondary_mappings": {
+        "134": {
+          "parent_expert": "247",
+          "color": "#96CEB4",
+          "tokens": [
+            "dataset",
+            "customer",
+            "information"
+          ]
+        },
+        "672": {
+          "parent_expert": "247",
+          "color": "#FFEAA7",
+          "tokens": [
+            "Process",
+            "containing",
+            "including",
+            "names",
+            "ages"
+          ]
+        },
+        "859": {
+          "parent_expert": "247",
+          "color": "#FFB6C1",
+          "tokens": [
+            "purchase",
+            "history",
+            "preferences",
+            "data"
+          ]
+        },
+        "291": {
+          "parent_expert": "583",
+          "color": "#87CEEB",
+          "tokens": [
+            "data",
+            "cleaning",
+            "remove",
+            "duplicates"
+          ]
+        },
+        "748": {
+          "parent_expert": "583",
+          "color": "#FFA07A",
+          "tokens": [
+            "handle",
+            "missing",
+            "values",
+            "normalize",
+            "the"
+          ]
+        },
+        "814": {
+          "parent_expert": "583",
+          "color": "#20B2AA",
+          "tokens": [
+            "Perform",
+            "to",
+            "and",
+            "data"
+          ]
+        },
+        "365": {
+          "parent_expert": "916",
+          "color": "#F0E68C",
+          "tokens": [
+            "Generate",
+            "summary",
+            "statistics",
+            "create"
+          ]
+        },
+        "527": {
+          "parent_expert": "916",
+          "color": "#98FB98",
+          "tokens": [
+            "visualizations",
+            "for",
+            "analysis",
+            "Generate"
+          ]
+        },
+        "123": {
+          "parent_expert": "134",
+          "color": "#DDA0DD",
+          "tokens": [
+            "Process",
+            "analysis",
+            "comprehensive",
+            "statistical"
+          ]
+        },
+        "456": {
+          "parent_expert": "134",
+          "color": "#FFB6C1",
+          "tokens": [
+            "the",
+            "and",
+            "data",
+            "for"
+          ]
+        }
+      }
     }
   },
   "metadata": {
     "created_at": "2025-01-27T12:00:00Z",
-    "last_updated": "2025-01-27T12:00:00Z", 
-    "version": "1.0",
-    "description": "二级专家与token映射关系存储文件，每个二级专家的token都是其对应一级专家token的子集",
+    "last_updated": "2025-10-15T12:00:00Z", 
+    "version": "2.0",
+    "description": "二级专家与token映射关系存储文件，支持多个例子，每个二级专家的token都是其对应一级专家token的子集",
     "structure": {
+      "examples": "不同例子的映射集合",
       "secondary_mappings": "二级专家ID到token映射的对象",
       "parent_expert": "对应的一级专家ID",
       "color": "二级专家的显示颜色",
