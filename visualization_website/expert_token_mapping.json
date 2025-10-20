@@ -1,238 +1,4420 @@
 {
   "examples": {
-    "example1": {
+    "biology_1": {
       "mappings": {
-        "247": {
-          "color": "#FF6B6B",
-          "tokens": [
-            "60",
-            "55",
-            "85",
-            "14.7",
-            "percent",
-            "temperature",
-            "humidity",
-            "psia",
-            "°F",
-            "relative"
-          ]
-        },
-        "583": {
-          "color": "#4ECDC4",
-          "tokens": [
-            "air",
-            "vapor",
-            "mixture",
-            "heated",
-            "relative",
-            "humidity",
-            "specific",
-            "heat",
-            "pressure"
-          ]
-        },
-        "916": {
+        "543": {
           "color": "#45B7D1",
           "tokens": [
-            "Determine",
-            "initial",
-            "final",
-            "amount",
-            "added",
-            "per",
-            "lbm",
-            "dry",
-            "Assume"
+            " tall",
+            " is",
+            " to",
+            " is",
+            " to",
+            " a",
+            " tall",
+            " heter",
+            " is",
+            " a",
+            " heter",
+            " phen",
+            " in",
+            " progen"
           ]
         },
-        "134": {
+        "574": {
           "color": "#96CEB4",
           "tokens": [
-            "An",
-            "°F",
-            "55",
-            "temperature",
-            "85",
-            "°F.",
-            "and",
-            "final",
-            "specific",
-            "(c)",
-            "per",
-            "Assume",
-            "to",
-            "a",
-            "of",
-            "psia."
+            " dominant",
+            " dwarf",
+            " yellow",
+            " dominant",
+            " green",
+            " plant",
+            " green",
+            " dwarf",
+            " plant",
+            " yellow"
           ]
         },
-        "672": {
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "y",
+            "y",
+            "y",
+            "y"
+          ]
+        },
+        "689": {
           "color": "#FFEAA7",
           "tokens": [
-            "initially",
-            "°F",
-            "relative",
-            "humidity,",
-            "heated",
-            "until",
-            "reaches",
-            "Determine",
-            "and",
-            "specific",
-            "final",
-            "added",
-            "Assume",
-            "to",
-            "be",
-            "a",
-            "pressure",
-            "14.7"
+            "g",
+            "g",
+            "g"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            "ic"
           ]
         }
       }
     },
-    "example2": {
+    "biology_2": {
       "mappings": {
-        "247": {
-          "color": "#FF6B6B",
-          "tokens": [
-            "integral",
-            "definite",
-            "function",
-            "x^2",
-            "3x",
-            "Calculate",
-            "0",
-            "10"
-          ]
-        },
-        "583": {
+        "977": {
           "color": "#4ECDC4",
           "tokens": [
-            "f(x)",
-            "=",
-            "+",
-            "-",
-            "5",
-            "from",
-            "to",
-            "x"
+            " cell",
+            " cell",
+            " wall",
+            " cell",
+            " wall",
+            " treatment",
+            " cell",
+            " wall",
+            " cell"
           ]
         },
-        "916": {
-          "color": "#45B7D1",
-          "tokens": [
-            "Determine",
-            "area",
-            "curve",
-            "verify",
-            "result",
-            "Show",
-            "all",
-            "steps"
-          ]
-        },
-        "134": {
+        "574": {
           "color": "#96CEB4",
           "tokens": [
-            "the",
-            "of",
-            "and",
-            "Calculate",
-            "Determine",
-            "using",
-            "theorem",
-            "calculus"
+            " bacterial",
+            " plasma",
+            " membrane",
+            " enzyme",
+            " bacteria",
+            " live",
+            " bacteria",
+            " plants"
           ]
         },
-        "672": {
-          "color": "#FFEAA7",
+        "543": {
+          "color": "#45B7D1",
           "tokens": [
-            "fundamental",
-            "theorem",
-            "calculus",
-            "intermediate",
-            "steps",
-            "calculation",
-            "verification",
-            "mathematical"
+            " a",
+            " is",
+            " an",
+            " dissol",
+            " is",
+            " bi"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " Explain"
           ]
         }
       }
     },
-    "example3": {
+    "biology_3": {
       "mappings": {
-        "247": {
-          "color": "#FF6B6B",
-          "tokens": [
-            "dataset",
-            "customer",
-            "information",
-            "names",
-            "ages",
-            "purchase",
-            "history",
-            "preferences"
-          ]
-        },
-        "583": {
-          "color": "#4ECDC4",
-          "tokens": [
-            "data",
-            "cleaning",
-            "remove",
-            "duplicates",
-            "handle",
-            "missing",
-            "values",
-            "normalize"
-          ]
-        },
-        "916": {
+        "543": {
           "color": "#45B7D1",
           "tokens": [
-            "Generate",
-            "summary",
-            "statistics",
-            "create",
-            "visualizations",
-            "for",
-            "analysis"
+            " hom",
+            " tall",
+            " a",
+            " hom",
+            " tall",
+            " is",
+            " to",
+            " alle",
+            " phen",
+            " gen",
+            " in"
           ]
         },
-        "134": {
+        "574": {
           "color": "#96CEB4",
           "tokens": [
-            "Process",
-            "the",
-            "containing",
-            "including",
-            "and",
-            "Perform",
-            "to",
-            "data"
+            " plant",
+            " dwarf",
+            " plant",
+            " dominant",
+            " dwarf",
+            " generations"
           ]
         },
-        "672": {
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " gene",
+            "ic",
+            "ic"
+          ]
+        },
+        "689": {
           "color": "#FFEAA7",
           "tokens": [
-            "processing",
-            "analysis",
-            "transformation",
-            "visualization",
-            "pattern",
-            "trend",
-            "comprehensive",
-            "statistical"
+            "g",
+            "g"
+          ]
+        }
+      }
+    },
+    "biology_4": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " tall",
+            " is",
+            " to",
+            " is",
+            " to",
+            " a",
+            " tall",
+            " hom",
+            " is",
+            " a",
+            " phen",
+            " in"
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " dominant",
+            " dwarf",
+            " yellow",
+            " dominant",
+            " green",
+            " yellow",
+            " plant",
+            " dwarf",
+            " green",
+            " plant"
+          ]
+        },
+        "689": {
+          "color": "#FFEAA7",
+          "tokens": [
+            "g",
+            "g"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "y"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            "ic"
+          ]
+        }
+      }
+    },
+    "biology_5": {
+      "mappings": {
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " structural",
+            " genes",
+            " genes",
+            " genes",
+            " genes"
+          ]
+        },
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            "or"
+          ]
+        }
+      }
+    },
+    "biology_6": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " in",
+            " a",
+            " a",
+            " a",
+            " an",
+            " to",
+            " a",
+            " a",
+            " a"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " horses",
+            " pair",
+            " gait",
+            " horses",
+            " gait",
+            " gait"
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " genes",
+            " inheritance",
+            " trait"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " controls"
+          ]
+        }
+      }
+    },
+    "biology_7": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " as",
+            " in",
+            " bacter",
+            " as",
+            " to"
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " plants",
+            " animals"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "er"
+          ]
+        }
+      }
+    },
+    "biology_8": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " mitochond",
+            " chlor",
+            " is"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "ria",
+            "s"
+          ]
+        }
+      }
+    },
+    "biology_9": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " is",
+            " a"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " gene",
+            " pool"
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " genetic"
+          ]
+        }
+      }
+    },
+    "biology_10": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " in",
+            " a",
+            " is",
+            " alle",
+            " alle",
+            " A",
+            " or",
+            " cm",
+            " to",
+            " a",
+            " cm",
+            " is",
+            " gen",
+            " A"
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " plant",
+            " species",
+            " environmental"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " "
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "les"
+          ]
+        }
+      }
+    },
+    "biology_11": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " a",
+            " in",
+            " b"
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " reproduction",
+            " vascular",
+            " plants"
+          ]
+        }
+      }
+    },
+    "biology_12": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " gen",
+            " phen",
+            " in",
+            " a",
+            " tall",
+            " a",
+            " progen",
+            " progen",
+            " a",
+            " hom",
+            " tall",
+            " progen"
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " dominant",
+            " plant",
+            " dwarf",
+            " plant",
+            " plant"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "y",
+            "y",
+            "y"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            "ic",
+            "ic"
+          ]
+        },
+        "689": {
+          "color": "#FFEAA7",
+          "tokens": [
+            "g",
+            "g"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " "
+          ]
+        }
+      }
+    },
+    "biology_13": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " an",
+            " a",
+            " chrom",
+            " in",
+            " a",
+            " b",
+            " polar",
+            " c",
+            " polar",
+            " is",
+            " dipl"
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " animal",
+            "o",
+            " animal"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " "
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " Assume"
+          ]
+        }
+      }
+    },
+    "biology_14": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " me",
+            " chrom",
+            " a",
+            " b",
+            " me",
+            " c",
+            " me"
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " animal",
+            " division",
+            " division"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " "
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            "is"
+          ]
+        }
+      }
+    },
+    "biology_15": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " an",
+            " a",
+            " chrom",
+            " in",
+            " polar",
+            " polar",
+            " is",
+            " dipl"
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " animal",
+            "o",
+            " animal"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " "
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " Assume"
+          ]
+        }
+      }
+    },
+    "biology_16": {
+      "mappings": {
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "Y",
+            "l",
+            "y",
+            "Y",
+            "l",
+            "y",
+            "Y",
+            "l",
+            "Y",
+            "l",
+            "Y",
+            "y"
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " yellow",
+            " mice",
+            " yellow",
+            " yellow",
+            " yellow",
+            " yellow",
+            " yellow"
+          ]
+        },
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " in",
+            " an",
+            " a",
+            " to"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " "
+          ]
+        }
+      }
+    },
+    "biology_17": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " a",
+            " dipl",
+            " me",
+            " me",
+            " me"
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " animal",
+            " division",
+            " division"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " "
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            "is"
+          ]
+        }
+      }
+    },
+    "biology_18": {
+      "mappings": {
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "ast",
+            "gen"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " pool"
+          ]
+        }
+      }
+    },
+    "biology_19": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " osm"
+          ]
+        }
+      }
+    },
+    "biology_20": {
+      "mappings": {
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " vitro"
+          ]
+        }
+      }
+    },
+    "business_1": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " in",
+            " a",
+            " it",
+            " to",
+            " to",
+            " in",
+            " as",
+            " a"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            "ers",
+            " price",
+            " dollars",
+            " price"
+          ]
+        },
+        "411": {
+          "color": "#6C5CE7",
+          "tokens": [
+            " Store",
+            " sale",
+            " sale"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " sold",
+            " store",
+            " Find"
+          ]
+        },
+        "351": {
+          "color": "#FD79A8",
+          "tokens": [
+            " gross",
+            " net",
+            " net"
+          ]
+        }
+      }
+    },
+    "business_2": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " on",
+            " a",
+            " in",
+            " is",
+            " to",
+            " in",
+            " is",
+            " is",
+            " in",
+            " c"
+          ]
+        },
+        "411": {
+          "color": "#6C5CE7",
+          "tokens": [
+            " loan",
+            " payment",
+            " interest",
+            " interest"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " monthly",
+            " monthly",
+            " annual"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " install",
+            " paying"
+          ]
+        }
+      }
+    },
+    "business_3": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " in",
+            " a",
+            " on",
+            " or",
+            " is",
+            " y"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            "is",
+            " income",
+            " income",
+            " income"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " invested",
+            " receives",
+            " divided"
+          ]
+        },
+        "351": {
+          "color": "#FD79A8",
+          "tokens": [
+            " net",
+            " net",
+            " net"
+          ]
+        },
+        "411": {
+          "color": "#6C5CE7",
+          "tokens": [
+            " partner",
+            " interest",
+            " investment"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " "
+          ]
+        },
+        "689": {
+          "color": "#FFEAA7",
+          "tokens": [
+            " Mr"
+          ]
+        }
+      }
+    },
+    "business_4": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " is",
+            " at",
+            " a",
+            " a",
+            " on",
+            " a",
+            " is",
+            " as",
+            " c"
+          ]
+        },
+        "411": {
+          "color": "#6C5CE7",
+          "tokens": [
+            " sales",
+            " profit",
+            " investment",
+            " Manufacturing",
+            " Variable"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " Company",
+            " price",
+            " costs",
+            " costs"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " "
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " selling"
+          ]
+        },
+        "351": {
+          "color": "#FD79A8",
+          "tokens": [
+            " Fixed"
+          ]
+        }
+      }
+    },
+    "business_5": {
+      "mappings": {
+        "411": {
+          "color": "#6C5CE7",
+          "tokens": [
+            " payment",
+            " stock",
+            " stock"
+          ]
+        },
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " is"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " bonds"
+          ]
+        },
+        "351": {
+          "color": "#FD79A8",
+          "tokens": [
+            " preferred"
+          ]
+        }
+      }
+    },
+    "business_6": {
+      "mappings": {
+        "411": {
+          "color": "#6C5CE7",
+          "tokens": [
+            " tax",
+            " valuation"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " "
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " mills",
+            " dollar"
+          ]
+        },
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " as"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " assessed"
+          ]
+        }
+      }
+    },
+    "business_7": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " is",
+            " is",
+            " a",
+            " bi",
+            " a",
+            " a",
+            " is",
+            " b"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " paid",
+            " receives",
+            " paid",
+            " paid"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " days",
+            " week",
+            " yearly",
+            " week"
+          ]
+        },
+        "411": {
+          "color": "#6C5CE7",
+          "tokens": [
+            " salary",
+            " salary"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "Y"
+          ]
+        },
+        "973": {
+          "color": "#A29BFE",
+          "tokens": [
+            " works"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " "
+          ]
+        }
+      }
+    },
+    "business_8": {
+      "mappings": {
+        "411": {
+          "color": "#6C5CE7",
+          "tokens": [
+            " bodily",
+            " injury",
+            " insurance",
+            " property",
+            " damage",
+            " insurance",
+            " premium",
+            " injury",
+            " insurance",
+            " premium",
+            " property",
+            " damage",
+            " coverage",
+            " bodily",
+            " injury"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            " Phil"
+          ]
+        },
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " a"
+          ]
+        }
+      }
+    },
+    "business_9": {
+      "mappings": {
+        "411": {
+          "color": "#6C5CE7",
+          "tokens": [
+            " firm",
+            " Product",
+            " Cost",
+            " Product",
+            " Cost",
+            " Product",
+            " Cost"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " to",
+            " as",
+            " A",
+            " is"
+          ]
+        },
+        "351": {
+          "color": "#FD79A8",
+          "tokens": [
+            " Total",
+            " Total",
+            " Total"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " Determine"
+          ]
+        }
+      }
+    },
+    "business_10": {
+      "mappings": {
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " to",
+            " at",
+            " a",
+            " to",
+            " at",
+            " to",
+            " Break",
+            " at"
+          ]
+        },
+        "689": {
+          "color": "#FFEAA7",
+          "tokens": [
+            " Ms",
+            " Mr",
+            " Mr"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            " Atlas",
+            " Johnson"
+          ]
+        },
+        "351": {
+          "color": "#FD79A8",
+          "tokens": [
+            " National"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " days"
+          ]
+        },
+        "411": {
+          "color": "#6C5CE7",
+          "tokens": [
+            " interest"
+          ]
+        }
+      }
+    },
+    "business_11": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " in",
+            " a",
+            " to",
+            " on"
+          ]
+        },
+        "411": {
+          "color": "#6C5CE7",
+          "tokens": [
+            " profits",
+            " interest",
+            " investment",
+            " business"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " invested",
+            " receives",
+            " earns"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "ane",
+            " Watson"
+          ]
+        },
+        "689": {
+          "color": "#FFEAA7",
+          "tokens": [
+            " Ms"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " "
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " income"
+          ]
+        }
+      }
+    },
+    "business_12": {
+      "mappings": {
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " to",
+            " A",
+            " or",
+            " is",
+            " A"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " Company",
+            " Company",
+            " Company",
+            " Company",
+            " income"
+          ]
+        },
+        "351": {
+          "color": "#FD79A8",
+          "tokens": [
+            " Total",
+            " Gross",
+            " Net"
+          ]
+        },
+        "411": {
+          "color": "#6C5CE7",
+          "tokens": [
+            " Sales",
+            " profit",
+            " company"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "s"
+          ]
+        }
+      }
+    },
+    "business_13": {
+      "mappings": {
+        "411": {
+          "color": "#6C5CE7",
+          "tokens": [
+            " shares",
+            " shares",
+            " stock",
+            " dividends"
+          ]
+        },
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " as",
+            " as",
+            " a",
+            " at"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "351": {
+          "color": "#FD79A8",
+          "tokens": [
+            " preferred",
+            " preferred"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            "ation"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " pays"
+          ]
+        }
+      }
+    },
+    "business_14": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " in",
+            " is",
+            " to",
+            " a",
+            " to",
+            " a",
+            " in",
+            " mill"
+          ]
+        },
+        "411": {
+          "color": "#6C5CE7",
+          "tokens": [
+            " valuation",
+            " property",
+            " town",
+            " taxes",
+            " welfare",
+            " town",
+            " tax"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " assessed",
+            " Find"
+          ]
+        },
+        "351": {
+          "color": "#FD79A8",
+          "tokens": [
+            " taxable"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "s"
+          ]
+        }
+      }
+    },
+    "business_15": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " cu",
+            " ft",
+            " is",
+            " a",
+            " to",
+            " A",
+            " at",
+            " at"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " bill",
+            " July"
+          ]
+        },
+        "411": {
+          "color": "#6C5CE7",
+          "tokens": [
+            " utility"
+          ]
+        }
+      }
+    },
+    "business_16": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " an",
+            " a",
+            " a",
+            " sol"
+          ]
+        },
+        "411": {
+          "color": "#6C5CE7",
+          "tokens": [
+            " business",
+            " inventory",
+            " inventory"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "973": {
+          "color": "#A29BFE",
+          "tokens": [
+            " items",
+            " items",
+            " items"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " selling",
+            " selling"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " price",
+            " price"
+          ]
+        }
+      }
+    },
+    "business_17": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " is",
+            " a",
+            " it",
+            " to",
+            " to"
+          ]
+        },
+        "411": {
+          "color": "#6C5CE7",
+          "tokens": [
+            " property",
+            " property",
+            " rent"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " selling",
+            " sell"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " "
+          ]
+        },
+        "689": {
+          "color": "#FFEAA7",
+          "tokens": [
+            " Mr",
+            " Mr"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " annual"
+          ]
+        }
+      }
+    },
+    "business_18": {
+      "mappings": {
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "411": {
+          "color": "#6C5CE7",
+          "tokens": [
+            " Labor",
+            " Cost",
+            " Labor"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " pounds",
+            " costs"
+          ]
+        },
+        "973": {
+          "color": "#A29BFE",
+          "tokens": [
+            " Unit"
+          ]
+        },
+        "351": {
+          "color": "#FD79A8",
+          "tokens": [
+            " Last"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " sold"
+          ]
+        },
+        "689": {
+          "color": "#FFEAA7",
+          "tokens": [
+            " lbs"
+          ]
+        }
+      }
+    },
+    "business_19": {
+      "mappings": {
+        "411": {
+          "color": "#6C5CE7",
+          "tokens": [
+            " inventory",
+            " worth",
+            " purchases",
+            " goods",
+            " worth"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "s",
+            "s"
+          ]
+        },
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " an",
+            " it"
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            "ing"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " December"
+          ]
+        }
+      }
+    },
+    "business_20": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " to",
+            " A",
+            " on"
+          ]
+        },
+        "411": {
+          "color": "#6C5CE7",
+          "tokens": [
+            " insurance",
+            " Insurance"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " Company",
+            " Policy"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "as"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " pay"
+          ]
+        }
+      }
+    },
+    "chemistry_1": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " an",
+            " sol",
+            " dissol",
+            " in",
+            " benz",
+            " to",
+            " a",
+            " sol",
+            " is",
+            " H",
+            " is",
+            " to",
+            " benz",
+            " is",
+            " a",
+            " sol",
+            " a"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            "ene",
+            " vapor",
+            "ene",
+            " molecular"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "ute",
+            "ute",
+            "ute"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " containing",
+            " Determine"
+          ]
+        },
+        "689": {
+          "color": "#FFEAA7",
+          "tokens": [
+            " mm",
+            "g"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " boiling",
+            " boiling"
+          ]
+        }
+      }
+    },
+    "chemistry_2": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " up",
+            " benz",
+            " a",
+            " sol",
+            " a",
+            " benz",
+            " is",
+            "al",
+            " is",
+            " mol",
+            " sol"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " grams",
+            " grams",
+            " freezing",
+            " freezing",
+            " freezing"
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            "ene",
+            "ene"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "ute",
+            "ute"
+          ]
+        },
+        "351": {
+          "color": "#FD79A8",
+          "tokens": [
+            " pure",
+            " approximate"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " Determine"
+          ]
+        }
+      }
+    },
+    "chemistry_3": {
+      "mappings": {
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " equation",
+            " solutions"
+          ]
+        },
+        "689": {
+          "color": "#FFEAA7",
+          "tokens": [
+            " NH",
+            " Ag"
+          ]
+        },
+        "351": {
+          "color": "#FD79A8",
+          "tokens": [
+            " net"
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " ionic"
+          ]
+        },
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " is"
+          ]
+        }
+      }
+    },
+    "chemistry_4": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " is",
+            " an",
+            " is",
+            " in",
+            " a"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " uncertainty",
+            " momentum",
+            "mathrm",
+            " interval"
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " electron"
+          ]
+        }
+      }
+    },
+    "chemistry_5": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " to",
+            " as",
+            " polar",
+            " or",
+            " z",
+            " H",
+            " a",
+            " it",
+            " at",
+            " a",
+            " H",
+            " H",
+            " predomin",
+            " at"
+          ]
+        },
+        "689": {
+          "color": "#FFEAA7",
+          "tokens": [
+            " pH",
+            " pH",
+            " pH",
+            " pH"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " amino",
+            " ionic",
+            " molecular"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " acids",
+            " ions"
+          ]
+        }
+      }
+    },
+    "chemistry_6": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " at",
+            " therm",
+            " is",
+            " a",
+            " in",
+            " hyd",
+            " as"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " unless",
+            " stated",
+            " otherwise",
+            " Unless",
+            " otherwise",
+            " stated"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " Note",
+            "mathrm",
+            " decomposition",
+            "mathrm"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " gases",
+            "lene",
+            " silicon"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "m",
+            "ane"
+          ]
+        }
+      }
+    },
+    "chemistry_7": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " at",
+            " therm",
+            " is",
+            " a",
+            " in",
+            " hyd",
+            " as"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " unless",
+            " stated",
+            " otherwise",
+            " Unless",
+            " otherwise",
+            " stated"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " Note",
+            "mathrm",
+            " decomposition",
+            "mathrm"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " gases",
+            "lene",
+            " silicon"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "m",
+            "ane"
+          ]
+        }
+      }
+    },
+    "chemistry_8": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " brom",
+            " in",
+            " lb",
+            " lb",
+            " g"
+          ]
+        },
+        "689": {
+          "color": "#FFEAA7",
+          "tokens": [
+            " Ag",
+            " Ag",
+            " Na",
+            " Ag"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " prepared",
+            " Calculate"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " "
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            "ide"
+          ]
+        }
+      }
+    },
+    "chemistry_9": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " benz",
+            " is",
+            " at",
+            " benz",
+            " is",
+            " at",
+            " a",
+            " b",
+            " c",
+            " c",
+            " is",
+            " g"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            "ene",
+            " vapor",
+            "ene",
+            " vapor",
+            " heat",
+            " vapor"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " boiling",
+            " boiling"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " Calculate"
+          ]
+        }
+      }
+    },
+    "chemistry_10": {
+      "mappings": {
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            "mathrm",
+            "mathrm",
+            "mathrm"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            " van",
+            "m"
+          ]
+        },
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " der",
+            " in"
+          ]
+        },
+        "689": {
+          "color": "#FFEAA7",
+          "tokens": [
+            " Wa"
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            "als"
+          ]
+        },
+        "973": {
+          "color": "#A29BFE",
+          "tokens": [
+            " parameters"
+          ]
+        }
+      }
+    },
+    "chemistry_11": {
+      "mappings": {
+        "689": {
+          "color": "#FFEAA7",
+          "tokens": [
+            " Na",
+            " SO",
+            "g",
+            " SO",
+            "g",
+            "g",
+            "g",
+            "g",
+            " SO",
+            "g",
+            " SO",
+            " SO",
+            " Na",
+            " SO"
+          ]
+        },
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " to",
+            " sulf",
+            " H",
+            " H",
+            " H",
+            " r"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "s",
+            "l",
+            "l"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " sequence",
+            " sequence"
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " sodium"
+          ]
+        }
+      }
+    },
+    "chemistry_12": {
+      "mappings": {
+        "689": {
+          "color": "#FFEAA7",
+          "tokens": [
+            " CH",
+            " CH",
+            "g",
+            " CH",
+            " CH",
+            "g",
+            " CO",
+            "g"
+          ]
+        },
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " is",
+            " is",
+            " at",
+            " is",
+            " to",
+            " H",
+            " H"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "l",
+            "l",
+            "l",
+            "l"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " heat",
+            " heat",
+            " heat",
+            " heat"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " formation",
+            " combustion",
+            "ic",
+            " formation"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " Given"
+          ]
+        }
+      }
+    },
+    "chemistry_13": {
+      "mappings": {
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " unless",
+            " stated",
+            " otherwise",
+            " Unless",
+            " otherwise",
+            " stated",
+            " Given"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " reactions",
+            "mathrm",
+            "mathrm",
+            "mathrm",
+            "mathrm",
+            "mathrm",
+            "mathrm"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " gases",
+            " thermodynamic"
+          ]
+        },
+        "689": {
+          "color": "#FFEAA7",
+          "tokens": [
+            "g",
+            "g"
+          ]
+        }
+      }
+    },
+    "chemistry_14": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " at",
+            " a",
+            " b",
+            " H",
+            " in",
+            " at",
+            " H"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "689": {
+          "color": "#FFEAA7",
+          "tokens": [
+            " Ca",
+            " Na",
+            " Ca",
+            " SO",
+            " Na",
+            "g"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "s",
+            "s",
+            "s",
+            "s",
+            "s",
+            "s"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " calculate"
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " heat"
+          ]
+        }
+      }
+    },
+    "chemistry_15": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " is",
+            " in",
+            " a",
+            " dissol",
+            " l",
+            " res",
+            " in",
+            " sulf",
+            " is"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " prepared",
+            " prepared"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            "is",
+            " reactions"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " "
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            "ing"
+          ]
+        },
+        "689": {
+          "color": "#FFEAA7",
+          "tokens": [
+            " Ca"
+          ]
+        },
+        "351": {
+          "color": "#FD79A8",
+          "tokens": [
+            " pure"
+          ]
+        }
+      }
+    },
+    "chemistry_16": {
+      "mappings": {
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "e",
+            "m",
+            "s",
+            "m",
+            "m",
+            "m"
+          ]
+        },
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " H",
+            " is",
+            " at",
+            " it",
+            " is",
+            " at"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "689": {
+          "color": "#FFEAA7",
+          "tokens": [
+            "g",
+            " Pt"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " cell"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " Find"
+          ]
+        }
+      }
+    },
+    "chemistry_17": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " at",
+            " at",
+            " in",
+            " H",
+            " to",
+            " is"
+          ]
+        },
+        "689": {
+          "color": "#FFEAA7",
+          "tokens": [
+            "g",
+            " CO",
+            "g",
+            "g",
+            "g"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "s"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " Calculate"
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " heat"
+          ]
+        }
+      }
+    },
+    "chemistry_18": {
+      "mappings": {
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " mass",
+            " density",
+            "mathrm",
+            "mathrm",
+            "mathrm",
+            "mathrm",
+            "mathrm",
+            "mathrm",
+            "mathrm",
+            "mathrm",
+            "mathrm",
+            "mathrm",
+            "mathrm",
+            "mathrm"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "m",
+            "m",
+            "T",
+            "m",
+            "m",
+            "m"
+          ]
+        },
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " at",
+            " is",
+            " a"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " Given"
+          ]
+        }
+      }
+    },
+    "chemistry_19": {
+      "mappings": {
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            "mathrm",
+            " Chem",
+            " formation",
+            "mathrm",
+            "mathrm",
+            "mathrm",
+            "mathrm",
+            "mathrm",
+            "mathrm"
+          ]
+        },
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " et",
+            " al",
+            " in"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "ke",
+            "s"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " "
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " thermodynamic"
+          ]
+        }
+      }
+    },
+    "chemistry_20": {
+      "mappings": {
+        "689": {
+          "color": "#FFEAA7",
+          "tokens": [
+            "g",
+            "g",
+            "g",
+            " CO",
+            "g",
+            "g",
+            " CO",
+            "g",
+            "g",
+            "g",
+            "g"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " H",
+            " H",
+            " H",
+            " H"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "l",
+            "l",
+            "l"
+          ]
+        }
+      }
+    },
+    "computer science_1": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " an",
+            " a",
+            " is",
+            " an",
+            " an",
+            " a",
+            " A",
+            " is",
+            " a"
+          ]
+        },
+        "351": {
+          "color": "#FD79A8",
+          "tokens": [
+            "ial",
+            " infinite",
+            " polynomial",
+            " finite",
+            " neural",
+            " linear",
+            " linear"
+          ]
+        },
+        "973": {
+          "color": "#A29BFE",
+          "tokens": [
+            " kernel",
+            " network",
+            " activation"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " "
+          ]
+        },
+        "689": {
+          "color": "#FFEAA7",
+          "tokens": [
+            " VC",
+            " VC"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " Statement"
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " layer"
+          ]
+        }
+      }
+    },
+    "computer science_2": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " is",
+            " an",
+            " in"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " declared",
+            " Explain"
+          ]
+        },
+        "973": {
+          "color": "#A29BFE",
+          "tokens": [
+            " examples"
+          ]
+        }
+      }
+    },
+    "computer science_3": {
+      "mappings": {
+        "973": {
+          "color": "#A29BFE",
+          "tokens": [
+            " parity",
+            " bits",
+            " input",
+            " input",
+            " bits",
+            " bits"
+          ]
+        },
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " in",
+            " to",
+            " an",
+            " on",
+            " a",
+            " b"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " code",
+            " bit",
+            " code"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " "
+          ]
+        },
+        "351": {
+          "color": "#FD79A8",
+          "tokens": [
+            " binary"
+          ]
+        }
+      }
+    },
+    "computer science_4": {
+      "mappings": {
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " program",
+            " inches",
+            " inches"
+          ]
+        },
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " a",
+            " to"
+          ]
+        }
+      }
+    },
+    "computer science_5": {
+      "mappings": {
+        "973": {
+          "color": "#A29BFE",
+          "tokens": [
+            " connection",
+            " client",
+            " server",
+            " server",
+            " certificate",
+            " client",
+            " client",
+            " certificate",
+            " client",
+            " server"
+          ]
+        },
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " a",
+            " a",
+            " a",
+            " a",
+            " a"
+          ]
+        },
+        "351": {
+          "color": "#FD79A8",
+          "tokens": [
+            " successfully"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " executing"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " "
+          ]
+        }
+      }
+    },
+    "computer science_6": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " a",
+            " a",
+            " at",
+            " a",
+            " at",
+            " in",
+            " a",
+            " at",
+            " in",
+            " at",
+            " in"
+          ]
+        },
+        "973": {
+          "color": "#A29BFE",
+          "tokens": [
+            " instruction",
+            " address",
+            " segment",
+            " address",
+            " segment"
+          ]
+        },
+        "351": {
+          "color": "#FD79A8",
+          "tokens": [
+            " virtual",
+            " virtual",
+            " virtual"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " text",
+            " text"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "s"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " mapped"
+          ]
+        }
+      }
+    },
+    "computer science_7": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " a",
+            " a",
+            " a",
+            " in",
+            " to",
+            " is",
+            " de"
+          ]
+        },
+        "689": {
+          "color": "#FFEAA7",
+          "tokens": [
+            " AM",
+            " DI",
+            " FOR",
+            " DI",
+            " AM",
+            " AM"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " write",
+            " compute",
+            " Then",
+            " compute"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " array",
+            " array",
+            " program"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "973": {
+          "color": "#A29BFE",
+          "tokens": [
+            " rows",
+            " columns",
+            " segment"
+          ]
+        }
+      }
+    },
+    "computer science_8": {
+      "mappings": {
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " program",
+            " numbers",
+            " numbers",
+            " array"
+          ]
+        },
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " a",
+            " to",
+            " an"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " compute",
+            " read"
+          ]
+        },
+        "689": {
+          "color": "#FFEAA7",
+          "tokens": [
+            " FOR"
+          ]
+        },
+        "973": {
+          "color": "#A29BFE",
+          "tokens": [
+            " arithmetic"
+          ]
+        }
+      }
+    },
+    "computer science_9": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " is",
+            " on",
+            " str",
+            " str",
+            " str",
+            " is"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " question",
+            " letters",
+            " letters"
+          ]
+        },
+        "973": {
+          "color": "#A29BFE",
+          "tokens": [
+            " declarations"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "T"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " Given"
+          ]
+        }
+      }
+    },
+    "computer science_10": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " a",
+            " a",
+            " in"
+          ]
+        },
+        "689": {
+          "color": "#FFEAA7",
+          "tokens": [
+            " FOR"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " ascending"
+          ]
+        }
+      }
+    },
+    "computer science_11": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " as",
+            " a",
+            " A",
+            " b",
+            " A",
+            " c",
+            " A",
+            " A"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " named",
+            " named",
+            " named",
+            " named"
+          ]
+        },
+        "973": {
+          "color": "#A29BFE",
+          "tokens": [
+            " computer",
+            " declarations",
+            " programmer"
+          ]
+        },
+        "689": {
+          "color": "#FFEAA7",
+          "tokens": [
+            " PL"
+          ]
+        }
+      }
+    },
+    "computer science_12": {
+      "mappings": {
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " "
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " width",
+            " Statement"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            " Alex",
+            "s"
+          ]
+        },
+        "973": {
+          "color": "#A29BFE",
+          "tokens": [
+            " Data",
+            " procedures"
+          ]
+        },
+        "351": {
+          "color": "#FD79A8",
+          "tokens": [
+            " Normal"
+          ]
+        }
+      }
+    },
+    "computer science_13": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " is",
+            " to",
+            " a",
+            " to",
+            " a",
+            " a"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "351": {
+          "color": "#FD79A8",
+          "tokens": [
+            " integral",
+            " integral",
+            " binary"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " die"
+          ]
+        }
+      }
+    },
+    "computer science_14": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " a",
+            " b",
+            " c"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " "
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "s",
+            "s"
+          ]
+        },
+        "973": {
+          "color": "#A29BFE",
+          "tokens": [
+            " complements"
+          ]
+        },
+        "351": {
+          "color": "#FD79A8",
+          "tokens": [
+            " binary"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " numbers"
+          ]
+        }
+      }
+    },
+    "computer science_15": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " is",
+            " a",
+            " to",
+            " A",
+            " A",
+            " A",
+            " A",
+            " it",
+            " to"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " Write",
+            " compute",
+            " Then",
+            " compute"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " array"
+          ]
+        },
+        "973": {
+          "color": "#A29BFE",
+          "tokens": [
+            " FUNCTION"
+          ]
+        },
+        "689": {
+          "color": "#FFEAA7",
+          "tokens": [
+            " PD"
+          ]
+        }
+      }
+    },
+    "computer science_16": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " a",
+            " on",
+            " y",
+            " x",
+            " y",
+            " x",
+            " y",
+            " x"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "y"
+          ]
+        }
+      }
+    },
+    "computer science_17": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " num",
+            " num",
+            " num",
+            " num",
+            " num",
+            " num",
+            " is",
+            " to"
+          ]
+        },
+        "973": {
+          "color": "#A29BFE",
+          "tokens": [
+            " segment",
+            " loop",
+            " loop"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " code"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " "
+          ]
+        }
+      }
+    },
+    "computer science_18": {
+      "mappings": {
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " i",
+            " a",
+            " i"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " matrix",
+            " matrix"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " sampled",
+            " sampled"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "s"
+          ]
+        },
+        "351": {
+          "color": "#FD79A8",
+          "tokens": [
+            " Gaussian"
+          ]
+        }
+      }
+    },
+    "computer science_19": {
+      "mappings": {
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " functional"
+          ]
+        },
+        "973": {
+          "color": "#A29BFE",
+          "tokens": [
+            " Unit"
+          ]
+        }
+      }
+    },
+    "computer science_20": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " a",
+            " a",
+            " it",
+            " a"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " Suppose",
+            " named"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "s"
+          ]
+        }
+      }
+    },
+    "math_1": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " a",
+            " A",
+            " H",
+            " a",
+            " is",
+            " a",
+            " left",
+            " cos",
+            " H",
+            " is",
+            " to",
+            " right",
+            " cos",
+            " H"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " subgroup",
+            " Statement",
+            " subgroup",
+            " subgroup"
+          ]
+        }
+      }
+    },
+    "math_2": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " is",
+            " a",
+            " is",
+            " a",
+            " it",
+            " is",
+            " to"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " "
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " Every",
+            " Every"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " Statement"
+          ]
+        }
+      }
+    },
+    "math_3": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " n",
+            " is",
+            " a",
+            " n",
+            " an"
+          ]
+        },
+        "351": {
+          "color": "#FD79A8",
+          "tokens": [
+            " integer",
+            " cyclic",
+            " finite",
+            " cyclic"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " "
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " Every",
+            " divides"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " Statement"
+          ]
+        }
+      }
+    },
+    "math_4": {
+      "mappings": {
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " rode",
+            " miles",
+            " weeks",
+            " week",
+            " rode",
+            " miles",
+            " weeks",
+            " week",
+            " miles",
+            " week",
+            " rode"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " in",
+            " in"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            " Eric"
+          ]
+        },
+        "351": {
+          "color": "#FD79A8",
+          "tokens": [
+            " correctly"
+          ]
+        }
+      }
+    },
+    "math_5": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " is",
+            " in",
+            " a",
+            " to",
+            " to",
+            " a",
+            " to",
+            " to",
+            " to",
+            " a",
+            " to"
+          ]
+        },
+        "411": {
+          "color": "#6C5CE7",
+          "tokens": [
+            " insurance",
+            " insurance",
+            " customers",
+            " customers"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " selling",
+            " sell"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " policy",
+            " policy"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " "
+          ]
+        }
+      }
+    },
+    "math_6": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " on",
+            " a",
+            " at",
+            " is",
+            " at",
+            " a",
+            " to"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " ship",
+            "mathrm",
+            "mathrm",
+            " ship",
+            "mathrm",
+            "mathrm"
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " woman",
+            " woman",
+            " surface"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "h",
+            "h"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " Find"
+          ]
+        }
+      }
+    },
+    "math_7": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " to",
+            " a",
+            " is",
+            " a",
+            " hen",
+            " a",
+            " hen",
+            " is",
+            " a"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " hens",
+            " eggs",
+            " mass",
+            " grams",
+            " eggs",
+            " masses",
+            " gram"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " egg"
+          ]
+        },
+        "411": {
+          "color": "#6C5CE7",
+          "tokens": [
+            " purchase"
+          ]
+        },
+        "351": {
+          "color": "#FD79A8",
+          "tokens": [
+            " symmetric"
+          ]
+        }
+      }
+    },
+    "math_8": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " is",
+            " is",
+            " a",
+            " a",
+            " a",
+            " is",
+            " a",
+            " it",
+            " is"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " "
+          ]
+        },
+        "351": {
+          "color": "#FD79A8",
+          "tokens": [
+            " prime",
+            " prime"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " Statement",
+            " subgroup"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " Every"
+          ]
+        }
+      }
+    },
+    "math_9": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " to",
+            " a",
+            " as",
+            " an",
+            " it",
+            " A",
+            " is",
+            " to",
+            " up",
+            " a"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            "mathrm",
+            "mathrm",
+            "mathrm",
+            "mathrm"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " Then",
+            " evaluate",
+            " Find"
+          ]
+        },
+        "351": {
+          "color": "#FD79A8",
+          "tokens": [
+            " approximate",
+            " integral"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " "
+          ]
+        }
+      }
+    },
+    "math_10": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " H",
+            " H",
+            " or",
+            " is",
+            " is",
+            " a",
+            " is"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " subgroup",
+            " subgroup",
+            " Statement"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " "
+          ]
+        },
+        "351": {
+          "color": "#FD79A8",
+          "tokens": [
+            " prime"
+          ]
+        }
+      }
+    },
+    "math_11": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " x",
+            " an",
+            " a",
+            " it",
+            " is",
+            " in",
+            " to"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " pounds",
+            " origin",
+            "mathrm",
+            "mathrm"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " moves",
+            " Calculate"
+          ]
+        },
+        "973": {
+          "color": "#A29BFE",
+          "tokens": [
+            " object",
+            " object"
+          ]
+        }
+      }
+    },
+    "math_12": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " is",
+            " in",
+            " H",
+            " cm",
+            "al",
+            " A",
+            " at",
+            " a",
+            " to"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " ",
+            " ",
+            " "
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " significance",
+            " confidence",
+            " interval"
+          ]
+        },
+        "689": {
+          "color": "#FFEAA7",
+          "tokens": [
+            " Ha"
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " flowers"
+          ]
+        }
+      }
+    },
+    "math_13": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " a",
+            " to",
+            " a",
+            " in"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            "mathrm",
+            "mathrm",
+            " seconds"
+          ]
+        },
+        "973": {
+          "color": "#A29BFE",
+          "tokens": [
+            " tree"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " Find"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " "
+          ]
+        }
+      }
+    },
+    "math_14": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " a",
+            " in",
+            " is",
+            " to",
+            " a",
+            " is",
+            " to"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " mass",
+            "mathrm",
+            " mass",
+            " coefficient"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " "
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " Determine"
+          ]
+        }
+      }
+    },
+    "math_15": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " is",
+            " a",
+            " is",
+            " at",
+            " to",
+            " at",
+            " in"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " pool",
+            "mathrm",
+            " diameter",
+            "mathrm",
+            "mathrm",
+            " pool"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " Find"
+          ]
+        }
+      }
+    },
+    "math_16": {
+      "mappings": {
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " ball",
+            " origin",
+            " velocity",
+            "mathrm",
+            "mathrm",
+            " spin",
+            " ball",
+            "mathrm",
+            "mathrm"
+          ]
+        },
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " A",
+            " is",
+            " is",
+            " in",
+            " in",
+            " a"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "k",
+            "s"
+          ]
+        }
+      }
+    },
+    "math_17": {
+      "mappings": {
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " ball",
+            " velocity",
+            "mathrm",
+            "mathrm",
+            " seconds",
+            " velocity"
+          ]
+        },
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " a",
+            " is",
+            " a",
+            " is"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "s",
+            "y"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " Find"
+          ]
+        }
+      }
+    },
+    "math_18": {
+      "mappings": {
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " dye",
+            "mathrm",
+            " dye",
+            " dye",
+            " concentrations",
+            "mathrm",
+            "mathrm",
+            " seconds"
+          ]
+        },
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " is",
+            " to",
+            " in",
+            " is",
+            " in"
+          ]
+        },
+        "650": {
+          "color": "#FDCB6E",
+          "tokens": [
+            " ",
+            " "
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " Find"
+          ]
+        }
+      }
+    },
+    "math_19": {
+      "mappings": {
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            " density",
+            "mathrm",
+            "mathrm",
+            " velocity",
+            " meters",
+            " meters"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "m",
+            "v",
+            "y",
+            "k",
+            "v",
+            "y"
+          ]
+        },
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " y",
+            " in",
+            " in"
+          ]
+        },
+        "574": {
+          "color": "#96CEB4",
+          "tokens": [
+            " fluid"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " Find"
+          ]
+        },
+        "411": {
+          "color": "#6C5CE7",
+          "tokens": [
+            " cylinder"
+          ]
+        }
+      }
+    },
+    "math_20": {
+      "mappings": {
+        "543": {
+          "color": "#45B7D1",
+          "tokens": [
+            " to",
+            " in",
+            " a",
+            " dyn"
+          ]
+        },
+        "977": {
+          "color": "#4ECDC4",
+          "tokens": [
+            "mathrm",
+            "mathrm",
+            "mathrm"
+          ]
+        },
+        "590": {
+          "color": "#00B894",
+          "tokens": [
+            "s",
+            "es"
+          ]
+        },
+        "192": {
+          "color": "#FF6B6B",
+          "tokens": [
+            " calculate"
           ]
         }
       }
     }
   },
   "metadata": {
-    "created_at": "2025-09-28T14:54:48.724Z",
-    "last_updated": "2025-10-15T12:00:00Z",
-    "version": "2.0",
-    "description": "一级专家组合与token映射关系存储文件，支持多个例子"
+    "created_at": "2025-10-20T13:50:43.771326Z",
+    "last_updated": "2025-10-20T13:50:43.771336Z",
+    "version": "3.0",
+    "description": "一级专家组合与token映射关系存储文件，从clustering_results_10和examples生成。tokens字段存储在examples.json中",
+    "note": "tokens列表存储在examples.json中的每个example里，此文件只包含mappings。专家按token数量从多到少排序",
+    "statistics": {
+      "total_examples": 100,
+      "mapped_examples": 100,
+      "total_tokens": 6989,
+      "matched_tokens": 1652,
+      "match_rate": "23.64%"
+    }
   }
 }

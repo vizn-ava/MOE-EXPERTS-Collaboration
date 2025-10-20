@@ -1,13 +1,41 @@
-﻿Expert Index,Expert Name,Function Description
-247,Mathematical Analysis,Quantitative mathematical and statistical analysis
-583,Scientific Computing,Scientific algorithms solving and modeling
-916,Applied Research,Applied knowledge and practical solutions
-134,Problem Analysis,Problem decomposition and solution planning
-672,Process Engineering,Engineering processes and flow optimization
-123,General Analysis,Comprehensive problem analysis
-291,Numerical Computing,Computational algorithms and methods
-365,Research Methods,Applied research methodologies
-456,Solution Design,Strategic solution development
-527,Problem Solving,Practical problem-solving approaches
-748,Data Processing,Scientific data analysis and processing
-814,Knowledge Integration,Cross-domain knowledge synthesis
+Expert Index,Expert Name,Function Description
+192,Procedural Verbs & Commands,"Action verbs, past participles, and instructional operations"
+977,Temporal & Nominal Terms,"Time units, quantities, and general noun entities"
+543,Function Words & Morphemes,"Single characters, word roots, affixes, and grammatical particles"
+574,Scientific Substances & Processes,"Chemical elements, molecules, biological entities, and natural phenomena"
+689,"Symbols, Codes & Units","Chemical formulas, programming codes, measurement units, and acronyms"
+973,Computing & Information Systems,"Data structures, algorithms, network components, and computational concepts"
+351,Qualitative Modifiers,"Adjectives describing properties, states, and mathematical characteristics"
+650,Whitespace & Separators,Formatting tokens and structural delimiters
+411,Economic & Commercial Terms,"Business operations, financial instruments, and market concepts"
+590,Names & Word Fragments,"Personal names, name suffixes, and partial word tokens"
+271,Business Entities & Stakeholders,"Companies, customers, investors, and organizational actors"
+645,Transaction Verbs,"Commercial actions, purchases, payments, and exchange operations"
+231,Mathematical & Logical Modifiers,"Adjectives for mathematical properties, data types, and logical states"
+275,Name Fragments & Suffixes,"Personal name endings, word suffixes, and partial tokens"
+964,Conditional & Imperative Verbs,Problem-solving commands and conditional expressions
+688,Core Computing Concepts,"Data structures, algorithms, hardware, and software components"
+682,Scientific Measurement Concepts,"Physical dimensions, chemical bonds, and scientific entities"
+259,Chemical Symbols & Physical Units,"Element symbols, measurement units, and scientific notation"
+228,Financial Operations & Metrics,"Accounting terms, trading activities, and financial measurements"
+642,Abbreviations & Acronyms,"Titles, organizational codes, and common abbreviations"
+593,Chemical Substances & States,"Molecules, atoms, elements, and states of matter"
+453,Chemical & Physical Modifiers,"Adjectives describing molecular, atomic, and thermodynamic properties"
+876,Single Characters & Articles,"Single letters, articles, and minimal function words"
+404,Abbreviated Word Stems,"Short prefixes, unit abbreviations, and technical stems"
+494,Temporal & Monetary Units,"Time periods, currency units, and periodic measurements"
+655,Whitespace Characters,Space tokens for formatting and structure
+779,Personal Names,"Given names, surnames, and place names"
+141,Organisms & Biological Structures,"Living entities, cells, organs, and anatomical components"
+641,Capitalized Word Stems,Capitalized prefixes and partial words from proper terms
+459,Prepositions & Conjunctions,"Spatial, temporal, and logical connectors"
+904,Statistical & Probabilistic Terms,"Statistical measures, probability concepts, and uncertainty metrics"
+765,Word Suffixes,"Common word endings for nouns, adjectives, and abstract concepts"
+679,Biological & Chemical Processes,"Life processes, evolution, reactions, and environmental phenomena"
+847,Business Documents & Concepts,"Policies, plans, accounts, and abstract business entities"
+265,Calendar Months,Names of months in the Gregorian calendar
+693,Economic & Social Modifiers,"Adjectives for financial, political, and societal concepts"
+537,Scientific Word Roots,Chemical and biological term fragments and partial words
+277,Physical Properties & Measurements,"Temperature, mass, density, and other measurable physical quantities"
+462,Mathematical Symbols,"LaTeX notation, operators, and mathematical formatting tokens"
+425,Minimal Word Fragments,"Two-letter stems, prefixes, and ultra-short morphemes"

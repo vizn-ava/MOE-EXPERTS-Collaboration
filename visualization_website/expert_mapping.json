@@ -1,14 +1,71 @@
 {
-  "primary_experts": [247, 583, 916, 134, 672],
+  "primary_experts": [
+    192,
+    351,
+    411,
+    543,
+    574,
+    590,
+    650,
+    689,
+    973,
+    977
+  ],
   "expert_mapping": {
-    "247": [134, 672, 859],
-    "583": [291, 748, 814],
-    "916": [365, 527, 814],
-    "134": [123, 456, 527],
-    "672": [291, 814, 748]
+    "192": [
+      645,
+      964
+    ],
+    "351": [
+      231,
+      693
+    ],
+    "411": [
+      228,
+      271
+    ],
+    "543": [
+      404,
+      425,
+      459,
+      537,
+      641,
+      876
+    ],
+    "574": [
+      141,
+      453,
+      593,
+      679
+    ],
+    "590": [
+      275,
+      779
+    ],
+    "650": [
+      655
+    ],
+    "689": [
+      259,
+      642
+    ],
+    "973": [
+      688
+    ],
+    "977": [
+      265,
+      277,
+      462,
+      494,
+      682,
+      765,
+      847,
+      904
+    ]
   },
   "description": {
-    "primary_experts": "Fixed list of primary expert IDs to be displayed (using new hierarchical ID system)",
-    "expert_mapping": "Mapping from primary expert ID to list of secondary expert IDs - redesigned for logical domain relationships"
+    "primary_experts": "一级专家ID列表（10个大类）",
+    "expert_mapping": "一级专家ID到二级专家ID列表的映射关系（共30个二级专家）",
+    "note": "此映射基于聚类结果的层次结构生成，确保了正确的父子关系"
   }
 }

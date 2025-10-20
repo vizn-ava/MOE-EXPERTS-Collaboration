@@ -56,40 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
     
-    // 为每个例子项添加点击事件
-    const exampleItems = document.querySelectorAll('.example-item');
-    console.log('找到的例子项数量:', exampleItems.length);
-    
-    exampleItems.forEach(item => {
-        item.addEventListener('click', function() {
-            const exampleId = this.getAttribute('data-example-id');
-            currentExampleId = exampleId;
-            console.log('选择的例子:', exampleId);
-            
-            // 加载对应的例子文本
-            if (examplesData.examples && examplesData.examples[exampleId]) {
-                const example = examplesData.examples[exampleId];
-                const inputTextArea = document.getElementById('input-text');
-                if (inputTextArea) {
-                    inputTextArea.value = example.text;
-                }
-            }
-            
-            // 重新加载一级专家映射关系
-            loadExpertTokenMapping();
-            
-            // 重新加载二级专家映射关系
-            loadSecondaryExpertTokenMapping();
-            
-            // 清空之前的显示
-            clearPreviousDisplay();
-            
-            // 关闭模态框
-            if (exampleModal) {
-                exampleModal.style.display = 'none';
-            }
-        });
-    });
+    // 例子项的点击事件已在 updateExampleSelectorOptions 函数中动态绑定
 
     const addButtons = document.querySelectorAll('.add-button');
     const svg = document.getElementById('branch-svg');
@@ -106,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 初始化悬浮窗相关元素
     const modal = document.getElementById('activation-modal');
-    const closeButton = document.querySelector('#activation-modal .close-button');
+    const closeButton = document.querySelector('.close-button');
     const modalMoeNetwork = document.getElementById('modal-moe-network');
 
     // 关闭悬浮窗的事件监听
@@ -164,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
             confirm: 'Confirm',
             input_placeholder: 'Please select an example first...',
             token_list: 'Token List',
-            first_experts_title: 'First-Level SuperExpert',
+            first_experts_title: 'First-Level SuperExpert (Top 5)',
             first_expert_index: 'Expert ID',
             first_expert_name: 'Expert Name (Function)',
             decompose_header: 'Detail',
@@ -354,34 +321,85 @@ async function processInput() {
     const inputText = document.getElementById('input-text').value;
     console.log('输入文本:', inputText);
 
+    // 获取当前例子的tokens（如果有的话）
+    let tokens = null;
+    if (currentExampleId && examplesData.examples && examplesData.examples[currentExampleId]) {
+        tokens = examplesData.examples[currentExampleId].tokens;
+        console.log('从examples.json获取tokens，数量:', tokens ? tokens.length : 0);
+    }
+    
     // 直接显示输入文本到token list区域
-    displayInputText(inputText);
+    displayInputText(inputText, tokens);
 
     try {
-        // 直接从CSV文件加载专家数据
-        const response = await fetch('./experts_summary.csv');
-        const csvText = await response.text();
+        // 1. 从expert_token_mapping.json获取当前例子的一级专家ID列表
+        const mappingResponse = await fetch('expert_token_mapping.json');
+        if (!mappingResponse.ok) {
+            console.error('无法加载expert_token_mapping.json');
+            return;
+        }
+        
+        const mappingData = await mappingResponse.json();
+        const currentExampleMappings = mappingData.examples[currentExampleId];
+        
+        if (!currentExampleMappings || !currentExampleMappings.mappings) {
+            console.error(`未找到例子 ${currentExampleId} 的映射数据`);
+            return;
+        }
+        
+        // 获取一级专家ID列表（从mappings的键中获取）
+        const primaryExpertIds = Object.keys(currentExampleMappings.mappings);
+        console.log(`例子 ${currentExampleId} 的一级专家ID列表:`, primaryExpertIds);
+        
+        // 2. 从CSV文件加载专家详细信息
+        const csvResponse = await fetch('./experts_summary.csv');
+        const csvText = await csvResponse.text();
         
         // 解析CSV数据
         const lines = csvText.split('\n');
-        const headers = lines[0].split(',');
-        const experts = [];
+        const expertsMap = {};
         
         for (let i = 1; i < lines.length; i++) {
             if (lines[i].trim()) {
                 const values = lines[i].split(',');
-                experts.push({
-                    'Expert Index': values[0],
-                    'Expert Name': values[1],
-                    'Function Description': values[2]
-                });
+                const expertId = values[0].trim();
+                expertsMap[expertId] = {
+                    'Expert Index': expertId,
+                    'Expert Name': values[1].trim(),
+                    'Function Description': values[2].trim()
+                };
             }
         }
         
-        console.log('从CSV加载的专家数据:', experts);
+        // 3. 根据一级专家ID列表获取专家详细信息，并添加token数量
+        let primaryExperts = primaryExpertIds.map(id => {
+            const expertInfo = expertsMap[id] || {
+                'Expert Index': id,
+                'Expert Name': `Expert ${id}`,
+                'Function Description': 'No description available'
+            };
+            
+            // 获取该专家的token数量
+            const expertMapping = currentExampleMappings.mappings[id];
+            const tokenCount = expertMapping && expertMapping.tokens ? expertMapping.tokens.length : 0;
+            
+            return {
+                ...expertInfo,
+                tokenCount: tokenCount
+            };
+        });
         
-        // 显示前5个专家（或所有专家如果少于5个）
-        const top5Experts = experts.slice(0, 5);
+        console.log(`例子 ${currentExampleId} 的一级专家详细信息（排序前）:`, primaryExperts);
+        
+        // 4. 按token数量降序排序
+        primaryExperts.sort((a, b) => b.tokenCount - a.tokenCount);
+        console.log(`一级专家按token数量排序后:`, primaryExperts);
+        
+        // 5. 只取前5个
+        const top5Experts = primaryExperts.slice(0, 5);
+        console.log(`显示前5个一级专家:`, top5Experts);
+        
+        // 显示前5个一级专家
         displayTop5Experts(top5Experts);
 
     } catch (error) {
@@ -461,18 +479,29 @@ let secondaryExpertTokenMapping = new Map();
 // 存储所有例子数据
 let examplesData = {};
 // 当前选择的例子ID
-let currentExampleId = 'example1';
+let currentExampleId = 'biology_1';
 
 // 新函数：显示分词后的token列表到token list区域（初始不点亮颜色）
-function displayInputText(inputText) {
+function displayInputText(inputText, tokensArray = null) {
     const tokenDisplay = document.getElementById('token-display');
     if (!tokenDisplay) {
         console.error('未找到token-display元素');
         return;
     }
 
-    // 使用空格分词
-    const tokens = inputText.split(' ').filter(token => token.trim() !== '');
+    // 优先使用提供的tokens数组，如果没有则从当前例子中获取，最后才使用空格分词
+    let tokens;
+    if (tokensArray && tokensArray.length > 0) {
+        tokens = tokensArray;
+    } else if (currentExampleId && examplesData.examples && examplesData.examples[currentExampleId] && examplesData.examples[currentExampleId].tokens) {
+        tokens = examplesData.examples[currentExampleId].tokens;
+        console.log('使用examples.json中的tokens:', tokens.length, '个');
+    } else {
+        // 后备方案：使用空格分词
+        tokens = inputText.split(' ').filter(token => token.trim() !== '');
+        console.log('使用空格分词，tokens数量:', tokens.length);
+    }
+    
     originalTokens = tokens; // 保存原始tokens
     
     // 初始显示不带颜色的分词结果
@@ -636,11 +665,65 @@ async function loadExamples() {
 
 // 更新例子选择器的选项文本
 function updateExampleSelectorOptions() {
-    const exampleSelector = document.getElementById('example-selector');
-    if (!exampleSelector || !examplesData.examples) return;
+    const exampleList = document.querySelector('.example-list');
+    if (!exampleList || !examplesData.examples) return;
     
-    // 这里可以根据当前语言更新选项文本
-    // 暂时保持HTML中的硬编码文本
+    // 清空现有的例子项
+    exampleList.innerHTML = '';
+    
+    // 动态生成例子项
+    Object.keys(examplesData.examples).forEach(exampleId => {
+        const example = examplesData.examples[exampleId];
+        
+        const exampleItem = document.createElement('div');
+        exampleItem.className = 'example-item';
+        exampleItem.setAttribute('data-example-id', exampleId);
+        
+        const exampleInfo = document.createElement('div');
+        exampleInfo.className = 'example-info';
+        
+        const title = document.createElement('h3');
+        title.textContent = example.name || exampleId;
+        
+        const desc = document.createElement('p');
+        desc.textContent = example.text.substring(0, 100) + '...';
+        
+        exampleInfo.appendChild(title);
+        exampleInfo.appendChild(desc);
+        exampleItem.appendChild(exampleInfo);
+        exampleList.appendChild(exampleItem);
+        
+        // 为新创建的例子项添加点击事件
+        exampleItem.addEventListener('click', function() {
+            const exampleId = this.getAttribute('data-example-id');
+            currentExampleId = exampleId;
+            console.log('选择的例子:', exampleId);
+            
+            // 加载对应的例子文本
+            if (examplesData.examples && examplesData.examples[exampleId]) {
+                const example = examplesData.examples[exampleId];
+                const inputTextArea = document.getElementById('input-text');
+                if (inputTextArea) {
+                    inputTextArea.value = example.text;
+                }
+            }
+            
+            // 重新加载一级专家映射关系
+            loadExpertTokenMapping();
+            
+            // 重新加载二级专家映射关系
+            loadSecondaryExpertTokenMapping();
+            
+            // 清空之前的显示
+            clearPreviousDisplay();
+            
+            // 关闭模态框
+            const exampleModal = document.getElementById('example-modal');
+            if (exampleModal) {
+                exampleModal.style.display = 'none';
+            }
+        });
+    });
 }
 
 // 清空之前的显示
@@ -705,8 +788,8 @@ async function loadSecondaryExpertTokenMapping() {
 // 新函数：为二级专家高亮对应的token
 function highlightTokensForSecondaryExpert(secondaryExpertId, expertColor) {
     const tokenDisplay = document.getElementById('token-display');
-    if (!tokenDisplay) {
-        console.error('未找到token-display元素');
+    if (!tokenDisplay || originalTokens.length === 0) {
+        console.error('未找到token-display元素或tokens为空');
         return;
     }
 
@@ -717,29 +800,44 @@ function highlightTokensForSecondaryExpert(secondaryExpertId, expertColor) {
         const secondaryMapping = secondaryExpertTokenMapping.get(secondaryExpertId);
         highlightedTokens = secondaryMapping.tokens;
         console.log(`使用二级专家 ${secondaryExpertId} 的映射关系:`, highlightedTokens);
+        console.log('原始tokens:', originalTokens);
     } else {
-        console.warn(`未找到二级专家 ${secondaryExpertId} 的token映射关系`);
-        return;
+        console.warn(`未找到二级专家 ${secondaryExpertId} 的token映射关系，将清除所有二级专家样式`);
+        // 不return，继续执行，这样会清除所有二级专家的样式但保留一级专家的背景色
+        highlightedTokens = [];
     }
     
     // 先清除之前的二级专家高亮效果
     clearSecondaryExpertHighlight();
     
-    // 获取当前所有的span元素
+    // 获取当前所有span，保留它们的背景色
     const spans = tokenDisplay.querySelectorAll('span');
     
-    spans.forEach((span) => {
-        const token = span.textContent.trim();
+    // 创建高亮显示的token数组，使用originalTokens来匹配
+    const coloredTokens = originalTokens.map((token, index) => {
+        // 获取当前token的背景色（如果有的话）
+        let bgColor = '';
+        if (spans[index]) {
+            bgColor = spans[index].style.backgroundColor;
+        }
         
+        // 检查当前token是否在二级专家的映射列表中
         if (highlightedTokens.includes(token)) {
-            // 为二级专家的token添加额外的样式，保持原有背景色
-            span.style.color = expertColor;
-            span.style.fontWeight = 'bold';
-            span.style.fontStyle = 'italic';
-            span.style.textDecoration = 'underline';
-            span.classList.add('secondary-expert-highlight');
+            // 为二级专家的token添加额外的样式，同时保留背景色
+            const bgStyle = (bgColor && bgColor !== '' && bgColor !== 'transparent') ? `background-color: ${bgColor};` : '';
+            return `<span style="${bgStyle} font-weight: bold; font-style: italic; text-decoration: underline; color: ${expertColor};" class="secondary-expert-highlight" data-token-index="${index}">${token}</span>`;
+        } else {
+            // 保持原有的span（可能已经有一级专家的颜色）
+            if (bgColor && bgColor !== '' && bgColor !== 'transparent') {
+                // 保持一级专家的背景色
+                return `<span style="background-color: ${bgColor};" data-token-index="${index}">${token}</span>`;
+            }
+            return `<span data-token-index="${index}">${token}</span>`;
         }
     });
+    
+    // 更新显示
+    tokenDisplay.innerHTML = coloredTokens.join(' ');
 }
 
 // 清除二级专家高亮效果的辅助函数
@@ -804,16 +902,17 @@ function displayTop5Experts(top5Experts) {
     // 清空现有的内容
     expertTableBody.innerHTML = '';
     
-    // 获取颜色数组
+    // 获取默认颜色数组（作为备用）
     const colors = getExpertColors();
 
     // 遍历Top 5专家，生成每一行的内容
     top5Experts.forEach((expert, index) => {
         const row = document.createElement('tr');
         
-        // 为每个一级专家分配不同颜色
-        const colorIndex = index % colors.length;
-        const expertColor = colors[colorIndex];
+        // 从expertTokenMapping获取该专家的颜色，如果没有则使用默认颜色
+        const expertId = parseInt(expert['Expert Index']);
+        const expertData = expertTokenMapping.get(expertId);
+        const expertColor = expertData && expertData.color ? expertData.color : colors[index % colors.length];
 
         // 创建Expert Index单元格
         const indexCell = document.createElement('td');
@@ -907,32 +1006,95 @@ async function displaySecondLevelExperts(primaryExpertId) {
     let secondLevelExperts = [];
     
     try {
-        // 从expert_activation_patterns.json加载真实的二级专家数据
-        const response = await fetch('expert_activation_patterns.json');
-        if (response.ok) {
-            const activationData = await response.json();
-            const expertData = activationData[primaryExpertId.toString()];
+        // 首先尝试从expert_mapping.json加载映射关系
+        const mappingResponse = await fetch('expert_mapping.json');
+        if (mappingResponse.ok) {
+            const mappingData = await mappingResponse.json();
+            const secondaryExpertIds = mappingData.expert_mapping[primaryExpertId.toString()];
             
-            if (expertData && expertData.secondary_experts) {
-                secondLevelExperts = expertData.secondary_experts;
-                console.log(`加载专家 ${primaryExpertId} 的二级专家数据:`, secondLevelExperts);
+            if (secondaryExpertIds && secondaryExpertIds.length > 0) {
+                console.log(`找到专家 ${primaryExpertId} 的二级专家ID列表:`, secondaryExpertIds);
+                
+                // 加载专家详细信息
+                const csvResponse = await fetch('experts_summary.csv');
+                if (csvResponse.ok) {
+                    const csvText = await csvResponse.text();
+                    const lines = csvText.split('\n');
+                    const headers = lines[0].split(',');
+                    
+                    // 解析CSV，创建专家ID到专家信息的映射
+                    const expertsMap = {};
+                    for (let i = 1; i < lines.length; i++) {
+                        if (!lines[i].trim()) continue;
+                        const values = lines[i].split(',');
+                        if (values.length >= 3) {
+                            const expertId = values[0].trim();
+                            expertsMap[expertId] = {
+                                index: expertId,
+                                name: values[1].trim(),
+                                description: values[2].trim()
+                            };
+                        }
+                    }
+                    
+                    // 根据ID列表获取专家详细信息
+                    secondLevelExperts = secondaryExpertIds.map(id => {
+                        const expert = expertsMap[id.toString()];
+                        return expert || {
+                            index: id.toString(),
+                            name: `Expert ${id}`,
+                            description: 'No description available'
+                        };
+                    });
+                    console.log(`加载专家 ${primaryExpertId} 的二级专家详细信息（排序前）:`, secondLevelExperts);
+                    
+                    // 为每个二级专家添加token数量信息
+                    secondLevelExperts = secondLevelExperts.map(expert => {
+                        const expertId = parseInt(expert.index); // 转换为整数
+                        let tokenCount = 0;
+                        
+                        // 从secondaryExpertTokenMapping中获取token数量
+                        if (secondaryExpertTokenMapping.has(expertId)) {
+                            const mapping = secondaryExpertTokenMapping.get(expertId);
+                            tokenCount = mapping.tokens ? mapping.tokens.length : 0;
+                        }
+                        
+                        console.log(`专家 ${expert.index} 的token数量: ${tokenCount}`);
+                        
+                        return {
+                            ...expert,
+                            tokenCount: tokenCount
+                        };
+                    });
+                    
+                    // 过滤掉没有token的二级专家
+                    secondLevelExperts = secondLevelExperts.filter(expert => expert.tokenCount > 0);
+                    console.log(`过滤后的二级专家（只保留有token的）:`, secondLevelExperts);
+                    
+                    // 按照token数量降序排序
+                    secondLevelExperts.sort((a, b) => b.tokenCount - a.tokenCount);
+                    console.log(`排序后的二级专家（按token数量降序）:`, secondLevelExperts);
+                }
             } else {
-                console.warn(`未找到专家 ${primaryExpertId} 的二级专家数据`);
+                console.warn(`未找到专家 ${primaryExpertId} 的二级专家映射关系`);
             }
         }
     } catch (error) {
         console.error('加载二级专家数据时出错:', error);
     }
 
-    // 如果没有加载到真实数据，使用模拟数据
+    // 如果没有加载到真实数据或过滤后为空，显示提示信息
     if (secondLevelExperts.length === 0) {
-        console.log('使用模拟的二级专家数据');
-        secondLevelExperts = [
-            { 'index': '12', 'name': 'Numerical Computing Sub-Expert', 'description': 'Specialized numerical algorithms' },
-            { 'index': '13', 'name': 'Data Processing Sub-Expert', 'description': 'Advanced data manipulation' },
-            { 'index': '14', 'name': 'Research Methods Sub-Expert', 'description': 'Methodological approaches' },
-            { 'index': '15', 'name': 'Problem Solving Sub-Expert', 'description': 'Solution optimization' }
-        ];
+        console.log('没有找到有token的二级专家');
+        const row = document.createElement('tr');
+        const cell = document.createElement('td');
+        cell.colSpan = 2;
+        cell.textContent = '暂无二级专家数据';
+        cell.style.textAlign = 'center';
+        cell.style.color = '#999';
+        row.appendChild(cell);
+        secondLevelTableBody.appendChild(row);
+        return;
     }
 
     // 遍历二级专家，生成每一行的内容
@@ -955,7 +1117,10 @@ async function displaySecondLevelExperts(primaryExpertId) {
         // 创建Expert Name和Function Description单元格
         const infoCell = document.createElement('td');
         const nameDiv = document.createElement('div');
-        nameDiv.textContent = expert.name || expert['Expert Name'];
+        // 显示专家名称和token数量
+        const expertName = expert.name || expert['Expert Name'];
+        const tokenCount = expert.tokenCount || 0;
+        nameDiv.textContent = `${expertName} (${tokenCount} tokens)`;
         nameDiv.style.color = secondaryColor;
         nameDiv.style.fontWeight = 'bold';
         nameDiv.style.cursor = 'pointer'; // 添加鼠标指针样式

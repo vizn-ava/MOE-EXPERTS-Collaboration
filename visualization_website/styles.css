@@ -803,13 +803,16 @@ footer {
 
 /* 例子选择模态框样式 */
 .example-modal-content {
-    max-width: 600px;
+    max-width: 800px;
 }
 
 .example-list {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    max-height: 500px;
+    overflow-y: auto;
+    padding-right: 10px;
 }
 
 .example-item {
