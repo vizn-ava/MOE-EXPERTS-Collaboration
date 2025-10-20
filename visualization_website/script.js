@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 初始化悬浮窗相关元素
     const modal = document.getElementById('activation-modal');
-    const closeButton = document.querySelector('.close-button');
+    const closeButton = document.querySelector('#activation-modal .close-button');
     const modalMoeNetwork = document.getElementById('modal-moe-network');
 
     // 关闭悬浮窗的事件监听
