@@ -6,7 +6,6 @@
       "name_zh": "生物学问题 1",
       "text": "In peas, tall (D) is dominant to dwarf (d) and yellow cotyledons (G) is dominant to green (g). If a tall, heterozygous pea plant with green cotyledons is crossed with a dwarf pea plant heterozygous for yellow cotyledons, what will be the phenotypic results in the progeny?",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "In",
         " peas",
         ",",
@@ -103,7 +102,6 @@
       "name_zh": "生物学问题 2",
       "text": "A typical bacterial cell has a cell wall and plasma membrane. If the cell wall is removed by treatment withlysozyme, an enzyme that selectively dissolves the cell wall material, will the bacteria live? Explain. What is the biochemicaldifference between the cell walls of bacteria, and plants?",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "A",
         " typical",
         " bacterial",
@@ -183,7 +181,6 @@
       "name_zh": "生物学问题 3",
       "text": "A homozygous tall pea plant was crossed with a homozygous dwarf pea plant. The gene for tall is dominant to its allele for dwarf. What will be the expected phenotypic and genotypic results in the F_1 and F_2 generations?",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "A",
         " hom",
         "ozy",
@@ -260,7 +257,6 @@
       "name_zh": "生物学问题 4",
       "text": "In peas, tall (D) is dominant to dwarf (d) and yellow cotyledons (G) is dominant to green (g). If a tall, homozygous, yellow pea plant is crossed with a dwarf, green pea plant, what will be the phenotypic results in the F_1 and F_2?",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "In",
         " peas",
         ",",
@@ -350,7 +346,6 @@
       "name_zh": "生物学问题 5",
       "text": "Distinguish between structural genes, regulatory genes, promotor genes, and operator genes.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Dist",
         "inguish",
         " between",
@@ -387,7 +382,6 @@
       "name_zh": "生物学问题 6",
       "text": "Consider that in horses a single pair of genes controls gait. Some horses can only exhibit a trotting gait, while others exhibit only a pacing gait. In an attempt to determine the pattern of inheritance displayed by this trait, a horse breeder crossed a stallion (\\male) that came from a long line of",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Consider",
         " that",
         " in",
@@ -469,7 +463,6 @@
       "name_zh": "生物学问题 7",
       "text": "How does the term \"growth\" as used in bacteriologydiffer from the same term as applied to higher plants and animals?",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "How",
         " does",
         " the",
@@ -515,7 +508,6 @@
       "name_zh": "生物学问题 8",
       "text": "Which of the following statements about mitochondria and chloroplasts is generally true?",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Which",
         " of",
         " the",
@@ -551,7 +543,6 @@
       "name_zh": "生物学问题 9",
       "text": "What is meant by a gene pool, balanced polymorphism, and genetic load?",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "What",
         " is",
         " meant",
@@ -587,7 +578,6 @@
       "name_zh": "生物学问题 10",
       "text": "Height in a certain plant species is controlled by two pairs of independentlyassorting alleles, with each participating allele A or B adding 5 cm to a base height of 5 cm.A cross is madebetween parents with genotype AABB andaabb. Disregarding environmental influences, (a) What are the heights of eac",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Height",
         " in",
         " a",
@@ -676,7 +666,6 @@
       "name_zh": "生物学问题 11",
       "text": "How does asexual reproduction take place in the bryophytes ?In the lower vascular plants?",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "How",
         " does",
         " a",
@@ -716,7 +705,6 @@
       "name_zh": "生物学问题 12",
       "text": "Predict the genotypic and phenotypic results from each of the following crosses in garden peas: (a) a tall (homozygous dominant) plant crossed with a dwarf plant; (b) the progeny of (a) when self-pollinated; (c) the progeny of (a) crossed with a homozygous tall plant; (d) the progeny of (a) crossed ",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Pred",
         "ict",
         " the",
@@ -824,7 +812,6 @@
       "name_zh": "生物学问题 13",
       "text": "In an animal with a haploid number of 10, how many chromosomes are present in a)aspermatogonium? b) In the first polar body? c) In the second polar body? d) In the secondaryoocyte? Assume, that the animal is diploid.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "In",
         " an",
         " animal",
@@ -904,7 +891,6 @@
       "name_zh": "生物学问题 14",
       "text": "An animal has adipoidnumber of 8. During meiosis, how many chromatids are present a)inthe tetrad stage? b) In latetelophaseof the first meiotic division? c) In metaphase of the second meiotic division?",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "An",
         " animal",
         " has",
@@ -981,7 +967,6 @@
       "name_zh": "生物学问题 15",
       "text": "In an animal with a haploid number of 10, how many chromosomesare present in (a)aspermatogonium? (b)inthe first polar body? (c)inthe second polar body? (d)inthe secondaryoocyte? Assume that the animal is diploid.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "In",
         " an",
         " animal",
@@ -1064,7 +1049,6 @@
       "name_zh": "生物学问题 16",
       "text": "A cross between two yellow-haired mice results in an F_1 ratio of: 2 yellow: 1nonyellow: 1 yellow (dies). Diagram a cross to explainthese results. P_1: yellow × yellow Y^ly^L Y^ly^L G_1: (1/2)Y^l, (1/2)y^L (1/2)Y^l, (1/2)y^L F_1: (1/4)Y^lY^l (1/2)Y^ly^L (1/4)y^Ly^L dies yellow nonyellow",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "A",
         " cross",
         " between",
@@ -1219,7 +1203,6 @@
       "name_zh": "生物学问题 17",
       "text": "An animal has a diploid number of 8. During meiosis, how manychromatidsare present (a)inthe tetrad stage? (b)inlatetelophaseof the first meiotic division? (c)inmetaphase of the second meiotic division?",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "An",
         " animal",
         " has",
@@ -1301,7 +1284,6 @@
       "name_zh": "生物学问题 18",
       "text": "Contrast the meanings of the terms \"gene pool\" and \"genotype\\textquotedblright.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Contr",
         "ast",
         " the",
@@ -1340,7 +1322,6 @@
       "name_zh": "生物学问题 19",
       "text": "Differentiate clearly between diffusion, dialysis and osmosis.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Different",
         "iate",
         " clearly",
@@ -1372,7 +1353,6 @@
       "name_zh": "生物学问题 20",
       "text": "Distinguish between the terms \"in situ,\\textquotedblright \"in vitro,\" and \"invivo.\"",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Dist",
         "inguish",
         " between",
@@ -1412,7 +1392,6 @@
       "name_zh": "商业问题 1",
       "text": "A shirt inFabersClothing Store originally sold for $6.75. During a storewide sale it was reduced to $4.50. After the sale the price was changed to $5.50. Find the gross and net markdown in dollars, and the net markdown as a percent of the current price.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "A",
         " shirt",
         " in",
@@ -1499,7 +1478,6 @@
       "name_zh": "商业问题 2",
       "text": "Assume that the following charges (flat rates) are made on $500 for a year and that the loan in each case is to be repaid in 12 equal monthly installments: (a) 3% , (b) 5%. What is the monthly payment and the true annual interest rate that the borrower is paying in each case? (Record interest rate c",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Assume",
         " that",
         " the",
@@ -1596,7 +1574,6 @@
       "name_zh": "商业问题 3",
       "text": "BobGafneyand Susan Medina invested $40,000 and $50,000 respectively in a luncheonette. Since Mr.Gafneyis the manager of the luncheonette, he gets 4% of the net income. Each partner receives 6% interest on his or her investment. Any remaining net income is divided equally. If the net income for any y",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Bob",
         "G",
         "af",
@@ -1697,7 +1674,6 @@
       "name_zh": "商业问题 4",
       "text": "The Experimental Company is now producing and selling 17,000 units of product per year at a sales price of $250 each. It has had a profit objective of 20 percent return on a $2,000,000 investment. Its present cost structure is as follows: Manufacturing costs: Fixed costs $400,000 per year Variable c",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "The",
         " Experimental",
         " Company",
@@ -1799,7 +1775,6 @@
       "name_zh": "商业问题 5",
       "text": "In the event of bankruptcy, what is the order of payment of bonds, common stock, and preferred stock?",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "In",
         " the",
         " event",
@@ -1841,7 +1816,6 @@
       "name_zh": "商业问题 6",
       "text": "Express the tax rates (A) 3.06% (B) 6.85% as mills per dollar of assessed valuation.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Express",
         " the",
         " tax",
@@ -1891,7 +1865,6 @@
       "name_zh": "商业问题 7",
       "text": "Y is paid $380 semi-monthly. W receives $55 per day, and works four days each week. U is paid $480.00 per month S makes a bi-weekly salary of $515. All are paid for a 52-week year a) What is the yearly salary of each? b) How much does each student make, per week?",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Y",
         " is",
         " paid",
@@ -1995,7 +1968,6 @@
       "name_zh": "商业问题 8",
       "text": "PhilLeFrancpurchased (25 / 50) bodily injury insurance and $10,000 property damage insurance.The base premium for thebodily injury insurance was $101, while the base premiumfor the property damage coverage was $48. If Phil hada total factor of 1.37 for bodily injury and a total factor of 1.10forprop",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Phil",
         "Le",
         "Franc",
@@ -2099,7 +2071,6 @@
       "name_zh": "商业问题 9",
       "text": "A firm produces three different products. They have determined the total cost function of each to be as follows: Product A: Total Cost = $56 + 2X Product B: Total Cost = $56 + 2X + 4X^2 Product C: Total Cost = $56 + 2X -4X^2 4X^2 where X is the number of units produced. Determine from each products ",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "A",
         " firm",
         " produces",
@@ -2209,7 +2180,6 @@
       "name_zh": "商业问题 10",
       "text": "Mr. Bancroft of the Second National Bank approved 3 loans today. The first one was to Ms. Atlas for $1,800 at 6% for a period of 60 days. The second one was to Mr. Johnson for $2,400 at 5% for 3 years. The third one was to Mr. Breakman for $7,000 at 6(1 / 2) % for 4 years. How much interest will eac",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Mr",
         ".",
         " Banc",
@@ -2333,7 +2303,6 @@
       "name_zh": "商业问题 11",
       "text": "Ms. Susan Wane and Ms. Dolly Watson invested $35,000 and $20,000 respectively, in a corkscrew factory. They decided to share the profits equally, after each receives 8% interest on her investment. Show the distribution of income if the business earns $24,200.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Ms",
         ".",
         " Susan",
@@ -2424,7 +2393,6 @@
       "name_zh": "商业问题 12",
       "text": "Company X desires to acquire either Company A or Company B, but not both. The following data is available and covers last year's operation. Company A Company B Total Assets $1,000,000 $2,000,000 Sales 3,000,000 5,000,000 Gross profit 300,000 750,000 Net income 96,000 272,000 Which company should Com",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Company",
         " X",
         " desires",
@@ -2559,7 +2527,6 @@
       "name_zh": "商业问题 13",
       "text": "TheNovelcoCorporation has 1,000 shares of cumulative preferredstock outstanding, as well as 20,000 shares of commonstock. The preferred stock has a par value of $100 pershare, and pays dividends at the rate of 6%. During the firsttwo years of operation,Novelcohad the following amountsavailable for d",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "The",
         "Novel",
         "co",
@@ -2655,7 +2622,6 @@
       "name_zh": "商业问题 14",
       "text": "The assessed valuation of the taxable property in the town of Smithville is $52,384,600. The taxes to be raised are $123,475 for a new local project, $931,442.75 for educational purposes, and $319,878 for health and welfare needs. Find the town's tax rate (a) to thousandths of a percent, (b) in mill",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "The",
         " assessed",
         " valuation",
@@ -2773,7 +2739,6 @@
       "name_zh": "商业问题 15",
       "text": "Suppose that your utility bill for July states that you used 328 kw-hrs of electricity and 1400 cu. ft. of natural gas. There is a flat rate of $1.70 for the first 15 kw-hours. Different rates are set for daytime, evening and late-evening to 8 A.M. You used 45 hours at .043 per hour, 140 hours at $.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Suppose",
         " that",
         " your",
@@ -2888,7 +2853,6 @@
       "name_zh": "商业问题 16",
       "text": "A business started last year with an inventory of 90,000 items which cost $60,000 and had a selling price of $80,000, At the end of the year, the inventory consisted of 70,000 items which cost $90,000 and had a selling price of $120,000. Records indicate that, during the year, 360,000 items were sol",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "A",
         " business",
         " started",
@@ -3010,7 +2974,6 @@
       "name_zh": "商业问题 17",
       "text": "Mr. Fields is considering selling a property acquired 15 years ago for $65,000; $10,000 was for the land, and $55,000 was for the building. Mr. Fields can now sell the property for $120,000. He can also keep it and continue to collect the annual rent from the building. If Mr. Fields decides to keep ",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Mr",
         ".",
         " Fields",
@@ -3120,7 +3083,6 @@
       "name_zh": "商业问题 18",
       "text": "Materials (10 pounds $2) $20 Labor (5 hours @ $3) 15 Overhead (5 hours @ $1.20) 6 Standard Cost per Unit $41 Last month 1,000 units were manufactured, and 800 were sold for $53 per unit. The costs actually incurred were: Materials (purchased and used, 10,500 lbs.) $21,525 Labor (5,100 hours) 15,402 ",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Materials",
         " (",
         "1",
@@ -3255,7 +3217,6 @@
       "name_zh": "商业问题 19",
       "text": "McLevin'sSporting Goods Shop started the month of December with an inventory worth $27,300. During the month, it made additional purchases of skating goods for $3,940 and ski equipment costing $6,340. Some of the ski equipment was damaged, and $210 worth was returned by McLevin'sfor credit. At the e",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Mc",
         "L",
         "evin",
@@ -3357,7 +3318,6 @@
       "name_zh": "商业问题 20",
       "text": "A building, damaged by fire to the extent of $78,000, carries insuranceas follows: Insurance Company Face Value of Policy A $15,000 B $10,000 C $12,500 D $37,500 How much would each of the companies pay on the loss?",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "A",
         " building",
         ",",
@@ -3450,7 +3410,6 @@
       "name_zh": "化学问题 1",
       "text": "At 80°C an unknown solute dissolves in benzene to form a solution containing 1.25 wt.% of the solute. The vapor pressure of the solution is 752.4 mm Hg and its boiling point is 80.25°C compared to the normal boiling point of benzene which is 80.00°C. Determine a) the molecular weight of the solute a",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "At",
         " ",
         "8",
@@ -3562,7 +3521,6 @@
       "name_zh": "化学问题 2",
       "text": "A solution made up of 150 grams of benzene and 25.1 grams of a solute has a freezing point of - 1.92°C. The freezing point of pure benzene is 5.50°C and themolal freezing point constant is 5.10. Determine the approximate molar weight of the solute.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "A",
         " solution",
         " made",
@@ -3660,7 +3618,6 @@
       "name_zh": "化学问题 3",
       "text": "The net ionic equation expected when solutions of NH4Br and AgNO3 are mixed together is",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "The",
         " net",
         " ionic",
@@ -3699,7 +3656,6 @@
       "name_zh": "化学问题 4",
       "text": "What is the uncertainty of the momentum of an electron if we know its position is somewhere in a $10 \\mathrm{pm}$ interval?",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "What",
         " is",
         " the",
@@ -3748,7 +3704,6 @@
       "name_zh": "化学问题 5",
       "text": "At pH values of 4 to 9, natural amino acids exist as polar or zwitter ions: H_2N^+CHZCO^-_2. At a pH of 12, what would be the predominant ionic type? What would it be at a pH of 2? Can the uncharged molecular form, H_2NCHZCO_2 H ever predominate at any pH?",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "At",
         " pH",
         " values",
@@ -3852,7 +3807,6 @@
       "name_zh": "化学问题 6",
       "text": "Assume all gases are perfect unless stated otherwise. Note that 1 atm = 1.013 25 bar. Unless otherwise stated, thermochemical data are for 298.15 K.\nSilylene $\\left(\\mathrm{SiH}_2\\right)$ is a key intermediate in the thermal decomposition of silicon hydrides such as silane $\\left(\\mathrm{SiH}_4\\righ",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Assume",
         " all",
         " gases",
@@ -3961,7 +3915,6 @@
       "name_zh": "化学问题 7",
       "text": "Assume all gases are perfect unless stated otherwise. Note that 1 atm = 1.013 25 bar. Unless otherwise stated, thermochemical data are for 298.15 K.\nSilylene $\\left(\\mathrm{SiH}_2\\right)$ is a key intermediate in the thermal decomposition of silicon hydrides such as silane $\\left(\\mathrm{SiH}_4\\righ",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Assume",
         " all",
         " gases",
@@ -4070,7 +4023,6 @@
       "name_zh": "化学问题 8",
       "text": "Silver bromide, AgBr, used in photography, may be prepared from AgNO_3 and NaBr. Calculate the weight of each required for producing 93.3 lb of AgBr. (1 lb = 454 g.)",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Silver",
         " brom",
         "ide",
@@ -4141,7 +4093,6 @@
       "name_zh": "化学问题 9",
       "text": "At 760torr, 100 grains of benzene is vaporized at its boiling At 760torr, 100 grains of benzene is vaporized at its boiling point of 80.2°C. Calculate a)W_rev, b) q, c) \\DeltaH, d) \\DeltaE. The c) \\DeltaH, d) \\DeltaE. The heat of vaporization is 94.4 (cal / g).",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "At",
         " ",
         "7",
@@ -4267,7 +4218,6 @@
       "name_zh": "化学问题 10",
       "text": "Express the van der Waals parameters $a=0.751 \\mathrm{~atm} \\mathrm{dm}^6 \\mathrm{~mol}^{-2}$ in SI base units.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Express",
         " the",
         " van",
@@ -4326,7 +4276,6 @@
       "name_zh": "化学问题 11",
       "text": "It has been found that the following sequence can be used to prepare sodium sulfate, Na_2 SO_4 : S (s) + O_2 (g)\\rightarrow SO_2 (g) 2SO_2 (g) + O_2 (g)\\rightarrow 2SO_3 (g) SO_3 (g) + H_2 O(l)\\rightarrow H_2 SO_4 (l) 2NaOH + H_2 SO_4\\rightarrow Na_2 SO_4 + 2H_2 O If you performed this sequence of r",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "It",
         " has",
         " been",
@@ -4469,7 +4418,6 @@
       "name_zh": "化学问题 12",
       "text": "The isomer of C_2H_5OH(l) is CH_3 - O - CH_3(g) . Given that, at 25°C, the heat of formation of C_2H_5OH(l) = - 66 kcal/mole, the heat of combustion of the isomeric CH_3 - O - CH_3(g) to CO_2(g) and H_2O(l) = - 348 kcal/mole, the heat of formation of H_2O(l) = - 68 kcal/mole and the heat of combusti",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "The",
         " is",
         "omer",
@@ -4626,7 +4574,6 @@
       "name_zh": "化学问题 13",
       "text": "Assume all gases are perfect unless stated otherwise. Unless otherwise stated, thermodynamic data are for 298.15 K.  Given the reactions (1) and (2) below, determine $\\Delta_{\\mathrm{r}} U^{\\ominus}$ for reaction (3).\n\n(1) $\\mathrm{H}_2(\\mathrm{g})+\\mathrm{Cl}_2(\\mathrm{g}) \\rightarrow 2 \\mathrm{HCl",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Assume",
         " all",
         " gases",
@@ -4738,7 +4685,6 @@
       "name_zh": "化学问题 14",
       "text": "Using the data from the accompanying figure, calculate the heat of reaction for the following process at 25°C: a) CaCl_2 (s) + Na_2CO_3(s) \\rightarrow 2NaCl(s) + CaCO_3(s) b) H_2 SO_4 (I) + 2NaCl(s) \\rightarrow Na_2SO_4 (s) + 2HCl(g) Standard Heats of Formation, ∆H°, in kcal/mole at 25°C. Standard H",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Using",
         " the",
         " data",
@@ -4882,7 +4828,6 @@
       "name_zh": "化学问题 15",
       "text": "Paper pulp (almost 100 % cellulose) is prepared commercially by digesting wood chips in a hot aqueous solution of calciumbisulfite, Ca(HSO_3)_2. The latter dissolves lignin and resins in the wood, leaving nearly pure cellulose. The sulfite solution is prepared by the following reactions: S + O_2\\din",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Paper",
         " pulp",
         " (",
@@ -4981,7 +4926,6 @@
       "name_zh": "化学问题 16",
       "text": "At 20°C the standarde.m.f. of the cell Hg\\vertHg_2Cl_2 (s),HCl(aq)\\vertH_2, Pt is 0.2692 V and at 30°C it is 0.2660 V. Find the values of \\DeltaG_m °,\\DeltaH_m°, and\\DeltaS_m° at 25°C.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "At",
         " ",
         "2",
@@ -5100,7 +5044,6 @@
       "name_zh": "化学问题 17",
       "text": "Consider the following reaction at 25°C C(s) + 2H_2O (g) = CO_2(g) + 2H_2(g) Calculate the heat capacity at constant pressure, C_P , for each of the substances in the reaction. For H_2O(g), assume the contribution to C_P from thevibrationalmode is 20%.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Consider",
         " the",
         " following",
@@ -5206,7 +5149,6 @@
       "name_zh": "化学问题 18",
       "text": "The mass density of water vapour at $327.6 \\mathrm{~atm}$ and $776.4 \\mathrm{~K}$ is $133.2 \\mathrm{~kg} \\mathrm{~m}^{-3}$. Given that for water $T_{\\mathrm{c}}=647.4 \\mathrm{~K}, p_{\\mathrm{c}}=218.3 \\mathrm{~atm}, a=5.464 \\mathrm{dm}^6 \\mathrm{~atm} \\mathrm{~mol}^{-2}$, $b=0.03049 \\mathrm{dm}^3 \\m",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "The",
         " mass",
         " density",
@@ -5358,7 +5300,6 @@
       "name_zh": "化学问题 19",
       "text": "A thermodynamic study of $\\mathrm{DyCl}_3$ (E.H.P. Cordfunke, et al., J. Chem. Thermodynamics 28, 1387 (1996)) determined its standard enthalpy of formation from the following information\n(1) $\\mathrm{DyCl}_3(\\mathrm{~s}) \\rightarrow \\mathrm{DyCl}_3(\\mathrm{aq}$, in $4.0 \\mathrm{M} \\mathrm{HCl}) \\qu",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "A",
         " thermodynamic",
         " study",
@@ -5485,7 +5426,6 @@
       "name_zh": "化学问题 20",
       "text": "Given that ∆H°_CO2(g) = \\rule{1em}{1pt} 94.0, ∆H°_CO(g) = \\rule{1em}{1pt} 26,4, ∆H°_H2O(l) = 68.4 and ∆H°_H2O(g) = -57.8 Kcal/mole, determine the heats of reaction of (1) CO(g) + (1/2)O_2 (g) \\rightarrow CO_2 (g), (2) H_2(g) + (1/2) O_2 (g) \\rightarrow H_2O(l) and (3) H_2O(l) \\rightarrow H_2O(g).",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Given",
         " that",
         " ",
@@ -5685,7 +5625,6 @@
       "name_zh": "计算机科学问题 1",
       "text": "Statement 1| Since the VC dimension for an SVM with a Radial Base Kernel is infinite, such an SVM must be worse than an SVM with polynomial kernel which has a finite VC dimension. Statement 2| A two layer neural network with linear activation functions is essentially a weighted combination of linear",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Statement",
         " ",
         "1",
@@ -5764,7 +5703,6 @@
       "name_zh": "计算机科学问题 2",
       "text": "How is an ARRAY declared inPL/I? Explain using examples.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "How",
         " is",
         " an",
@@ -5798,7 +5736,6 @@
       "name_zh": "计算机科学问题 3",
       "text": "Calculate the number of parity bits required in order to code aninformation consisting of one binary bit on each input line, intothe Hamming code, if each input information has: a) 8 bits, and, b) 4 bits.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Calculate",
         " the",
         " number",
@@ -5867,7 +5804,6 @@
       "name_zh": "计算机科学问题 4",
       "text": "Write a BASIC program which converts inches to feet and inches.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Write",
         " a",
         " BAS",
@@ -5900,7 +5836,6 @@
       "name_zh": "计算机科学问题 5",
       "text": "Assume that a TLS connection has been established successfully between a client and a server. Establishing the session included checking the server certificate and executing a DiffieHelmann exchange, but the client did not provide a client certificate. Further, assume that the client and server are ",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Assume",
         " that",
         " a",
@@ -5974,7 +5909,6 @@
       "name_zh": "计算机科学问题 6",
       "text": "Assume that a debugger places a breakpoint at a load instruction at virtual address 0x77E81234 (hexadecimal notation) in a debugged process P. If the text segment of P begins at 0x77E80000 in P’s virtual address space and if the debugger has mapped this same text segment at 0x01000000 in its virtual",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Assume",
         " that",
         " a",
@@ -6083,7 +6017,6 @@
       "name_zh": "计算机科学问题 7",
       "text": "Given a two-dimensional array AMATR which contains 10 rows and 10 columns and a one-dimensional array called DIAG which contains 10 elements, write a program segment in FORTRAN to compute the elements of D1AG from DIAG(I) = AMATR(I, I) for I =1,2,.. .,10. Then compute the trace of AMATR, which is de",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Given",
         " a",
         " two",
@@ -6193,7 +6126,6 @@
       "name_zh": "计算机科学问题 8",
       "text": "Write a FORTRAN program to compute the arithmetic mean of N real numbers. You may assume that the numbers have been read into an array X having members X(1), X(2),..., X(N).",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Write",
         " a",
         " FOR",
@@ -6256,7 +6188,6 @@
       "name_zh": "计算机科学问题 9",
       "text": "This question is based on the following declarations: String strA = \"CARROT\", strB = \"Carrot\", strC = \"car\"; Given that all uppercase letters precede all lowercase letters when considering alphabetical order, which is true?",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "This",
         " question",
         " is",
@@ -6325,7 +6256,6 @@
       "name_zh": "计算机科学问题 10",
       "text": "Develop a FORTRAN subroutine that sorts a list of N elements and arranges them in ascending order.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Develop",
         " a",
         " FOR",
@@ -6366,7 +6296,6 @@
       "name_zh": "计算机科学问题 11",
       "text": "Explain what the computer takes as the attributes of the fol-lowingvariables by Default Rules of PL/I, if full explicit declarationsare not provided by the programmer. a) A variable named:PERCENT (1:8), b) A variable named:AMOUNT FIXED, c) A variable named:NUMBER COMPLEX, d) A variable named:TOTAL B",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Explain",
         " what",
         " the",
@@ -6461,7 +6390,6 @@
       "name_zh": "计算机科学问题 12",
       "text": "Statement 1| VGGNets have convolutional kernels of smaller width and height than AlexNet's first-layer kernels. Statement 2| Data-dependent weight initialization procedures were introduced before Batch Normalization.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Statement",
         " ",
         "1",
@@ -6523,7 +6451,6 @@
       "name_zh": "计算机科学问题 13",
       "text": "In BASIC the RND function is used to generate a random number between 0 and 1. What statements would you use to: (a) generate integral random number between 0 and X - 1? (b) generate integral random number between 1 and X? (c) simulate the toss of a cubical die? (d) simulate a binary random choice t",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "In",
         " BAS",
         "IC",
@@ -6621,7 +6548,6 @@
       "name_zh": "计算机科学问题 14",
       "text": "Obtain the 1's and 2's complements of the following binary numbers: a)1010101 b)0111000 c)0000001 d)10000 e)0000",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Ob",
         "tain",
         " the",
@@ -6700,7 +6626,6 @@
       "name_zh": "计算机科学问题 15",
       "text": "A is any 20 × 20 array. Write a FUNCTION subprogram to compute PD (A, I, J) = [ A(I-1,J) + A(I+1,J) + A(I,J-1) + A(I,J+1)] / 4 Then use it to compute B_ij = (1-\\alpha)B_ij+ \\alpha [{Bi-1, j+Bi+1, j+ Bi, j-1+ Bi, j+1} / 4].",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "A",
         " is",
         " any",
@@ -6835,7 +6760,6 @@
       "name_zh": "计算机科学问题 16",
       "text": "Define a BASIC function which takes on the value \\surd(x^2 - y^2) if x^2 \\geq y^2, but \\surd(y^2 - x^2) if y^2 > x^2.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Define",
         " a",
         " BAS",
@@ -6909,7 +6833,6 @@
       "name_zh": "计算机科学问题 17",
       "text": "Consider the following code segment.\n int num1 = value1, num2 = value2, num3 = value3;\n while (num1 > num2 || num1 > num3)\n {\n /* body of loop */\n }\n You may assume that value1, value2, and value3 are int values. Which of the following is sufficient to guarantee that /* body of loop */will never be ",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Consider",
         " the",
         " following",
@@ -7016,7 +6939,6 @@
       "name_zh": "计算机科学问题 18",
       "text": "Which PyTorch 1.8 command(s) produce $10\\times 5$ Gaussian matrix with each entry i.i.d. sampled from $\\mathcal{N}(\\mu=5,\\sigma^2=16)$ and a $10\\times 10$ uniform matrix with each entry i.i.d. sampled from $U[-1,1)$?",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Which",
         " Py",
         "Tor",
@@ -7118,7 +7040,6 @@
       "name_zh": "计算机科学问题 19",
       "text": "Briefly discuss the major functional unit of the Central Processing Unit (CPU).",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Brief",
         "ly",
         " discuss",
@@ -7153,7 +7074,6 @@
       "name_zh": "计算机科学问题 20",
       "text": "If we have a list of tabular values represented by a one-dimensionalar-ray, then the first differences of the list areformed by subtracting each element except the last [sincenothing follows the last element] from the element immediatelyfollowing it. Suppose we have a one--dimensionalarray named X t",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "If",
         " we",
         " have",
@@ -7235,7 +7155,6 @@
       "name_zh": "数学问题 1",
       "text": "Statement 1 | Some abelian group of order 45 has a subgroup of order 10. Statement 2 | A subgroup H of a group G is a normal subgroup if and only if thenumber of left cosets of H is equal to the number of right cosets of H.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Statement",
         " ",
         "1",
@@ -7315,7 +7234,6 @@
       "name_zh": "数学问题 2",
       "text": "Statement 1 | Every permutation is a one-to-one function. Statement 2 | Every function is a permutation if and only if it is one to one.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Statement",
         " ",
         "1",
@@ -7369,7 +7287,6 @@
       "name_zh": "数学问题 3",
       "text": "Statement 1 | For every positive integer n there is a cyclic group of order n. Statement 2 | Every finite cyclic group contains an element of every order that divides the order of the group.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Statement",
         " ",
         "1",
@@ -7429,7 +7346,6 @@
       "name_zh": "数学问题 4",
       "text": "Kim rode her bicycle 135 miles in 9 weeks, riding the same distance each week. Eric rode his bicycle 102 miles in 6 weeks, riding the same distance each week. Which statement correctly compares the number of miles per week they rode?",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Kim",
         " rode",
         " her",
@@ -7504,7 +7420,6 @@
       "name_zh": "数学问题 5",
       "text": "An insurance agent is successful in selling a life insurance policy to 20 percent of the customers he contacts. He decides to construct a simulation to estimate the mean number of customers he needs to contact before being able to sell a policy. Which of the following schemes should he use to do the",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "An",
         " insurance",
         " agent",
@@ -7582,7 +7497,6 @@
       "name_zh": "数学问题 6",
       "text": "A woman walks due west on the deck of a ship at $3 \\mathrm{mi} / \\mathrm{h}$. The ship is moving north at a speed of $22 \\mathrm{mi} / \\mathrm{h}$. Find the speed of the woman relative to the surface of the water.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "A",
         " woman",
         " walks",
@@ -7664,7 +7578,6 @@
       "name_zh": "数学问题 7",
       "text": "A farmer who raises hens for egg production wants his eggs to have a mean mass of 56 grams. He is considering the purchase of a different type of hen, so he took a random sample of 18 eggs laid by this type of hen. The distribution of the masses is symmetric and mound-shaped with a mean of 54.1 gram",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "A",
         " farmer",
         " who",
@@ -7757,7 +7670,6 @@
       "name_zh": "数学问题 8",
       "text": "Statement 1| Every group of order p^2 where p is prime is Abelian. Statement 2 | For a fixed prime p a Sylow p-subgroup of a group G is a normal subgroup of G if and only if it is the only Sylow p-subgroup of G.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Statement",
         " ",
         "1",
@@ -7838,7 +7750,6 @@
       "name_zh": "数学问题 9",
       "text": "Show how to approximate the required work by a Riemann sum. Then express the work as an integral and evaluate it.  A cable that weighs $2 \\mathrm{~lb} / \\mathrm{ft}$ is used to lift $800 \\mathrm{~lb}$ of coal up a mine shaft $500 \\mathrm{~ft}$ deep. Find the work done.\n",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Show",
         " how",
         " to",
@@ -7935,7 +7846,6 @@
       "name_zh": "数学问题 10",
       "text": "Statement 1 | If H and K are subgroups of G and one of H or K is normal subgroup of G, then HK is a subgroup of G. Statement 2 | All groups of order p^2 where p is prime are Abelian.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Statement",
         " ",
         "1",
@@ -8005,7 +7915,6 @@
       "name_zh": "数学问题 11",
       "text": "A variable force of $5 x^{-2}$ pounds moves an object along a straight line when it is $x$ feet from the origin. Calculate the work done in moving the object from $x=1 \\mathrm{~ft}$ to $x=10 \\mathrm{~ft}$.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "A",
         " variable",
         " force",
@@ -8083,7 +7992,6 @@
       "name_zh": "数学问题 12",
       "text": "A botanist is interested in testing H0: μ = 3.5 cm versus Ha: μ > 3.5, where μ = the mean petal length of one variety of flowers. A random sample of 50 petals gives significant results at a 5 percent level of significance. Which of the following statements about the confidence interval to estimate t",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "A",
         " botan",
         "ist",
@@ -8176,7 +8084,6 @@
       "name_zh": "数学问题 13",
       "text": "A $360-\\mathrm{lb}$ gorilla climbs a tree to a height of $20 \\mathrm{~ft}$. Find the work done if the gorilla reaches that height in 5 seconds.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "A",
         " $",
         "3",
@@ -8239,7 +8146,6 @@
       "name_zh": "数学问题 14",
       "text": "A mass weighing $8 \\mathrm{lb}$ stretches a spring 1.5 in. The mass is also attached to a damper with coefficient $\\gamma$. Determine the value of $\\gamma$ for which the system is critically damped; be sure to give the units for $\\gamma$",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "A",
         " mass",
         " weighing",
@@ -8317,7 +8223,6 @@
       "name_zh": "数学问题 15",
       "text": "A swimming pool is circular with a $40-\\mathrm{ft}$ diameter. The depth is constant along east-west lines and increases linearly from $2 \\mathrm{ft}$ at the south end to $7 \\mathrm{ft}$ at the north end. Find the volume of water in the pool.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "A",
         " swimming",
         " pool",
@@ -8400,7 +8305,6 @@
       "name_zh": "数学问题 16",
       "text": " A ball is thrown eastward into the air from the origin (in the direction of the positive $x$-axis). The initial velocity is $50 \\mathrm{i}+80 \\mathrm{k}$, with speed measured in feet per second. The spin of the ball results in a southward acceleration of $4 \\mathrm{ft} / \\mathrm{s}^2$, so the accel",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         " A",
         " ball",
         " is",
@@ -8500,7 +8404,6 @@
       "name_zh": "数学问题 17",
       "text": "If a ball is thrown into the air with a velocity of $40 \\mathrm{ft} / \\mathrm{s}$, its height (in feet) after $t$ seconds is given by $y=40 t-16 t^2$. Find the velocity when $t=2$.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "If",
         " a",
         " ball",
@@ -8582,7 +8485,6 @@
       "name_zh": "数学问题 18",
       "text": "The dye dilution method is used to measure cardiac output with $6 \\mathrm{mg}$ of dye. The dye concentrations, in $\\mathrm{mg} / \\mathrm{L}$, are modeled by $c(t)=20 t e^{-0.6 t}, 0 \\leqslant t \\leqslant 10$, where $t$ is measured in seconds. Find the cardiac output.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "The",
         " dye",
         " dilution",
@@ -8682,7 +8584,6 @@
       "name_zh": "数学问题 19",
       "text": "A fluid has density $870 \\mathrm{~kg} / \\mathrm{m}^3$ and flows with velocity $\\mathbf{v}=z \\mathbf{i}+y^2 \\mathbf{j}+x^2 \\mathbf{k}$, where $x, y$, and $z$ are measured in meters and the components of $\\mathbf{v}$ in meters per second. Find the rate of flow outward through the cylinder $x^2+y^2=4$,",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "A",
         " fluid",
         " has",
@@ -8802,7 +8703,6 @@
       "name_zh": "数学问题 20",
       "text": "Use Poiseuille's Law to calculate the rate of flow in a small human artery where we can take $\\eta=0.027, R=0.008 \\mathrm{~cm}$, $I=2 \\mathrm{~cm}$, and $P=4000$ dynes $/ \\mathrm{cm}^2$.",
       "tokens": [
-        "<｜begin▁of▁sentence｜>",
         "Use",
         " Po",
         "ise",

@@ -407,13 +407,16 @@ async function processInput() {
     }
 }
 
-// 定义5种专家颜色
+// 定义8种专家颜色
 const EXPERT_COLORS = [
-    '#FF6B6B', // 红色
-    '#4ECDC4', // 青色
-    '#45B7D1', // 蓝色
-    '#96CEB4', // 绿色
-    '#FFEAA7'  // 黄色
+    '#E74C3C', // 深红色 - 更明显
+    '#3498DB', // 蓝色 - 更鲜明
+    '#2ECC71', // 绿色 - 更鲜艳
+    '#9B59B6', // 紫色 - 高对比
+    '#E67E22', // 橙色 - 替代浅黄色
+    '#F39C12', // 深橙色
+    '#1ABC9C', // 青绿色
+    '#E91E63'  // 粉红色
 ];
 
 // 获取专家颜色
@@ -470,6 +473,37 @@ function generateSecondaryColor(primaryColor, index) {
     return `rgba(${newR}, ${newG}, ${newB}, ${variation.alpha})`;
 }
 
+// 生成符合约束的激活向量：1728维，27列×64行，每列最多6个激活
+function generateConstrainedActivationVector() {
+    const vector = new Array(1728).fill(0);
+    const layers = 27; // 列数
+    const expertsPerLayer = 64; // 每列的专家数
+    const maxActivationsPerLayer = 6; // 每列最多激活数
+    
+    // 对每一列（层）
+    for (let col = 0; col < layers; col++) {
+        // 随机决定这一列激活多少个（1-6个）
+        const numActivations = Math.floor(Math.random() * maxActivationsPerLayer) + 1;
+        
+        // 生成该列的随机激活位置
+        const positions = [];
+        while (positions.length < numActivations) {
+            const row = Math.floor(Math.random() * expertsPerLayer);
+            if (!positions.includes(row)) {
+                positions.push(row);
+            }
+        }
+        
+        // 设置激活值
+        positions.forEach(row => {
+            const vectorIndex = col * expertsPerLayer + row;
+            vector[vectorIndex] = Math.random(); // 激活强度
+        });
+    }
+    
+    return vector;
+}
+
 // 存储原始tokens，用于后续随机着色
 let originalTokens = [];
 // 存储一级专家与token的对应关系
@@ -503,6 +537,9 @@ function displayInputText(inputText, tokensArray = null) {
     }
     
     originalTokens = tokens; // 保存原始tokens
+    
+    console.log(`displayInputText: 保存了 ${originalTokens.length} 个tokens`);
+    console.log(`displayInputText: tokens内容:`, originalTokens);
     
     // 初始显示不带颜色的分词结果
     tokenDisplay.textContent = tokens.join(' ');
@@ -539,61 +576,55 @@ function highlightTokensRandomly() {
 }
 
 // 新函数：为特定专家高亮对应的token
-function highlightTokensForExpert(expertIndex, expertColor) {
+function highlightTokensForExpert(expertIndex) {
     const tokenDisplay = document.getElementById('token-display');
     if (!tokenDisplay || originalTokens.length === 0) {
         console.error('未找到token-display元素或tokens为空');
         return;
     }
 
-    let highlightedTokens = [];
+    // 直接获取当前选中的一级专家在界面上显示的颜色
+    const selectedCell = document.querySelector('.expert-explanation .token-table td:nth-child(2).selected');
+    let expertColor;
     
-    // 添加调试信息
-    console.log(`查找专家 ${expertIndex} 的映射关系`);
-    console.log('expertTokenMapping内容:', expertTokenMapping);
-    console.log('expertTokenMapping.has(' + expertIndex + '):', expertTokenMapping.has(expertIndex));
-    console.log('expertTokenMapping.has(' + parseInt(expertIndex) + '):', expertTokenMapping.has(parseInt(expertIndex)));
-    
-    // 检查是否已有保存的映射关系
-    if (expertTokenMapping.has(parseInt(expertIndex))) {
-        const savedMapping = expertTokenMapping.get(parseInt(expertIndex));
-        highlightedTokens = savedMapping.tokens;
-        console.log(`使用已保存的专家 ${expertIndex} 映射关系:`, highlightedTokens);
-    } else {
-        // 如果没有保存的映射，生成新的映射关系
-        const seed = parseInt(expertIndex) || 0;
-        
-        // 简单的伪随机数生成器，基于专家索引
-        function seededRandom(seed) {
-            const x = Math.sin(seed) * 10000;
-            return x - Math.floor(x);
+    if (selectedCell) {
+        // 优先使用保存的十六进制颜色
+        expertColor = selectedCell.getAttribute('data-hex-color');
+        if (!expertColor) {
+            // 如果没有data属性，使用默认方式获取
+            expertColor = selectedCell.style.color || window.getComputedStyle(selectedCell).color;
         }
-        
-        // 为每个token决定是否被该专家高亮（40%的token会被高亮）
-        const highlightProbability = 0.4;
-        highlightedTokens = originalTokens.filter((token, index) => {
-            const randomValue = seededRandom(seed + index);
-            return randomValue < highlightProbability;
-        });
-        
-        // 保存新生成的映射关系到内存中（不自动保存到文件）
-        expertTokenMapping.set(parseInt(expertIndex), {
-            color: expertColor,
-            tokens: highlightedTokens
-        });
-        
-        // 注释掉自动保存功能，防止覆盖手动修改的JSON文件
-        // saveExpertTokenMapping();
-        
-        console.log(`生成专家 ${expertIndex} 的临时映射关系:`, highlightedTokens);
+        console.log(`从界面获取专家颜色: ${expertColor}`);
+    } else {
+        // 如果没有选中的专家，使用默认颜色
+        const colors = getExpertColors();
+        expertColor = colors[0];
+        console.log(`使用默认颜色: ${expertColor}`);
+    }
+
+    // 简化逻辑：直接使用一级专家的固定颜色高亮token
+    // 为每个token随机决定是否高亮（40%概率）
+    const highlightProbability = 0.4;
+    const seed = parseInt(expertIndex) || 0;
+    
+    // 简单的伪随机数生成器，基于专家索引
+    function seededRandom(seed) {
+        const x = Math.sin(seed) * 10000;
+        return x - Math.floor(x);
     }
     
+    console.log(`专家 ${expertIndex} 使用颜色: ${expertColor}`);
+    console.log(`originalTokens 长度: ${originalTokens.length}`);
+    console.log(`originalTokens 内容:`, originalTokens);
+    
     // 创建高亮显示的token数组
-    const coloredTokens = originalTokens.map((token) => {
-        const shouldHighlight = highlightedTokens.includes(token);
+    const coloredTokens = originalTokens.map((token, index) => {
+        // 为每个token决定是否高亮（基于专家索引的伪随机）
+        const randomValue = seededRandom(seed + index);
+        const shouldHighlight = randomValue < highlightProbability;
         
         if (shouldHighlight) {
-            return `<span style="background-color: ${expertColor}20; padding: 2px 4px; border-radius: 3px;">${token}</span>`;
+            return `<span style="background-color: ${expertColor}40; padding: 2px 4px; border-radius: 3px;">${token}</span>`;
         } else {
             // 不高亮的token保持默认颜色
             return `<span style="color: inherit;">${token}</span>`;
@@ -909,10 +940,8 @@ function displayTop5Experts(top5Experts) {
     top5Experts.forEach((expert, index) => {
         const row = document.createElement('tr');
         
-        // 从expertTokenMapping获取该专家的颜色，如果没有则使用默认颜色
-        const expertId = parseInt(expert['Expert Index']);
-        const expertData = expertTokenMapping.get(expertId);
-        const expertColor = expertData && expertData.color ? expertData.color : colors[index % colors.length];
+        // 使用标准的8种颜色，按索引分配（确保颜色一致性）
+        const expertColor = colors[index % colors.length];
 
         // 创建Expert Index单元格
         const indexCell = document.createElement('td');
@@ -936,6 +965,9 @@ function displayTop5Experts(top5Experts) {
         infoCell.appendChild(nameDiv);
         infoCell.appendChild(descDiv);
         
+        // 保存十六进制颜色到data属性，供token高亮使用
+        infoCell.setAttribute('data-hex-color', expertColor);
+        
         // 为专家名称单元格添加点击事件，用于显示二级专家组合和高亮对应token
         infoCell.style.cursor = 'pointer';
         infoCell.addEventListener('click', async () => {
@@ -953,7 +985,7 @@ function displayTop5Experts(top5Experts) {
             displaySecondLevelExperts(expert['Expert Index']);
 
             // 高亮对应的token（使用该专家的颜色）
-            highlightTokensForExpert(expert['Expert Index'], expertColor);
+            highlightTokensForExpert(expert['Expert Index']);
 
             // 高亮当前行
             highlightRowAndButton(row, null, null);
@@ -969,8 +1001,8 @@ function displayTop5Experts(top5Experts) {
         button.addEventListener('click', async () => {
             console.log('分解按钮被点击，专家:', expert['Expert Name']);
 
-            // 生成1728维随机向量用于激活图显示
-            const activationVector = Array.from({ length: 1728 }, () => Math.random() > 0.95 ? Math.random() : 0);
+            // 生成1728维约束激活向量用于激活图显示（每列最多6个）
+            const activationVector = generateConstrainedActivationVector();
             
             // 只显示悬浮窗并展示激活图
             showActivationModal(expert['Expert Name'], activationVector);
@@ -1150,6 +1182,23 @@ async function displaySecondLevelExperts(primaryExpertId) {
         infoCell.appendChild(nameDiv);
         infoCell.appendChild(descDiv);
         row.appendChild(infoCell);
+
+        // 创建"详情"按钮单元格
+        const buttonCell = document.createElement('td');
+        const button = document.createElement('button');
+        button.textContent = '🔍';
+        button.classList.add('add-button');
+        button.addEventListener('click', async () => {
+            console.log('二级专家分解按钮被点击，专家:', expert.name || expert['Expert Name']);
+            
+            // 生成1728维约束激活向量用于激活图显示（每列最多6个）
+            const activationVector = generateConstrainedActivationVector();
+            
+            // 显示悬浮窗并展示激活图
+            showActivationModal(expert.name || expert['Expert Name'], activationVector);
+        });
+        buttonCell.appendChild(button);
+        row.appendChild(buttonCell);
 
         // 将行添加到表格中
         secondLevelTableBody.appendChild(row);
